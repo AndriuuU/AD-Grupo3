@@ -1,47 +1,37 @@
-package com.gestioncursos.entity;
+package com.gestioncursos.model;
 
 import java.sql.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
-public class Cursos {
+import com.gestioncursos.entity.Profesores;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+public class CursosModel {
+
 	private int idcursos;
-	
+
 	private String nombre;
 	
 	private String descripcion;
 	
 	private int nivel;
 	
-	@ManyToOne
-	@JoinColumn(name="idProfesor")
-	private Profesores profesores;
-	
 	private Date fechaInicio;
 	
 	private Date fechaFin;
 
-	public Cursos() {
+	public CursosModel() {
 		super();
 	}
 
-	public Cursos(int idcursos, String nombre, String descripcion, int nivel, Profesores profesores, Date fechaInicio,
+	public CursosModel(int idcursos, String nombre, String descripcion, int nivel, Date fechaInicio,
 			Date fechaFin) {
 		super();
 		this.idcursos = idcursos;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.nivel = nivel;
-		this.profesores = profesores;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 	}
@@ -78,14 +68,6 @@ public class Cursos {
 		this.nivel = nivel;
 	}
 
-	public Profesores getIdprofesor() {
-		return profesores;
-	}
-
-	public void setIdprofesor(Profesores idprofesor) {
-		this.profesores = idprofesor;
-	}
-
 	public Date getFechaInicio() {
 		return fechaInicio;
 	}
@@ -104,10 +86,8 @@ public class Cursos {
 
 	@Override
 	public String toString() {
-		return "Cursos [idcursos=" + idcursos + ", nombre=" + nombre + ", descripcion=" + descripcion + ", nivel="
-				+ nivel + ", idprofesor=" + profesores + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
-				+ "]";
+		return "CursosModel [idcursos=" + idcursos + ", nombre=" + nombre + ", descripcion=" + descripcion + ", nivel="
+				+ nivel + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + "]";
 	}
-	
-	
+
 }

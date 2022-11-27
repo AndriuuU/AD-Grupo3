@@ -1,26 +1,20 @@
-package com.gestioncursos.entity;
+package com.gestioncursos.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.gestioncursos.entity.User;
 
-@Entity
-public class Administradores {
+public class AdministradoresModel {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idadministradores;
 	
 	private User usuario;
 	
 	private User password;
 
-	public Administradores() {
+	public AdministradoresModel() {
 		super();
 	}
 
-	public Administradores(int idadministradores, User usuario, User password) {
+	public AdministradoresModel(int idadministradores, User usuario, User password) {
 		super();
 		this.idadministradores = idadministradores;
 		this.usuario = usuario;
@@ -56,6 +50,4 @@ public class Administradores {
 		return "Administradores [idadministradores=" + idadministradores + ", usuario=" + usuario + ", password="
 				+ password + "]";
 	}
-	
-	
 }

@@ -1,16 +1,12 @@
-package com.gestioncursos.entity;
+package com.gestioncursos.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.Arrays;
 
-@Entity
-public class Profesores {
+import com.gestioncursos.entity.User;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int idprofesores;
+public class AlumnosModel {
+
+private int idalumnos;
 	
 	private String nombre;
 	
@@ -21,27 +17,31 @@ public class Profesores {
 	private User usuario;
 	
 	private User password;
+	
+	private byte[] foto;
 
-	public Profesores() {
+	public AlumnosModel() {
 		super();
 	}
 
-	public Profesores(int idprofesores, String nombre, String apellidos, String email, User usuario, User password) {
+	public AlumnosModel(int idalumnos, String nombre, String apellidos, String email, User usuario, User password,
+			byte[] foto) {
 		super();
-		this.idprofesores = idprofesores;
+		this.idalumnos = idalumnos;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
 		this.usuario = usuario;
 		this.password = password;
+		this.foto = foto;
 	}
 
-	public int getIdprofesores() {
-		return idprofesores;
+	public int getidalumnos() {
+		return idalumnos;
 	}
 
-	public void setIdprofesores(int idprofesores) {
-		this.idprofesores = idprofesores;
+	public void setidalumnos(int idalumnos) {
+		this.idalumnos = idalumnos;
 	}
 
 	public String getNombre() {
@@ -84,11 +84,18 @@ public class Profesores {
 		this.password = password;
 	}
 
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
 	@Override
 	public String toString() {
-		return "Profesores [idprofesores=" + idprofesores + ", nombre=" + nombre + ", apellidos=" + apellidos
-				+ ", email=" + email + ", usuario=" + usuario + ", password=" + password + "]";
+		return "Alumnos [idalumnos=" + idalumnos + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email="
+				+ email + ", usuario=" + usuario + ", password=" + password + ", foto=" + Arrays.toString(foto) + "]";
 	}
-	
 	
 }

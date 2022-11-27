@@ -3,6 +3,7 @@ package com.gestioncursos.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
@@ -10,7 +11,7 @@ import javax.validation.constraints.Size;
 public class User {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
 	@Column(name="username", unique=true, nullable=false)

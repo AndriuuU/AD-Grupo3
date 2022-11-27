@@ -1,15 +1,9 @@
-package com.gestioncursos.entity;
+package com.gestioncursos.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.gestioncursos.entity.User;
 
-@Entity
-public class Profesores {
+public class ProfesoresModel {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idprofesores;
 	
 	private String nombre;
@@ -22,11 +16,11 @@ public class Profesores {
 	
 	private User password;
 
-	public Profesores() {
+	public ProfesoresModel() {
 		super();
 	}
 
-	public Profesores(int idprofesores, String nombre, String apellidos, String email, User usuario, User password) {
+	public ProfesoresModel(int idprofesores, String nombre, String apellidos, String email, User usuario, User password) {
 		super();
 		this.idprofesores = idprofesores;
 		this.nombre = nombre;
@@ -83,12 +77,11 @@ public class Profesores {
 	public void setPassword(User password) {
 		this.password = password;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Profesores [idprofesores=" + idprofesores + ", nombre=" + nombre + ", apellidos=" + apellidos
 				+ ", email=" + email + ", usuario=" + usuario + ", password=" + password + "]";
 	}
-	
 	
 }
