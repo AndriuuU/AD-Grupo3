@@ -14,8 +14,8 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	@Column(name="username", unique=true, nullable=false)
-	private String username;
+	@Column(name="gmail", unique=true, nullable=false)
+	private String gmail;
 	
 	@Column(name="password", nullable=false)
 	@Size(max=100)
@@ -29,10 +29,10 @@ public class User {
 		super();
 	}
 
-	public User(long id, String username, @Size(max = 100) String password, boolean enabled, String role) {
+	public User(long id, String gmail, @Size(max = 100) String password, boolean enabled, String role) {
 		super();
 		this.id = id;
-		this.username = username;
+		this.gmail = gmail;
 		this.password = password;
 		this.enabled = enabled;
 		this.role = role;
@@ -46,12 +46,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getGmail() {
+		return gmail;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setGmail(String username) {
+		this.gmail = username;
 	}
 
 	public String getPassword() {
@@ -80,7 +80,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
+		return "User [id=" + id + ", gmail=" + gmail + ", password=" + password + ", enabled=" + enabled
 				+ ", role=" + role + "]";
 	}
 	

@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.gestioncursos.entity.User;
 
 @Repository("userRepository")
-public interface UserRepository extends JpaRepository<User, Serializable> {
-	
-	public abstract User findByEmail(String email);
+public interface UserRepository extends JpaRepository <User, Serializable> {
 
+	public abstract User findByUsername(String gmail);
 }

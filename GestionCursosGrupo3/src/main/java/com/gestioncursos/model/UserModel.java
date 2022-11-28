@@ -4,7 +4,7 @@ public class UserModel {
 	
 	private long id;
 	
-	private String username;
+	private String gmail;
 	
 	private String password;
 	
@@ -16,10 +16,10 @@ public class UserModel {
 		super();
 	}
 
-	public UserModel(long id, String username, String password, boolean enabled, String role) {
+	public UserModel(long id, String gmail, String password, boolean enabled, String role) {
 		super();
 		this.id = id;
-		this.username = username;
+		this.gmail = gmail;
 		this.password = password;
 		this.enabled = enabled;
 		this.role = role;
@@ -33,12 +33,12 @@ public class UserModel {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getGmail() {
+		return gmail;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setGmail(String username) {
+		this.gmail = username;
 	}
 
 	public String getPassword() {
@@ -67,7 +67,7 @@ public class UserModel {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
+		return "User [id=" + id + ", gmail=" + gmail + ", password=" + password + ", enabled=" + enabled
 				+ ", role=" + role + "]";
 	}
 }
