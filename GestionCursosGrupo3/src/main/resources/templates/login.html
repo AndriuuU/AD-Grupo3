@@ -1,0 +1,49 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+<link th:href="@{/css/header.css}" rel="stylesheet" />
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> <!-- FontAwesome 4-->
+<div th:replace ="fragments :: header"></div>
+<title>Login</title>
+</head>
+<body>
+
+<div class="wrapper">	
+        <div class="logo">
+            <img src="https://www.freepnglogos.com/uploads/hacker-png/hacker-anonymous-group-wikipedia-23.png" width="200" alt="hacker, anonymous group wikipedia" />
+        </div>	
+        <div class="text-center mt-4 name">
+           	Sign In
+        </div>
+        
+		<form class="p-3 mt-3" th:action="@{/auth/login}"
+			th:object="${user}" method="POST">
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+							
+			<div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="userName" id="userName" placeholder="Username">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="password" id="pwd" placeholder="Password">
+            </div>
+			
+			<div th:if="${error!=null}" class="alert alert-danger" role="alert">Invalid
+				Username</div>
+			<div th:if="${Logout!=null}" class="alert alert-info" role="alert">Logout
+				Succesful</div>
+			<button class="btn mt-3">Login</button>
+		</form>
+		<div class="text-center fs-6">
+            <a href="#">Forget password?</a> or <a href="#">Sign up</a>
+        </div>
+</div>
+</body>
