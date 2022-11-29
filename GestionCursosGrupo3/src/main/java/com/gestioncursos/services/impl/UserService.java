@@ -2,12 +2,16 @@ package com.gestioncursos.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Service;
 
 import com.gestioncursos.repository.UserRepository;
@@ -35,5 +39,28 @@ public class UserService implements UserDetailsService{
 			throw new UsernameNotFoundException("Usuario no encontrado");
 		return builder.build();
 	}
+	
+	public UserDetailsService userDetailsService() {
+	      UserDetails user =
+	         User.withDefaultPasswordEncoder()
+	          .username("gmail")
+	          .password("password")
+	          .roles("USER")
+	          .build();
+
+	      return new InMemoryUserDetailsManager(user);
+	    }
+	
+	 @Bean
+	    public PasswordEncoder passwordEncoder() {
+	      return new BCryptPasswordEncoder();
+	    }
+	    
+	    public com.gestioncursos.entity.User registrar(com.gestioncursos.entity.User user){
+	      user.setPassword(passwordEncoder().encode(user.getPassword()));
+	      user.setEnabled(true);
+	      user.setRole("ROLE_USER");
+	      return userRepository.save(user);
+	    }
 
 }
