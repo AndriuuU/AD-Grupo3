@@ -1,10 +1,13 @@
 package com.gestioncursos.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -14,9 +17,13 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
+	@OneToOne(cascade= CascadeType.ALL)
+	@JoinColumn(name="gmail",referencedColumnName="gmail")
 	@Column(name="gmail", unique=true, nullable=false)
 	private String gmail;
 	
+	@OneToOne(cascade= CascadeType.ALL)
+	@JoinColumn(name="password",referencedColumnName="password")
 	@Column(name="password", nullable=false)
 	@Size(max=100)
 	private String password;

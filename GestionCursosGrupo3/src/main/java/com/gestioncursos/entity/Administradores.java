@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Administradores {
@@ -11,19 +12,20 @@ public class Administradores {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idadministradores;
+	@OneToOne(mappedBy="gmail")
+	private User gmail;
 	
-	private User usuario;
-	
+	@OneToOne(mappedBy="password")
 	private User password;
 
 	public Administradores() {
 		super();
 	}
 
-	public Administradores(int idadministradores, User usuario, User password) {
+	public Administradores(int idadministradores, User gmail, User password) {
 		super();
 		this.idadministradores = idadministradores;
-		this.usuario = usuario;
+		this.gmail = gmail;
 		this.password = password;
 	}
 
@@ -35,12 +37,12 @@ public class Administradores {
 		this.idadministradores = idadministradores;
 	}
 
-	public User getUsuario() {
-		return usuario;
+	public User getGmail() {
+		return gmail;
 	}
 
-	public void setUsuario(User usuario) {
-		this.usuario = usuario;
+	public void setGmail(User usuario) {
+		this.gmail = usuario;
 	}
 
 	public User getPassword() {
@@ -53,7 +55,7 @@ public class Administradores {
 
 	@Override
 	public String toString() {
-		return "Administradores [idadministradores=" + idadministradores + ", usuario=" + usuario + ", password="
+		return "Administradores [idadministradores=" + idadministradores + ", gmail=" + gmail + ", password="
 				+ password + "]";
 	}
 	
