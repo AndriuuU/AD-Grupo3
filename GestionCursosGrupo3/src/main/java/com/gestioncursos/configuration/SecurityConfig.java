@@ -39,11 +39,9 @@ public class SecurityConfig {
 	      http
 	          .logout(logout -> logout                                                
 	              .logoutUrl("/my/logout")                                            
-	              .logoutSuccessUrl("/home")                                      
-	              /*.logoutSuccessHandler(logoutSuccessHandler)                         
-	              .invalidateHttpSession(true)                                        
-	              .addLogoutHandler(logoutHandler)                                    
-	              .deleteCookies(cookieNamesToClear)*/                                 
+	              .logoutSuccessUrl("/auth/login")                                      
+	              .invalidateHttpSession(true)
+	                                      
 	          );
 	  }
 	
