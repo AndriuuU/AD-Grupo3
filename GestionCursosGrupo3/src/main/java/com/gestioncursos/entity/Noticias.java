@@ -2,24 +2,31 @@ package com.gestioncursos.entity;
 
 import java.util.Arrays;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="noticias")
 public class Noticias {
 
 	@Id
+	@Column(name="idnoticias")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idnoticias;
 	
+	@Column(name="titulo", length=45)
 	private String titulo;
 	
+	@Column(name="descripcion", length=45)
 	private String descripcion;
 	
+	@Column(name="imagen", nullable=true)
 	private byte[] imagen;
 	
 	@ManyToOne

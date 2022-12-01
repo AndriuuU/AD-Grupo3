@@ -1,5 +1,6 @@
 package com.gestioncursos.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,11 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="matricula")
 public class Matricula {
 
 	@Id
+	@Column(name="idmatricula")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idmatricula;
 	
@@ -20,7 +24,7 @@ public class Matricula {
 	private Alumnos alumnos;
 	
 	@ManyToOne
-	@JoinColumn(name="idCursos")
+	@JoinColumn(name="idcursos")
 	private Cursos cursos;
 
 	public Matricula() {

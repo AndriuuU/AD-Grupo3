@@ -1,19 +1,25 @@
 package com.gestioncursos.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="profesores")
 public class Profesores {
 
 	@Id
+	@Column(name="idprofesores")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idprofesores;
 	
+	@Column(name="nombre", length=45)
 	private String nombre;
 	
+	@Column(name="apellidos", length=45)
 	private String apellidos;
 	
 	private String email;

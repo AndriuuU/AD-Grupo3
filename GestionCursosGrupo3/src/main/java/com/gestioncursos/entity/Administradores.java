@@ -1,17 +1,22 @@
 package com.gestioncursos.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="administradores")
 public class Administradores {
 
 	@Id
+	@Column(name="idadministradores")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idadministradores;
+	
 	@OneToOne(mappedBy="gmail")
 	private User gmail;
 	
