@@ -5,11 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="alumnos")
-public class Alumnos {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Alumnos extends User {
 
 	@Id
 	@Column(name="idalumnos")
@@ -22,11 +25,9 @@ public class Alumnos {
 	@Column(name="apellidos", length=45)
 	private String apellidos;
 	
-	private String email;
-	
-	private User usuario;
-	
-	private User password;
+//	private String gmail;
+//	
+//	private User password;
 	
 	@Column(name="foto", length=45, nullable=true)
 	private String foto;
@@ -35,15 +36,13 @@ public class Alumnos {
 		super();
 	}
 
-	public Alumnos(int idalumnos, String nombre, String apellidos, String email, User usuario, User password,
-			String foto) {
+	public Alumnos(int idalumnos, String nombre, String apellidos, String foto) {
 		super();
 		this.idalumnos = idalumnos;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
-		this.email = email;
-		this.usuario = usuario;
-		this.password = password;
+//		this.gmail = gmail;
+//		this.password = password;
 		this.foto = foto;
 	}
 
@@ -71,29 +70,20 @@ public class Alumnos {
 		this.apellidos = apellidos;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public User getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(User usuario) {
-		this.usuario = usuario;
-	}
-
-	public User getPassword() {
-		return password;
-	}
-
-	public void setPassword(User password) {
-		this.password = password;
-	}
+//	public String getGmail() {
+//		return gmail;
+//	}
+//
+//	public void setGmail(String gmail) {
+//		this.gmail = gmail;
+//	}
+//	public User getPassword() {
+//		return password;
+//	}
+//
+//	public void setPassword(User password) {
+//		this.password = password;
+//	}
 
 	public String getFoto() {
 		return foto;
@@ -101,12 +91,6 @@ public class Alumnos {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
-	}
-
-	@Override
-	public String toString() {
-		return "Alumnos [idalumnos=" + idalumnos + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email="
-				+ email + ", usuario=" + usuario + ", password=" + password + ", foto=" + foto + "]";
 	}
 
 	

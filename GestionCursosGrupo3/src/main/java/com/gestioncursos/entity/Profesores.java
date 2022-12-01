@@ -5,11 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="profesores")
-public class Profesores {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Profesores extends User {
 
 	@Id
 	@Column(name="idprofesores")
@@ -22,24 +25,21 @@ public class Profesores {
 	@Column(name="apellidos", length=45)
 	private String apellidos;
 	
-	private String email;
-	
-	private User usuario;
-	
-	private User password;
+//	private String gmail;
+//	
+//	private User password;
 
 	public Profesores() {
 		super();
 	}
 
-	public Profesores(int idprofesores, String nombre, String apellidos, String email, User usuario, User password) {
+	public Profesores(int idprofesores, String nombre, String apellidos) {
 		super();
 		this.idprofesores = idprofesores;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
-		this.email = email;
-		this.usuario = usuario;
-		this.password = password;
+//		this.gmail = gmail;
+//		this.password = password;
 	}
 
 	public int getIdprofesores() {
@@ -66,35 +66,20 @@ public class Profesores {
 		this.apellidos = apellidos;
 	}
 
-	public String getEmail() {
-		return email;
-	}
+//	public String getGmail() {
+//		return gmail;
+//	}
+//
+//	public void setGmail(String gmail) {
+//		this.gmail = gmail;
+//	}
+//
+//	public User getPassword() {
+//		return password;
+//	}
+//
+//	public void setPassword(User password) {
+//		this.password = password;
+//	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public User getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(User usuario) {
-		this.usuario = usuario;
-	}
-
-	public User getPassword() {
-		return password;
-	}
-
-	public void setPassword(User password) {
-		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "Profesores [idprofesores=" + idprofesores + ", nombre=" + nombre + ", apellidos=" + apellidos
-				+ ", email=" + email + ", usuario=" + usuario + ", password=" + password + "]";
-	}
-	
-	
 }
