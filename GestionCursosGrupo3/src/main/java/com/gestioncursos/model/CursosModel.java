@@ -17,6 +17,8 @@ public class CursosModel {
 	
 	private int nivel;
 	
+	private int idProfesor;
+	
 	private Date fechaInicio;
 	
 	private Date fechaFin;
@@ -25,13 +27,14 @@ public class CursosModel {
 		super();
 	}
 
-	public CursosModel(int idcursos, String nombre, String descripcion, int nivel, Date fechaInicio,
+	public CursosModel(int idcursos, String nombre, String descripcion, int nivel , int idProfesor, Date fechaInicio,
 			Date fechaFin) {
 		super();
 		this.idcursos = idcursos;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.nivel = nivel;
+		this.idProfesor = idProfesor;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 	}
@@ -68,6 +71,14 @@ public class CursosModel {
 		this.nivel = nivel;
 	}
 
+	public int getIdProfesor() {
+		return idProfesor;
+	}
+
+	public void setIdProfesor(int idProfesor) {
+		this.idProfesor = idProfesor;
+	}
+
 	public Date getFechaInicio() {
 		return fechaInicio;
 	}
@@ -87,7 +98,10 @@ public class CursosModel {
 	@Override
 	public String toString() {
 		return "CursosModel [idcursos=" + idcursos + ", nombre=" + nombre + ", descripcion=" + descripcion + ", nivel="
-				+ nivel + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + "]";
+				+ nivel + ", idProfesor=" + idProfesor + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
+				+ "]";
 	}
+
+	
 
 }

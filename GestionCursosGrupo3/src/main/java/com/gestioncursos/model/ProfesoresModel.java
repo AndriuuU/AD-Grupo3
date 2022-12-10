@@ -30,12 +30,12 @@ public class ProfesoresModel {
 		this.password = password;
 	}
 
-	public int getIdprofesores() {
+	public int getIdProfesor() {
 		return idProfesor;
 	}
 
-	public void setIdprofesores(int idprofesores) {
-		this.idProfesor = idprofesores;
+	public void setIdProfesor(int idProfesor) {
+		this.idProfesor = idProfesor;
 	}
 
 	public String getNombre() {
@@ -77,11 +77,13 @@ public class ProfesoresModel {
 	public void setPassword(User password) {
 		this.password = password;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Profesores [idprofesores=" + idProfesor + ", nombre=" + nombre + ", apellidos=" + apellidos
+		return "ProfesoresModel [idProfesor=" + idProfesor + ", nombre=" + nombre + ", apellidos=" + apellidos
 				+ ", email=" + email + ", usuario=" + usuario + ", password=" + password + "]";
 	}
+
+	
 	
 }

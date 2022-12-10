@@ -23,18 +23,18 @@
         <div class="text-center mt-4 name">
            	Sign In
         </div>
-        
+        <br>
 		<form action="form-signin" th:action="@{/auth/login}" th:object="${user}" method="POST" style="text-align:center;width: 500px;margin: auto;">
 		<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/> 
 			<label for="inputEmail">Email</label> 
-			<input type="text" class="form-control" placeholder="Correo electr&oacute;nico" name="username" id="username" /> 
+			<input type="text" class="form-control" placeholder="Correo electronico" name="username" id="username" /> 
 			<br> 
-			<label for="inputPassword">Clave</label>
-			<input type="password" class="form-control" placeholder="Clave" name="password" id="password" /> <br>
+			<label for="inputPassword">Password</label>
+			<input type="password" class="form-control" placeholder="Password" name="password" id="password" /> <br>
 			
-			<div th:if="${error!=null}" class="alert alert-danger" role="alert">Usuario o contrase&ntilde;a incorrectas</div>
-			<div th:if="${logout!=null}" class="alert alert-success" role="alert">Sesi&oacute;n cerrada correctamente</div>
-			<button type="submit" class="btn btn-primary">Iniciar sesi&oacute;n</button>
+			<div th:if="${error!=null}" class="alert alert-danger" role="alert">Usuario o password;a incorrectas</div>
+			<div th:if="${logout!=null}" class="alert alert-success" role="alert">Sesion cerrada correctamente</div>
+			<button type="submit" class="btn btn-primary">Iniciar sesion</button>
 	</form>
 		<div class="text-center fs-6">
             <a href="#">Forget password?</a> or <a  th:href="@{/auth/registerForm/}">Sign up</a>
