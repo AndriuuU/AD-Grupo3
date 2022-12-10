@@ -1,49 +1,28 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- <link th:href="@{/css/header.css}" rel="stylesheet" />	  -->
+	<link th:href="@{/css/header.css}" rel="stylesheet" />
 	
 </head>
 <body>
 <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
   <div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
     <div class="container">
-     <div class="navbar-nav-scroll">
-	    <ul class="navbar-nav bd-navbar-nav flex-row">
-	      <li  th:classappend="${module == 'home' ? 'active' : ''}" class="nav-item">
-	        <a class="nav-link active" href="/" th:href="@{/}">Home</a>
-	      </li>
-	      <li sec:authorize="!isAuthenticated()" class="nav-item">
-	        <a class="nav-link" th:href="@{/auth/registerForm}">Sign Up</a>
-	      </li>
-	    </ul>
-  	</div>
-    <!--  
-      <div class="navbar-nav-scroll">
-      <ul class="navbar-nav bd-navbar-nav flex-row">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">My project</a>
-     </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li th:classappend="${module == 'home' ? 'active' : ''}">
-            <a href="/" th:href="@{/}">Home</a>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li sec:authorize="!isAuthenticated()" class="nav-item">
-          	<a class="nav-link" th:href="@{/auth/registerForm}"><span class = "fas fa-user"></span>Sign Up</a>
-          </li>
-        </ul>
-      </div>
-      -->
+     	<div class="navbar-nav-scroll">
+		    <ul class="navbar-nav bd-navbar-nav flex-row">
+		      <li  th:classappend="${module == 'home' ? 'active' : ''}" class="nav-item">
+		        <a class="nav-link active" href="/" th:href="@{/}">Home</a>
+		      </li>
+		      <li sec:authorize="!isAuthenticated()" class="nav-item">
+		        <a class="nav-link" th:href="@{/auth/registerForm}">Sign Up</a>
+		      </li>
+		    </ul>
+  		</div>
     </div>
   </div>
   </header>

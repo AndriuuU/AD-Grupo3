@@ -1,4 +1,6 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -13,7 +15,7 @@
 <title>Login</title>
 </head>
 <body>
-<div th:replace ="fragments :: header"></div>
+<div th:replace="fragments :: header"></div>
 <div class="wrapper">	
         <div class="logo">
             <img src="https://www.freepnglogos.com/uploads/hacker-png/hacker-anonymous-group-wikipedia-23.png" width="200" alt="hacker, anonymous group wikipedia" />
@@ -22,28 +24,20 @@
            	Sign In
         </div>
         
-		<form class="p-3 mt-3" th:action="@{/auth/login}"
-			th:object="${user}" method="POST">
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
-							
-			<div class="form-field d-flex align-items-center">
-                <span class="far fa-user"></span>
-                <input type="text" name="userName" id="userName" placeholder="Username">
-            </div>
-            <div class="form-field d-flex align-items-center">
-                <span class="fas fa-key"></span>
-                <input type="password" name="password" id="pwd" placeholder="Password">
-            </div>
+		<form action="form-signin" th:action="@{/auth/login}" th:object="${user}" method="POST" style="text-align:center;width: 500px;margin: auto;">
+		<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/> 
+			<label for="inputEmail">Email</label> 
+			<input type="text" class="form-control" placeholder="Correo electr&oacute;nico" name="username" id="username" /> 
+			<br> 
+			<label for="inputPassword">Clave</label>
+			<input type="password" class="form-control" placeholder="Clave" name="password" id="password" /> <br>
 			
-			<div th:if="${error!=null}" class="alert alert-danger" role="alert">Invalid
-				Username</div>
-			<div th:if="${Logout!=null}" class="alert alert-info" role="alert">Logout
-				Succesful</div>
-			<button class="btn mt-3">Login</button>
-		</form>
+			<div th:if="${error!=null}" class="alert alert-danger" role="alert">Usuario o contrase&ntilde;a incorrectas</div>
+			<div th:if="${logout!=null}" class="alert alert-success" role="alert">Sesi&oacute;n cerrada correctamente</div>
+			<button type="submit" class="btn btn-primary">Iniciar sesi&oacute;n</button>
+	</form>
 		<div class="text-center fs-6">
-            <a href="#">Forget password?</a> or <a href="#">Sign up</a>
+            <a href="#">Forget password?</a> or <a  th:href="@{/auth/registerForm/}">Sign up</a>
         </div>
 </div>
 </body>
