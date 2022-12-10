@@ -53,13 +53,17 @@ public class CursoController {
 		return "redirect:/cursos/listCursos";
 	}
 
-	@GetMapping(value = { "/formCurso", "/formCurso/{idCursos}" })
-	public String formCurso(@PathVariable(name = "idCursos", required = false) Integer id, Model model) {
+	@GetMapping(value = { "/formCurso", "/formCurso/{id}" })
+	public String formCurso(@PathVariable(name = "id", required = false) Integer id, Model model) {
 		model.addAttribute("profesores", profesorService.listAllProfesores());
-		if (id == null)
+		if (id == null) {
 			model.addAttribute("curso", new CursosModel());
-		else
+//			System.out.println("x");
+		}
+		else {
 			model.addAttribute("curso", cursoService.findCurso(id));
+			System.out.println(id);
+		}
 		return FORM_VIEW;
 	}
 	
