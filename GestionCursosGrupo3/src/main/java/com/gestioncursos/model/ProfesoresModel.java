@@ -4,7 +4,7 @@ import com.gestioncursos.entity.User;
 
 public class ProfesoresModel {
 
-	private int idprofesores;
+	private int idProfesor;
 	
 	private String nombre;
 	
@@ -20,9 +20,9 @@ public class ProfesoresModel {
 		super();
 	}
 
-	public ProfesoresModel(int idprofesores, String nombre, String apellidos, String email, User usuario, User password) {
+	public ProfesoresModel(int idprofesor, String nombre, String apellidos, String email, User usuario, User password) {
 		super();
-		this.idprofesores = idprofesores;
+		this.idProfesor = idprofesor;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
@@ -31,11 +31,11 @@ public class ProfesoresModel {
 	}
 
 	public int getIdprofesores() {
-		return idprofesores;
+		return idProfesor;
 	}
 
 	public void setIdprofesores(int idprofesores) {
-		this.idprofesores = idprofesores;
+		this.idProfesor = idprofesores;
 	}
 
 	public String getNombre() {
@@ -80,7 +80,7 @@ public class ProfesoresModel {
 	
 	@Override
 	public String toString() {
-		return "Profesores [idprofesores=" + idprofesores + ", nombre=" + nombre + ", apellidos=" + apellidos
+		return "Profesores [idprofesores=" + idProfesor + ", nombre=" + nombre + ", apellidos=" + apellidos
 				+ ", email=" + email + ", usuario=" + usuario + ", password=" + password + "]";
 	}
 	

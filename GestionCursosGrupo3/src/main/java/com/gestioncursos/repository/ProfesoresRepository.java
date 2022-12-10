@@ -7,9 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gestioncursos.entity.Profesores;
 
-@Repository("profesoresRepository")
+@Repository("profesorRepository")
 public interface ProfesoresRepository extends JpaRepository<Profesores, Serializable> {
-
-	public abstract Profesores findByIdprofesores(int id);
-	
+	public abstract Profesores findByidProfesor(int id);
 }

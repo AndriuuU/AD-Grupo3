@@ -10,6 +10,6 @@ import com.gestioncursos.entity.Administradores;
 @Repository("administradoresRepository")
 public interface AdministradoresRepository extends JpaRepository<Administradores, Serializable> {
 
-	public abstract Administradores findByIdadministradores(int id);
+//	public abstract Administradores findByIdadministradores(int id);
 	
 }

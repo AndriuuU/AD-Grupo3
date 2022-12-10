@@ -16,10 +16,10 @@ import org.springframework.stereotype.Service;
 import com.gestioncursos.repository.UserRepository;
 
 @Service("userService")
-public class UsersServiceImpl implements UserDetailsService {
+public class UsersService implements UserDetailsService {
 
 	@Autowired
-	@Qualifier("usuarioRepository")
+	@Qualifier("userRepository")
 	private UserRepository userRepository;
 
 	@Override

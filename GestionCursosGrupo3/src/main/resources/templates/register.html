@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.css}">
+<link rel="stylesheet" th:href="@{/css/styles.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<meta charset="ISO-8859-1">
+<title>Registro de usuario</title>
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<br>
+<div style="text-align:center;width: 500px;margin: auto;">
+	<h1>Registro</h1>
+	</div>
+	<br><br><br>
+	<form th:action="@{/auth/register}" th:object="${alumno}" method="post" style="text-align:center;width: 500px;margin: auto;">
+		<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/>
+		<label>Nombre: </label>
+		<input type="text" class="form-control" th:field="*{nombre}" placeholder="Nombre" name="nombre" id="nombre"/>
+		<br>
+		<label>Apellidos: </label>
+		<input type="text" class="form-control" th:field="*{apellidos}" placeholder="Apellidos" name="apellidos" id="apellidos"/>
+		<br>
+		<label>Email: </label>
+		<input type="text" class="form-control" th:field="*{email}" placeholder="Correo electr&oacute;nico" name="username" id="username" pattern='([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'/>
+		<br>
+		<label>Clave: </label>
+		<input type="password" class="form-control" th:field="*{password}" placeholder="Clave" name="password" id="password"/>
+		<br>
+		<label>Foto: </label>
+		<input type="file" class="form-control" th:field="*{foto}" placeholder="foto" name="foto" id="foto"/>
+		<br>
+		<input class="btn btn-primary btn-block text-uppercase" id="boton" type="submit" value="Registrarse"/>
+	</form>
+	
+	<div class="alert alert-success" th:if="${success != null}"
+						th:text="${success}"></div>
+					<div class="alert alert-danger" th:if="${error != null}"
+						th:text="${error}"></div>
+					<div class="alert alert-warning" th:if="${warning != null}"
+						th:text="${warning}"></div>
+					<div class="alert alert-info" th:if="${info != null}"
+						th:text="${info}"></div>
+</body>
+</html>

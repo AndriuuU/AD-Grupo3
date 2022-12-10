@@ -9,7 +9,6 @@ import com.gestioncursos.entity.Comentarios;
 
 @Repository("comentariosRepository")
 public interface ComentariosRepository extends JpaRepository<Comentarios, Serializable> {
-
-	public abstract Comentarios findById(int id);
+//	public abstract Comentarios findById(int id);
 	
 }

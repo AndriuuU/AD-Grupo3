@@ -10,6 +10,6 @@ import com.gestioncursos.entity.Matricula;
 @Repository("matriculaRepository")
 public interface MatriculaRepository extends JpaRepository<Matricula, Serializable> {
 
-	public abstract Matricula findByIdmatricula(int id);
+//	public abstract Matricula findByIdmatricula(int id);
 	
 }

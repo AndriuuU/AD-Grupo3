@@ -22,4 +22,8 @@ public interface AlumnosService {
 	
 	public abstract AlumnosModel findAlumno(int id);
 	
+	public abstract AlumnosModel findAlumno(String email);
+
+	
+	
 }
