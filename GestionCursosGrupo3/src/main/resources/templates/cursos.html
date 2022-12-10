@@ -26,10 +26,10 @@
 				<th th:text=${curso.fechaInicio}></th>
 				<th th:text=${curso.fechaFin}></th>
 				<th>
-				<a th:href="@{/cursos/formCurso/} + ${curso.idCurso}">
+				<a th:href="@{/cursos/formCurso/} + ${curso.idcursos}">
 						<button type="button" class="btn btn-default"><i class="fa-solid fa-pen-to-square"></i></button>
 				</a> 
-				<a th:href="@{/cursos/deleteCurso/}+ ${curso.idCurso}" th:onclick="return confirm('¿Est&aacute;s seguro que deseas eliminar el registro?');">
+				<a th:href="@{/cursos/deleteCurso/}+ ${curso.idcursos}" th:onclick="return confirm('¿Est&aacute;s seguro que deseas eliminar el registro?');">
 						<button type="button" class="btn btn-default"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
 				</a>
 				
