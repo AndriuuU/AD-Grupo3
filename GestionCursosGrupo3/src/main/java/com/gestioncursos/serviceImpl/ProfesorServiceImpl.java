@@ -2,7 +2,9 @@ package com.gestioncursos.serviceImpl;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -20,44 +22,44 @@ public class ProfesorServiceImpl implements ProfesoresService{
 
 	@Override
 	public List<ProfesoresModel> listAllProfesores() {
-		// TODO Auto-generated method stub
-		return null;
+		return profesorRepository.findAll().stream().map(c -> transform(c)).collect(Collectors.toList());
 	}
 
 	@Override
-	public Profesores addProfesor(ProfesoresModel ProfesoresModel) {
-		// TODO Auto-generated method stub
-		return null;
+	public Profesores addProfesor(ProfesoresModel profesorModel) {
+		return profesorRepository.save(transform(profesorModel));
 	}
 
 	@Override
 	public int removeProfesor(int id) {
-		// TODO Auto-generated method stub
+		profesorRepository.deleteById(id);
 		return 0;
 	}
 
 	@Override
-	public Profesores updateProfesor(ProfesoresModel ProfesoresModel) {
-		// TODO Auto-generated method stub
-		return null;
+	public Profesores updateProfesor(ProfesoresModel profesorModel) {
+		return profesorRepository.save(transform(profesorModel));
+	}
+	
+	@Override
+	public Profesores transform(ProfesoresModel courseModel) {
+		ModelMapper modelMapper = new ModelMapper();
+		return modelMapper.map(courseModel, Profesores.class);
 	}
 
 	@Override
-	public Profesores transform(ProfesoresModel ProfesoresModel) {
-		// TODO Auto-generated method stub
-		return null;
+	public ProfesoresModel transform(Profesores course) {
+		ModelMapper modelMapper = new ModelMapper();
+		return modelMapper.map(course, ProfesoresModel.class);
 	}
 
 	@Override
-	public ProfesoresModel transform(Profesores Profesores) {
-		// TODO Auto-generated method stub
-		return null;
+	public ProfesoresModel findProfesor(String email) {
+		return transform(profesorRepository.findByEmail(email));
 	}
-
 	@Override
 	public ProfesoresModel findProfesor(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return transform(profesorRepository.findById(id).orElse(null));
 	}
 	
 	

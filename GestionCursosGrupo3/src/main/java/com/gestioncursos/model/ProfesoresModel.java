@@ -20,9 +20,9 @@ public class ProfesoresModel {
 		super();
 	}
 
-	public ProfesoresModel(int idprofesor, String nombre, String apellidos, String email, User usuario, User password) {
+	public ProfesoresModel(int idProfesor, String nombre, String apellidos, String email, User usuario, User password) {
 		super();
-		this.idProfesor = idprofesor;
+		this.idProfesor = idProfesor;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
