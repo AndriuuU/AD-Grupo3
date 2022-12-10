@@ -1,57 +1,44 @@
 package com.gestioncursos.entity;
 
-import java.util.Arrays;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="noticias")
 public class Noticias {
-
 	@Id
-	@Column(name="idnoticias")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int idnoticias;
-	
-	@Column(name="titulo", length=45)
+	private int idNoticias;
 	private String titulo;
-	
-	@Column(name="descripcion", length=45)
 	private String descripcion;
-	
-	@Column(name="imagen", nullable=true)
-	private byte[] imagen;
+	private String imagen;
 	
 	@ManyToOne
-	@JoinColumn(name="idAdministrador")
-	private Administradores administradores;
-
+	@JoinColumn(name="administradorId")
+	private Administradores administrador;
+	
 	public Noticias() {
 		super();
 	}
 
-	public Noticias(int idnoticias, String titulo, String descripcion, byte[] imagen, Administradores administradores) {
+	public Noticias(int idNoticias, String titulo, String descripcion, String imagen, Administradores administrador) {
 		super();
-		this.idnoticias = idnoticias;
+		this.idNoticias = idNoticias;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.imagen = imagen;
-		this.administradores = administradores;
+		this.administrador = administrador;
 	}
 
-	public int getIdnoticias() {
-		return idnoticias;
+	public int getIdNoticias() {
+		return idNoticias;
 	}
 
-	public void setIdnoticias(int idnoticias) {
-		this.idnoticias = idnoticias;
+	public void setIdNoticias(int idNoticias) {
+		this.idNoticias = idNoticias;
 	}
 
 	public String getTitulo() {
@@ -70,26 +57,31 @@ public class Noticias {
 		this.descripcion = descripcion;
 	}
 
-	public byte[] getImagen() {
+	public String getImagen() {
 		return imagen;
 	}
 
-	public void setImagen(byte[] imagen) {
+	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
 
-	public Administradores getAdministradores() {
-		return administradores;
+	public Administradores getAdministrador() {
+		return administrador;
 	}
 
-	public void setAdministradores(Administradores administradores) {
-		this.administradores = administradores;
+	public void setAdministrador(Administradores administrador) {
+		this.administrador = administrador;
 	}
 
 	@Override
 	public String toString() {
-		return "Noticias [idnoticias=" + idnoticias + ", titulo=" + titulo + ", descripcion=" + descripcion
-				+ ", imagen=" + Arrays.toString(imagen) + ", administradores=" + administradores + "]";
+		return "Noticia [idNoticias=" + idNoticias + ", titulo=" + titulo + ", descripcion=" + descripcion + ", imagen="
+				+ imagen + ", administrador=" + administrador + "]";
 	}
+
+	
+	
+	
+	
 	
 }

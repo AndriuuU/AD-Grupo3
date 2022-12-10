@@ -7,11 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.gestioncursos.entity.Alumnos;
+import com.gestioncursos.entity.User;
 
 @Repository("alumnosRepository")
 public interface AlumnosRepository extends JpaRepository<Alumnos, Serializable> {
 
-	public abstract Alumnos findByIdalumnos(int id);
+	public abstract User findByIdalumnos(int id);
 	
 	public abstract List<Alumnos> findByNombreOrderByNombre(String nombre);
 	

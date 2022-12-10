@@ -1,82 +1,87 @@
 package com.gestioncursos.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="comentarios")
 public class Comentarios {
-
 	@Id
-	@Column(name="idcomentarios")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int idcomentarios;
-	
-	@ManyToOne
-	@JoinColumn(name="idAlumno")
-	private Alumnos idalumno;
-	
-	@ManyToOne
-	@JoinColumn(name="idCurso")
-	private Cursos idcurso;
-	
-	@Column(name="comentario", length=45)
+	private int idComentarios;
 	private String comentario;
+	
+	@ManyToOne
+	@JoinColumn(name="cursoId")
+	private Cursos curso;
+	
+	@ManyToOne
+	@JoinColumn(name="alumnoId")
+	private Alumnos alumno;
 
+	
 	public Comentarios() {
 		super();
 	}
 
-	public Comentarios(int idcomentarios, Alumnos idalumno, Cursos idcurso, String comentario) {
+
+	public Comentarios(int idComentarios, String comentario, Cursos curso, Alumnos alumno) {
 		super();
-		this.idcomentarios = idcomentarios;
-		this.idalumno = idalumno;
-		this.idcurso = idcurso;
+		this.idComentarios = idComentarios;
 		this.comentario = comentario;
+		this.curso = curso;
+		this.alumno = alumno;
 	}
 
-	public int getIdcomentarios() {
-		return idcomentarios;
+
+	public int getIdComentarios() {
+		return idComentarios;
 	}
 
-	public void setIdcomentarios(int idcomentarios) {
-		this.idcomentarios = idcomentarios;
+
+	public void setIdComentarios(int idComentarios) {
+		this.idComentarios = idComentarios;
 	}
 
-	public Alumnos getAlumnos() {
-		return idalumno;
-	}
-
-	public void setAlumnos(Alumnos idalumno) {
-		this.idalumno = idalumno;
-	}
-
-	public Cursos getCurso() {
-		return idcurso;
-	}
-
-	public void setCurso(Cursos idcurso) {
-		this.idcurso = idcurso;
-	}
 
 	public String getComentario() {
 		return comentario;
 	}
 
+
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
 
+
+	public Cursos getCurso() {
+		return curso;
+	}
+
+
+	public void setCurso(Cursos curso) {
+		this.curso = curso;
+	}
+
+
+	public Alumnos getAlumno() {
+		return alumno;
+	}
+
+
+	public void setAlumno(Alumnos alumno) {
+		this.alumno = alumno;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Comentarios [idcomentarios=" + idcomentarios + ", idalumno=" + idalumno + ", idcurso=" + idcurso
-				+ ", comentario=" + comentario + "]";
+		return "Comentario [idComentarios=" + idComentarios + ", comentario=" + comentario + ", curso=" + curso
+				+ ", alumno=" + alumno + "]";
 	}
+	
 	
 }

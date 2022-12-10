@@ -3,7 +3,7 @@ package com.gestioncursos.converter;
 import org.springframework.stereotype.Component;
 
 import com.gestioncursos.entity.User;
-import com.gestioncursos.model.UserModel;
+
 
 @Component("userConverter")
 public class UserConverter {

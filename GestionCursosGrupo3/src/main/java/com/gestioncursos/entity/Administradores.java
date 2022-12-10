@@ -1,70 +1,56 @@
 package com.gestioncursos.entity;
 
-import javax.persistence.Column;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name="administradores")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Administradores extends User {
-
+public class Administradores {
 	@Id
-	@Column(name="idadministradores")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int idadministradores;
+	private int idAdministrador;
+	private String usuario;
+	private String password;
 	
-//	@OneToOne(mappedBy="gmail")
-//	private User gmail;
-//	
-//	@OneToOne(mappedBy="password")
-//	private User password;
-
+	@OneToMany(cascade= CascadeType.ALL, mappedBy="administrador")
+	private List<Noticias> noticiasList;
+	
 	public Administradores() {
 		super();
 	}
-
-	public Administradores(int idadministradores) {
+	public Administradores(int idAdministrador, String usuario, String password) {
 		super();
-		this.idadministradores = idadministradores;
-//		this.gmail = gmail;
-//		this.password = password;
+		this.idAdministrador = idAdministrador;
+		this.usuario = usuario;
+		this.password = password;
 	}
-
-	public int getIdadministradores() {
-		return idadministradores;
+	public int getIdAdministrador() {
+		return idAdministrador;
 	}
-
-	public void setIdadministradores(int idadministradores) {
-		this.idadministradores = idadministradores;
+	public void setIdAdministrador(int idAdministrador) {
+		this.idAdministrador = idAdministrador;
 	}
-
-//	public User getGmail() {
-//		return gmail;
-//	}
-//
-//	public void setGmail(User usuario) {
-//		this.gmail = usuario;
-//	}
-//
-//	public User getPassword() {
-//		return password;
-//	}
-//
-//	public void setPassword(User password) {
-//		this.password = password;
-//	}
-//
-//	@Override
-//	public String toString() {
-//		return "Administradores [idadministradores=" + idadministradores + ", gmail=" + gmail + ", password="
-//				+ password + "]";
-//	}
-	
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	@Override
+	public String toString() {
+		return "Administradores [idAdministrador=" + idAdministrador + ", usuario=" + usuario + ", password="
+				+ password + "]";
+	}
 	
 }

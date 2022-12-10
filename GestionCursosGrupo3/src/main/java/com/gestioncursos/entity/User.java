@@ -1,13 +1,10 @@
 package com.gestioncursos.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -16,30 +13,26 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	
-	@OneToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name="gmail",referencedColumnName="gmail")
-	@Column(name="gmail", unique=true, nullable=false)
-	private String gmail;
-	
-	@OneToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name="password",referencedColumnName="password")
-	@Column(name="password", nullable=false)
-	@Size(max=100)
+
+	@Column(name = "username", unique = true, nullable = false)
+	private String username;
+
+	@Column(name = "password", nullable = false)
+	@Size(max = 100)
 	private String password;
-	
+
 	private boolean enabled;
-	
+
 	private String role;
-	
+
 	public User() {
 		super();
 	}
 
-	public User(long id, String gmail, @Size(max = 100) String password, boolean enabled, String role) {
+	public User(long id, String username, @Size(max = 100) String password, boolean enabled, String role) {
 		super();
 		this.id = id;
-		this.gmail = gmail;
+		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
 		this.role = role;
@@ -53,12 +46,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getGmail() {
-		return gmail;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setGmail(String username) {
-		this.gmail = username;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -87,8 +80,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", gmail=" + gmail + ", password=" + password + ", enabled=" + enabled
+		return "Usuario [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
 				+ ", role=" + role + "]";
 	}
-	
 }

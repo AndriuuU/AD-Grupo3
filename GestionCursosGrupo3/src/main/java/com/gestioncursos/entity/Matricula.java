@@ -1,70 +1,75 @@
 package com.gestioncursos.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="matricula")
 public class Matricula {
-
 	@Id
-	@Column(name="idmatricula")
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int idmatricula;
-	
-	@OneToOne
-	@JoinColumn(name="idAlumno")
-	private Alumnos alumnos;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int idMatricula;
+	private int valoracion;
+
 	@ManyToOne
-	@JoinColumn(name="idcursos")
-	private Cursos cursos;
+	@JoinColumn(name = "cursoId")
+	private Cursos curso;
+
+	@ManyToOne
+	@JoinColumn(name = "alumnoId")
+	private Alumnos alumno;
 
 	public Matricula() {
 		super();
 	}
 
-	public Matricula(int idmatricula, Alumnos alumnos, Cursos cursos) {
+	public Matricula(int idMatricula, int valoracion, Cursos curso, Alumnos alumno) {
 		super();
-		this.idmatricula = idmatricula;
-		this.alumnos = alumnos;
-		this.cursos = cursos;
+		this.idMatricula = idMatricula;
+		this.valoracion = valoracion;
+		this.curso = curso;
+		this.alumno = alumno;
 	}
 
-	public int getIdmatricula() {
-		return idmatricula;
+	public int getIdMatricula() {
+		return idMatricula;
 	}
 
-	public void setIdmatricula(int idmatricula) {
-		this.idmatricula = idmatricula;
+	public void setIdMatricula(int idMatricula) {
+		this.idMatricula = idMatricula;
 	}
 
-	public Alumnos getAlumnos() {
-		return alumnos;
+	public int getValoracion() {
+		return valoracion;
 	}
 
-	public void setAlumnos(Alumnos alumnos) {
-		this.alumnos = alumnos;
+	public void setValoracion(int valoracion) {
+		this.valoracion = valoracion;
 	}
 
-	public Cursos getCursos() {
-		return cursos;
+	public Cursos getCurso() {
+		return curso;
 	}
 
-	public void setCursos(Cursos cursos) {
-		this.cursos = cursos;
+	public void setCurso(Cursos curso) {
+		this.curso = curso;
+	}
+
+	public Alumnos getAlumno() {
+		return alumno;
+	}
+
+	public void setAlumno(Alumnos alumno) {
+		this.alumno = alumno;
 	}
 
 	@Override
 	public String toString() {
-		return "Matricula [idmatricula=" + idmatricula + ", alumnos=" + alumnos + ", cursos=" + cursos + "]";
+		return "Matricula [idMatricula=" + idMatricula + ", valoracion=" + valoracion + ", curso=" + curso + ", alumno="
+				+ alumno + "]";
 	}
-	
+
 }

@@ -1,85 +1,84 @@
 package com.gestioncursos.entity;
 
-import javax.persistence.Column;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name="profesores")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Profesores extends User {
+public class Profesores {
 
 	@Id
-	@Column(name="idprofesores")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int idprofesores;
-	
-	@Column(name="nombre", length=45)
+	private int idProfesor;
 	private String nombre;
-	
-	@Column(name="apellidos", length=45)
 	private String apellidos;
+	private String email;
+	private String password;
 	
-//	private String gmail;
-//	
-//	private User password;
-
+	@OneToMany(cascade= CascadeType.ALL, mappedBy="profesor")
+	private List<Cursos> cursosList;
+	
 	public Profesores() {
 		super();
 	}
-
-	public Profesores(int idprofesores, String nombre, String apellidos) {
+	public Profesores(int id, String nombre, String apellidos, String email, String password) {
 		super();
-		this.idprofesores = idprofesores;
+		this.idProfesor = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
-//		this.gmail = gmail;
-//		this.password = password;
+		this.email = email;
+		this.password = password;
 	}
 
-	public int getIdprofesores() {
-		return idprofesores;
+	public int getIdProfesor() {
+		return idProfesor;
 	}
-
-	public void setIdprofesores(int idprofesores) {
-		this.idprofesores = idprofesores;
+	public void setIdProfesor(int idProfesor) {
+		this.idProfesor = idProfesor;
 	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 	public String getApellidos() {
 		return apellidos;
 	}
-
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-//	public String getGmail() {
-//		return gmail;
-//	}
-//
-//	public void setGmail(String gmail) {
-//		this.gmail = gmail;
-//	}
-//
-//	public User getPassword() {
-//		return password;
-//	}
-//
-//	public void setPassword(User password) {
-//		this.password = password;
-//	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public List<Cursos> getCursosList() {
+		return cursosList;
+	}
+	public void setCursosList(List<Cursos> cursosList) {
+		this.cursosList = cursosList;
+	}
+	@Override
+	public String toString() {
+		return "Profesor [idProfesor=" + idProfesor + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email="
+				+ email + ", password=" + password + ", cursosList=" + cursosList + "]";
+	}
 
+	
+	
 }
