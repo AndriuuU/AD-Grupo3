@@ -33,12 +33,12 @@
 			
 			<tbody th:each="student: ${students}"> 
 				<tr>
-					<th sec:authorize="hasRole('ALUMNO')" th:text=${alumno.nombre}></th> 
-					<th sec:authorize="hasRole('ALUMNO')" th:text=${alumno.apellidos}></th> 
-					<th sec:authorize="hasRole('ALUMNO')" th:text=${alumno.email}></th> 
-					<th sec:authorize="hasRole('PROFESOR')" th:text=${profesor.nombre}></th> 
-					<th sec:authorize="hasRole('PROFESOR')" th:text=${profesor.apellidos}></th> 
-					<th sec:authorize="hasRole('PROFESOR')" th:text=${profesor.email}></th> 
+					<th sec:authorize="hasAuthority('ROL_ALUMNO')" th:text=${alumno.nombre}></th> 
+					<th sec:authorize="hasAuthority('ROL_ALUMNO')" th:text=${alumno.apellidos}></th> 
+					<th sec:authorize="hasAuthority('ROL_ALUMNO')" th:text=${alumno.email}></th> 
+					<th sec:authorize="hasAuthority('ROL_PROFESOR')" th:text=${profesor.nombre}></th> 
+					<th sec:authorize="hasAuthority('ROL_PROFESOR')" th:text=${profesor.apellidos}></th> 
+					<th sec:authorize="hasAuthority('ROL_PROFESOR')" th:text=${profesor.email}></th> 
 				</tr> 
 			</tbody>
     </section>

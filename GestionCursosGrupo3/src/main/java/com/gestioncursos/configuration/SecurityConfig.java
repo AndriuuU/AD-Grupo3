@@ -17,10 +17,10 @@ public class SecurityConfig {
 	  @Bean
 	  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	      http.authorizeRequests((requests)->requests
-	        .antMatchers("/", "/imgs/","/photos/","/auth/**","/webjars/**","/css/**","/cursos/**","/noticias/**","/files/**").permitAll()
-	        .antMatchers("/profesores/**","/alumnos/**").hasRole("ROL_ADMIN")
-	        .antMatchers("/alumnos/**","/comentarios/**","/matricula/**").hasRole("ROL_PROFESOR")
-	        .antMatchers("/alumnos/**","/comentarios/**").hasRole("ROL_ALUMNO")
+	        .antMatchers("/", "/imgs/","/photos/","/auth/**","/webjars/**","/css/**","/cursos/**","/noticias/**","/files/**","/alumnos/**","/edituser/**").permitAll()
+	        .antMatchers("/profesores/**").hasRole("ROL_ADMIN")
+	        .antMatchers("/comentarios/**","/matricula/**").hasRole("ROL_PROFESOR")
+	        .antMatchers("/comentarios/**").hasRole("ROL_ALUMNO")
 	        .anyRequest().authenticated())
 	        
 	      .formLogin((form)->form 
