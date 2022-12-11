@@ -9,10 +9,28 @@
 	<br>
 	<div style="text-align:center;width: 500px;margin: auto;">
     <header>
-        <h1>Text</h1>
+        <h1>¡Bienvenido!</h1>
     </header>
     <section layout:fragment="custom-content">
-        <p>Concent</p>
+        <p>Contenido</p>
+	        <div class="topnav">
+			  <a  th:href="@{/home/}">Home</a>
+			  <a sec:authorize="hasRole('ADMIN')" class="nav-item" th:href="@{/profesores/listProfesores/}">Ver profesores</a>
+			  <a sec:authorize="hasRole('ADMIN')" class="nav-item" th:href="@{/alumnos/listAlumnos/}">Ver alumnos</a>
+			  <a sec:authorize="hasRole('ADMIN')" class="nav-item" th:href="@{/cursos/listCursos/}">Ver cursos</a>
+			  <a th:href="@{/edituser}">Editar mis datos</a>
+			</div>
+			
+			<tbody th:each="student: ${students}"> 
+				<tr>
+					<th sec:authorize="hasRole('ALUMNO')" th:text=${alumno.nombre}></th> 
+					<th sec:authorize="hasRole('ALUMNO')" th:text=${alumno.apellidos}></th> 
+					<th sec:authorize="hasRole('ALUMNO')" th:text=${alumno.email}></th> 
+					<th sec:authorize="hasRole('PROFESOR')" th:text=${profesor.nombre}></th> 
+					<th sec:authorize="hasRole('PROFESOR')" th:text=${profesor.apellidos}></th> 
+					<th sec:authorize="hasRole('PROFESOR')" th:text=${profesor.email}></th> 
+				</tr> 
+			</tbody>
     </section>
     <footer>
         <p>My custom footer</p>

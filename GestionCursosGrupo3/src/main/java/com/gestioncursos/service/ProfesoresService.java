@@ -2,6 +2,8 @@ package com.gestioncursos.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.gestioncursos.entity.Profesores;
 import com.gestioncursos.model.ProfesoresModel;
 

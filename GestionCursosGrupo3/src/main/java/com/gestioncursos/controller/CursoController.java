@@ -27,10 +27,6 @@ public class CursoController {
 	@Qualifier("cursosService")
 	private CursosService cursoService;
 
-	@Autowired
-	@Qualifier("profesorService")
-	private ProfesoresService profesorService;
-
 //	@PreAuthorize("hasRole('ROLE_ADMIN')") NO BORRAR
 	@GetMapping("/listCursos")
 	public ModelAndView listCursos() {
@@ -55,7 +51,7 @@ public class CursoController {
 
 	@GetMapping(value = { "/formCurso", "/formCurso/{idCursos}" })
 	public String formCurso(@PathVariable(name = "idCursos", required = false) Integer id, Model model) {
-		model.addAttribute("profesores", profesorService.listAllProfesores());
+		model.addAttribute("cursos", cursoService.listAllCursos());
 		if (id == null)
 			model.addAttribute("curso", new CursosModel());
 		else
