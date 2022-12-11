@@ -33,6 +33,13 @@
 			<th th:text=${alumno.apellidos}></th>
 			<th th:text=${alumno.email}></th>
 			<th th:text=${alumno.foto}></th>
+			<th>
+				<a th:href="@{/alumnos/activarUsuario/} + ${alumno.email}">
+					<button type="button" class="btn btn-default">
+					<i class="fas fa-user-times"> </i>
+					</button>
+				</a>
+			</th>
 			<!-- <th>
 						<a th:href="@{/alumnos/deleteAlumno/} + ${alumno.idalumnos}" th:onclick="return confirm('&iquest;Est&aacute;s seguro que deseas eliminar el registro?');">
                             <button type="button" class="btn btn-default">

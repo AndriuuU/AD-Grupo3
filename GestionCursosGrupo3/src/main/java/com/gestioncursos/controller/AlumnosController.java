@@ -59,10 +59,21 @@ public class AlumnosController {
 		return "redirect:/cursos/listCursos";
 	}
 	
-	@PostMapping("/activateAlumnos/{username}")
-	public String activateAlumno(@PathVariable("username") String username, RedirectAttributes flash) {
-		usersService.activar(username);
-		flash.addFlashAttribute("success", "Alumno modificado");
+	@GetMapping("/activarUsuario/{username}")
+	public String activate(@PathVariable("username")String username, RedirectAttributes flash) {
+		int i=usersService.activar(username);
+		if(i==1) {
+			flash.addFlashAttribute("success","Usuario activado con éxito");
+		}else if(i==0) {
+			flash.addFlashAttribute("success","Usuario desactivado con éxito");
+		}else
+			flash.addFlashAttribute("error","No se ha podido activar/desactivar el usuario");	
 		return "redirect:/alumnos/listAlumnos";
 	}
+//	@GetMapping("/activarUsuario/{username}")
+//	public String activateAlumno(@PathVariable("username") String username, RedirectAttributes flash) {
+//		usersService.activar(username);
+//		flash.addFlashAttribute("success", "Alumno modificado");
+//		return "redirect:/alumnos/listAlumnos";
+//	}
 }

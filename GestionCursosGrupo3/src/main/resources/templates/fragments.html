@@ -27,6 +27,18 @@
 		      	<li sec:authorize="!isAuthenticated()" class="nav-item">
 			        <a class="nav-link" th:href="@{/auth/registerForm}">Sign Up</a>
 		      	</li>
+		      	<li sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item">
+		      		<a class="nav-link" th:href="@{/profesores/listProfesores/}">Ver profesores</a>
+		      	</li>
+		      	<li sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item">
+		      		<a class="nav-link" th:href="@{/alumnos/listAlumnos/}">Ver alumnos</a>
+		      	</li>
+		      	<li sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item">
+		      		<a class="nav-link" th:href="@{/cursos/listCursos/}">Ver cursos</a>
+		      	</li>
+		      	
+			  
+			  
 		    </ul>
   		</div>
     </div>
