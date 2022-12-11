@@ -10,7 +10,59 @@
 <body>
 <div th:replace="fragments :: header"></div>
 <br>
-<div style="text-align:center;width: 500px;margin: auto;">
+<div class="wrapper">	
+        <div class="logo">
+            <img src="https://www.freepnglogos.com/uploads/hacker-png/hacker-anonymous-group-wikipedia-23.png" width="200" alt="hacker, anonymous group wikipedia" />
+        </div>	
+        <div class="text-center mt-4 name">
+           	Sign In
+        </div>
+        <br>
+		<form class="p-3 mt-3" th:action="@{/auth/register}" th:object="${alumno}" method="post">
+		
+			<label for="inputNombre" >Nombre</label> 
+			<div class="form-field d-flex align-items-center">
+				<span class="far fa-user"></span>
+				<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/> 
+				<input type="text" class="form-control" placeholder="nombre" name="nombre" id="nombre" /> 
+			</div>
+			
+			<label for="inputApellidos" >Apellidos</label> 
+			<div class="form-field d-flex align-items-center">
+				<span class="far fa-user"></span>
+				<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/> 
+				<input type="text" class="form-control" placeholder="Apellidos" name="Apellidos" id="Apellidos" /> 
+			</div>
+			
+			<label for="inputEmail" >Email</label> 
+			<div class="form-field d-flex align-items-center">
+				<span class="far fa-user"></span>
+				<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/> 
+				<input type="text" class="form-control" placeholder="username" name="username" id="username" pattern='([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'/> 
+			</div>
+							
+			<label for="inputPassword">Password</label>
+			<div class="form-field d-flex align-items-center">
+				<span class="far fa-key"></span>
+				<input type="password" class="form-control" placeholder="Password" name="password" id="password" />
+			</div>
+			
+			<label for="inputEmail" >Email</label> 
+			<div class="form-field d-flex align-items-center">
+				<span class="far fa-user"></span>
+				<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/> 
+				<input type="file" class="form-control" placeholder="foto" name="foto" id="foto"/> 
+			</div>
+				
+				<div th:if="${error!=null}" class="alert alert-danger" role="alert">Usuario o password incorrectas</div>
+				<div th:if="${logout!=null}" class="alert alert-success" role="alert">Sesion cerrada correctamente</div>
+				<button type="submit" class="btn btn-primary">Iniciar sesion</button>
+		</form>
+		<div class="text-center fs-6">
+            <a href="#">Forget password?</a> or <a  th:href="@{/auth/registerForm/}">Sign up</a>
+        </div>
+</div>
+<!-- <div style="text-align:center;width: 500px;margin: auto;">
 	<h1>Registro</h1>
 	</div>
 	<br><br><br>
@@ -41,6 +93,6 @@
 					<div class="alert alert-warning" th:if="${warning != null}"
 						th:text="${warning}"></div>
 					<div class="alert alert-info" th:if="${info != null}"
-						th:text="${info}"></div>
+						th:text="${info}"></div> -->
 </body>
 </html>
