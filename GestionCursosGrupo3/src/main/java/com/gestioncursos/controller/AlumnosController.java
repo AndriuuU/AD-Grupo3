@@ -12,17 +12,22 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.gestioncursos.service.AlumnosService;
+import com.gestioncursos.service.CursosService;
 import com.gestioncursos.serviceImpl.UsersService;
 
 
 @Controller
 @RequestMapping("/alumnos")
 public class AlumnosController {
-	private static final String ADMINALUMNOS_VIEW = "adminAlumnos";
+	private static final String ALUMNOS_VIEW = "alumnos";
 	
 	@Autowired
 	@Qualifier("alumnoService")
 	private AlumnosService alumnosService;
+	
+	@Autowired
+	@Qualifier("cursosService")
+	private CursosService courseService;
 	
 	@Autowired
 	@Qualifier("userService")
@@ -36,11 +41,13 @@ public class AlumnosController {
 	
 	// Listar alumnos
 	@GetMapping("/listAlumnos")
-	public ModelAndView listCursos() {
-		ModelAndView mav = new ModelAndView(ADMINALUMNOS_VIEW);
+	public ModelAndView listAlumnos() {
+		ModelAndView mav = new ModelAndView(ALUMNOS_VIEW);
 		mav.addObject("alumnos", alumnosService.listAllAlumnos());
 		return mav;
 	}
+	
+	
 	
 	// Metodo de borrar
 	@GetMapping("/deleteAlumnos/{idAlumnos}")
@@ -52,9 +59,9 @@ public class AlumnosController {
 		return "redirect:/cursos/listCursos";
 	}
 	
-	@PostMapping("/activateAlumnos/{idAlumnos}")
-	public String activateAlumno(@PathVariable("idAlumnos") int id, RedirectAttributes flash) {
-		usersService.activar("username");
+	@PostMapping("/activateAlumnos/{username}")
+	public String activateAlumno(@PathVariable("username") String username, RedirectAttributes flash) {
+		usersService.activar(username);
 		flash.addFlashAttribute("success", "Alumno modificado");
 		return "redirect:/alumnos/listAlumnos";
 	}

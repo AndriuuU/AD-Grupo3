@@ -6,7 +6,7 @@ import com.gestioncursos.entity.User;
 
 public class AlumnosModel {
 
-private int idalumnos;
+	private int idalumnos;
 	
 	private String nombre;
 	

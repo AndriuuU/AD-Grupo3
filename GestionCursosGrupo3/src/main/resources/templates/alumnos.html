@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th=http://www.thymeleaf.org
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -16,33 +17,34 @@
 	</div>
 	<br>
 	<table class="table table-bordered">
-	<tbody th:each="alumno ${alumnos}">
-		<tr>
-			<th>Nombre</th>
-			<th>Apellidos</th>
-			<th>Email</th>
-			<th>Foto</th>
-			<th width="280px">Action</th>
-		</tr>
-
+	
+		<thead class="thead-light">
+			<tr>
+				<th>Nombre</th>
+				<th>Apellidos</th>
+				<th>Email</th>
+				<th>Foto</th>
+				<th width="280px">Action</th>
+			</tr>
+		</thead>
+	<tbody th:each="alumno: ${alumnos}">
 		<tr>
 			<th th:text=${alumno.nombre}></th>
 			<th th:text=${alumno.apellidos}></th>
 			<th th:text=${alumno.email}></th>
 			<th th:text=${alumno.foto}></th>
-			<th>
-				<a th:href="@{/alumnos/} + ${alumno.idAlumno}" th:if="${user.activated == null}">
-						<button type="button" class="btn btn-success-outline"><i class="fa fa-check"></i></button>
-				</a> 
-				<a th:href="@{/alumnos/} + ${alumno.idAlumno}" th:if="${user.activated != null}">
-						<button type="button" class="btn btn-success"><i class="fa fa-pause-circle"></i></button>
-				</a> 
-			
-				<a th:href="@{/alumnos/deleteAlumnos}+ ${alumno.idAlumno}" th:onclick="return confirm('¿Estas seguro que deseas eliminar el registro?');">
-						<button type="submit" class="btn btn-danger"><i class="fa fa-remove" aria-hidden="true"></i></button>
-				</a>
-			
-			</th>
+			<!-- <th>
+						<a th:href="@{/alumnos/deleteAlumno/} + ${alumno.idalumnos}" th:onclick="return confirm('&iquest;Est&aacute;s seguro que deseas eliminar el registro?');">
+                            <button type="button" class="btn btn-default">
+                            	<i class="fa-solid fa-trash" aria-hidden=true></i>
+                            </button>
+						</a>  
+						<a th:href="@{/usuarios/activarUsuario/} + ${alumno.email}">
+							<button type="button" class="btn btn-default">
+								<i class="fas fa-user-times"> </i>
+							</button>
+						</a>
+			</th> -->
 		</tr>
 	</table>
 	<br>
