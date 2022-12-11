@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" />
+<meta charset="ISO-8859-1">
+<title>Lista de alumnos</title>
+</head>
+<body>
+	
+	<div class="row">
+		<div class="col-lg-12 margin-tb">
+			<div class="pull-left"></div>
+		</div>
+	</div>
+	<br>
+	<table class="table table-bordered">
+	<tbody th:each="alumno ${alumnos}">
+		<tr>
+			<th>Nombre</th>
+			<th>Apellidos</th>
+			<th>Email</th>
+			<th>Foto</th>
+			<th width="280px">Action</th>
+		</tr>
+
+		<tr>
+			<th th:text=${alumno.nombre}></th>
+			<th th:text=${alumno.apellidos}></th>
+			<th th:text=${alumno.email}></th>
+			<th th:text=${alumno.foto}></th>
+			<th>
+				<a th:href="@{/alumnos/} + ${alumno.idAlumno}" th:if="${user.activated == null}">
+						<button type="button" class="btn btn-success-outline"><i class="fa fa-check"></i></button>
+				</a> 
+				<a th:href="@{/alumnos/} + ${alumno.idAlumno}" th:if="${user.activated != null}">
+						<button type="button" class="btn btn-success"><i class="fa fa-pause-circle"></i></button>
+				</a> 
+			
+				<a th:href="@{/alumnos/deleteAlumnos}+ ${alumno.idAlumno}" th:onclick="return confirm('¿Estas seguro que deseas eliminar el registro?');">
+						<button type="submit" class="btn btn-danger"><i class="fa fa-remove" aria-hidden="true"></i></button>
+				</a>
+			
+			</th>
+		</tr>
+	</table>
+	<br>
+	<div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+	<div class="alert alert-danger" th:if="${error != null}"
+		th:text="${error}"></div>
+	<div class="alert alert-warning" th:if="${warning != null}"
+		th:text="${warning}"></div>
+	<div class="alert alert-info" th:if="${info != null}"
+		th:text="${info}"></div>
+	
+</body>
+</html>
