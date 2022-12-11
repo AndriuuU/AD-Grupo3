@@ -56,6 +56,8 @@ public class UsersService implements UserDetailsService {
 		com.gestioncursos.entity.User u=userRepository.findByUsername(username);
 		com.gestioncursos.entity.User user=new com.gestioncursos.entity.User();
 		user.setPassword(passwordEncoder().encode(u.getPassword()));
+		user.setUsername(u.getUsername());
+		user.setId(u.getId());
 		if(u.isEnabled()==false) {
 			user.setEnabled(true);
 			a=1;
