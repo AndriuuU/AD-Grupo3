@@ -25,5 +25,4 @@ public interface AlumnosService {
 	public abstract AlumnosModel findAlumno(String email);
 
 	
-	
 }
