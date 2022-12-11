@@ -21,11 +21,11 @@ public class AlumnosController {
 	private static final String ADMINALUMNOS_VIEW = "adminAlumnos";
 	
 	@Autowired
-	@Qualifier("alumnosService")
+	@Qualifier("alumnoService")
 	private AlumnosService alumnosService;
 	
 	@Autowired
-	@Qualifier("usersService")
+	@Qualifier("userService")
 	private UsersService usersService;
 	
 	
