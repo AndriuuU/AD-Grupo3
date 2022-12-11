@@ -18,14 +18,14 @@ public class SecurityConfig {
 	  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	      http.authorizeRequests((requests)->requests
 	        .antMatchers("/", "/imgs/","/photos/","/auth/**","/webjars/**","/css/**","/cursos/**","/noticias/**","/files/**").permitAll()
-	        .antMatchers("/profesores/**","/alumnos/**").hasRole("ADMIN")
-	        .antMatchers("/alumnos/**","/comentarios/**","/matricula/**").hasRole("PROFESOR")
-	        .antMatchers("/alumnos/**","/comentarios/**").hasRole("ALUMNO")
+	        .antMatchers("/profesores/**","/alumnos/**").hasRole("ROL_ADMIN")
+	        .antMatchers("/alumnos/**","/comentarios/**","/matricula/**").hasRole("ROL_PROFESOR")
+	        .antMatchers("/alumnos/**","/comentarios/**").hasRole("ROL_ALUMNO")
 	        .anyRequest().authenticated())
 	        
 	      .formLogin((form)->form 
 	        .loginPage("/auth/login")
-	        .defaultSuccessUrl("/cursos/",true)
+	        .defaultSuccessUrl("/home",true)
 	        .permitAll())
 	        
 	      .logout((logout)->logout.permitAll()
