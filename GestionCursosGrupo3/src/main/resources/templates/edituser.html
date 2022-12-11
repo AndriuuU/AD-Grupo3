@@ -1,0 +1,26 @@
+<form action="#" th:action="@{/edituser/}"
+th:object="${user}" method="post">
+  <h1 
+    th:text="${user.id != 0} ? 'Editar usuario'>Editar usuario</h1>
+    <input type="hidden" th:field="*{id}" id="id">
+  <div class="form-group">
+    <label for="name">Nombre</label><input type="text"
+      th:field="*{nombre}" class="form-control" id="nombre"
+      placeholder="Nombre">
+  </div>
+  <div class="form-group">
+    <label for="apellidos">Apellidos</label><input type="text"
+      th:field="*{apellidos}" class="form-control" id="apellidos"
+      placeholder="Apellidos">
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label><input type="email"
+      th:field="*{email}" class="form-control" id="email"
+      placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="email">Password</label><input type="password"
+      th:field="*{password}" class="form-control" id="password"
+      placeholder="Password">
+  </div>
+</form>
