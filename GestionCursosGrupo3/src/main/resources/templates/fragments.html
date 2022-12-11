@@ -36,6 +36,16 @@
 		      	<li sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item">
 		      		<a class="nav-link" th:href="@{/cursos/listCursos/}">Ver cursos</a>
 		      	</li>
+		      	 <li sec:authorize="!isAuthenticated()" class="nav-item">
+			        <a class="nav-link" th:href="@{/auth/login}">
+						<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" >Log In</button>
+					</a>
+		        </li>
+		        <li sec:authorize="isAuthenticated()" class="nav-item">
+			          <form class="form-inline" th:action="@{/auth/logout}" method="post">
+						<button class="btn btn-link" type="submit"  data-toggle="tooltip" data-placement="bottom">Log Out</button>
+					</form>
+       			 </li>
 		      	
 			  
 			  

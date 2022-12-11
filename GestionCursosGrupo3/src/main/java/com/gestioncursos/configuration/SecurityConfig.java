@@ -29,7 +29,7 @@ public class SecurityConfig {
 	        .permitAll())
 	        
 	      .logout((logout)->logout.permitAll()
-	        .logoutUrl("/logout")
+	        .logoutUrl("/auth/logout")
 	        .logoutSuccessUrl("/auth/login?logout"));
 
 	    return http.build();
@@ -38,7 +38,7 @@ public class SecurityConfig {
 	  protected void configure(HttpSecurity http) throws Exception {
 	      http
 	          .logout(logout -> logout                                                
-	              .logoutUrl("/my/logout")                                            
+	              .logoutUrl("/auth/logout")                                            
 	              .logoutSuccessUrl("/auth/login")                                      
 	              .invalidateHttpSession(true)
 	                                      

@@ -5,10 +5,16 @@
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 	rel="stylesheet" />
-<meta charset="ISO-8859-1">
-<title>Lista de alumnos</title>
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+<link th:href="@{/css/header.css}" rel="stylesheet" />
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> <!-- FontAwesome 4-->
+
+<title>Login</title>
 </head>
 <body>
+<div th:replace="fragments :: header"></div>
+<br>
 	
 	<div class="row">
 		<div class="col-lg-12 margin-tb">
@@ -24,7 +30,7 @@
 				<th>Apellidos</th>
 				<th>Email</th>
 				<th>Foto</th>
-				<th width="280px">Action</th>
+				<th>Activar</th>
 			</tr>
 		</thead>
 	<tbody th:each="alumno: ${alumnos}">
@@ -36,9 +42,15 @@
 			<th>
 				<a th:href="@{/alumnos/activarUsuario/} + ${alumno.email}">
 					<button type="button" class="btn btn-default">
-					<i class="fas fa-user-times"> </i>
+					<i class="fas fa-user-times"> Activar</i>
 					</button>
 				</a>
+				<!--  
+				<a th:href="@{/alumnos/activarUsuario/} + ${alumno.email}">
+					<button type="button" class="btn btn-default">
+					<i class="fas fa-user-times"> </i>
+					</button>
+				</a>-->
 			</th>
 			<!-- <th>
 						<a th:href="@{/alumnos/deleteAlumno/} + ${alumno.idalumnos}" th:onclick="return confirm('&iquest;Est&aacute;s seguro que deseas eliminar el registro?');">
