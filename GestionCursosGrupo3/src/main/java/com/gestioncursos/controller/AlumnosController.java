@@ -34,10 +34,10 @@ public class AlumnosController {
 	private UsersService usersService;
 	
 //	
-//	@GetMapping("/")
-//	public RedirectView redirect() {
-//		return new RedirectView("/alumnos/listAlumnos");
-//	}
+	@GetMapping("/")
+	public RedirectView redirect() {
+		return new RedirectView("/alumnos/listAlumnos");
+	}
 	
 	// Listar alumnos
 	@GetMapping("/listAlumnos")
@@ -56,7 +56,7 @@ public class AlumnosController {
 			flash.addFlashAttribute("success", "Alumno eliminado con éxito");
 		else
 			flash.addFlashAttribute("error", "No se pudo eliminar el alumno");
-		return "redirect:/cursos/listCursos";
+		return "redirect:/alumnos/listAlumnos";
 	}
 	
 	@GetMapping("/activarUsuario/{username}")

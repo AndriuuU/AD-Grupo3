@@ -2,20 +2,25 @@
 <html xmlns:th=http://www.thymeleaf.org
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet" />
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
 <link th:href="@{/css/styles.css}" rel="stylesheet" />
 <link th:href="@{/css/header.css}" rel="stylesheet" />
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> <!-- FontAwesome 4-->
+<!-- <link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" />
+<meta charset="ISO-8859-1"> -->
 
-<title>Login</title>
+<title>Lista de alumnos</title>
 </head>
 <body>
-<div th:replace="fragments :: header"></div>
-<br>
-	
+	<div th:replace="fragments :: header"></div>
+	<br>
 	<div class="row">
 		<div class="col-lg-12 margin-tb">
 			<div class="pull-left"></div>
@@ -30,7 +35,7 @@
 				<th>Apellidos</th>
 				<th>Email</th>
 				<th>Foto</th>
-				<th>Activar</th>
+				<th width="280px">Action</th>
 			</tr>
 		</thead>
 	<tbody th:each="alumno: ${alumnos}">
@@ -41,23 +46,19 @@
 			<th th:text=${alumno.foto}></th>
 			<th>
 				<a th:href="@{/alumnos/activarUsuario/} + ${alumno.email}">
-					<button type="button" class="btn btn-default">
-					<i class="fas fa-user-times"> Activar</i>
-					</button>
-				</a>
-				<!--  
-				<a th:href="@{/alumnos/activarUsuario/} + ${alumno.email}">
-					<button type="button" class="btn btn-default">
+					<button type="button" class="btn btn-success">
 					<i class="fas fa-user-times"> </i>
 					</button>
-				</a>-->
+				</a>
+				
+				
 			</th>
 			<!-- <th>
 						<a th:href="@{/alumnos/deleteAlumno/} + ${alumno.idalumnos}" th:onclick="return confirm('&iquest;Est&aacute;s seguro que deseas eliminar el registro?');">
-                            <button type="button" class="btn btn-default">
-                            	<i class="fa-solid fa-trash" aria-hidden=true></i>
-                            </button>
-						</a>  
+		                   <button type="button" class="btn btn-danger">
+		                   <i class="fa-solid fa-trash" aria-hidden=true></i>
+		                   </button>
+						</a> 	
 						<a th:href="@{/usuarios/activarUsuario/} + ${alumno.email}">
 							<button type="button" class="btn btn-default">
 								<i class="fas fa-user-times"> </i>
@@ -75,5 +76,10 @@
 	<div class="alert alert-info" th:if="${info != null}"
 		th:text="${info}"></div>
 	
+	<div>
+		<a th:href="@{/home}">
+			<button type="button" class="btn btn-primary">Regresar</button>
+		</a>
+	</div>
 </body>
 </html>
