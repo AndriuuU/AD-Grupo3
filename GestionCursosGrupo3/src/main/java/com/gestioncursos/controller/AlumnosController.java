@@ -28,11 +28,11 @@ public class AlumnosController {
 	@Qualifier("userService")
 	private UsersService usersService;
 	
-	
-	@GetMapping("/")
-	public RedirectView redirect() {
-		return new RedirectView("/alumnos/listAlumnos");
-	}
+//	
+//	@GetMapping("/")
+//	public RedirectView redirect() {
+//		return new RedirectView("/alumnos/listAlumnos");
+//	}
 	
 	// Listar alumnos
 	@GetMapping("/listAlumnos")

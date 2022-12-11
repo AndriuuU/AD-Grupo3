@@ -32,8 +32,8 @@ public class LoginController {
 	private AlumnosService alumnoService;
 	
 	@GetMapping("/")
-	public RedirectView redirect() {
-		return new RedirectView("/home");
+	public String home(Model model) {
+		return Constantes.HOME_VIEW;
 	}
 	
 	@GetMapping("/home")
