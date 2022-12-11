@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sad Mac 404 Error Page</title>
-  <link rel="stylesheet" media="all" href="style.css" />
+  <link rel="stylesheet" media="all" th:href="@{/css/style.css}" />
 </head>
 <body>
 <figure>
@@ -33,6 +33,9 @@
 		<span class="n"></span>
 		<span class="d"></span>
 	</figcaption>
+	<br>
+	<br>
+	<a class="nav-link active" href="/" th:href="@{/}" style="font-size:300%; color:white; font-family:verdana;">Return Home</a>
 </figure>
 </body>
 </html>
