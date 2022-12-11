@@ -61,7 +61,7 @@ figcaption span {
 	box-shadow: 1em 1em, 1em 2em, 1em 3em, 1em 4em, 4em 1em, 4em 2em, 4em 3em, 4em 4em, 2em 4em, 3em 4em, 4em 5em, 4em 6em;
 }
 ._5:before {
-	box-shadow: 1em 1em, 1em 2em, 1em 3em, 1em 4em, 4em 1em, 4em 2em, 4em 3em, 4em 4em, 2em 4em, 3em 4em, 4em 5em, 4em 6em;
+	box-shadow: 1em 1em, 2em 1em,3em 1em,4em 1em,1em 2em,1em 3em,2em 3em,3em 3em,4em 3em,4em 4em,4em 5em,1em 6em,2em 6em,3em 6em,4em 6em;
 }
 .d:before {
 	box-shadow: 1em 1em, 2em 1em, 3em 1em, 1em 2em, 4em 2em, 1em 3em, 4em 3em, 1em 4em, 4em 4em, 1em 5em, 4em 5em, 1em 6em, 2em 6em, 3em 6em;
