@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.gestioncursos.constantes.Constantes;
 import com.gestioncursos.entity.Alumnos;
 import com.gestioncursos.entity.User;
 import com.gestioncursos.service.AlumnosService;
@@ -21,9 +22,7 @@ import com.gestioncursos.serviceImpl.UsersService;
 @Controller
 @RequestMapping("/")
 public class LoginController {
-	private static final String HOME_VIEW = "home";
-	private static final String LOGIN_VIEW = "login";
-	private static final String REGISTER_VIEW = "register";
+	
 	@Autowired
 	@Qualifier("userService")
 	private UsersService usuarioService;
@@ -39,7 +38,7 @@ public class LoginController {
 	
 	@GetMapping("/home")
 	public String inicio(Model model) {
-		return HOME_VIEW;
+		return Constantes.HOME_VIEW;
 	}
 	
 	@GetMapping("/auth/login")
@@ -48,13 +47,13 @@ public class LoginController {
 		model.addAttribute("user",new User());
 		model.addAttribute("error", error);
 		model.addAttribute("logout", logout);
-		return LOGIN_VIEW;
+		return Constantes.LOGIN_VIEW;
 	}
 	
 	@GetMapping("/auth/registerForm")
 	public String registerForm(Model model) {
 		model.addAttribute("alumno", new Alumnos());
-		return REGISTER_VIEW;
+		return Constantes.REGISTER_VIEW;
 	}
 	
 	@PostMapping("/auth/register")

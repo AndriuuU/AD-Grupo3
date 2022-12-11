@@ -9,7 +9,7 @@ import com.gestioncursos.entity.Profesores;
 
 public class CursosModel {
 
-	private int idcursos;
+	private int idCursos;
 
 	private String nombre;
 	
@@ -27,10 +27,10 @@ public class CursosModel {
 		super();
 	}
 
-	public CursosModel(int idcursos, String nombre, String descripcion, int nivel , int idProfesor, Date fechaInicio,
+	public CursosModel(int idCursos, String nombre, String descripcion, int nivel , int idProfesor, Date fechaInicio,
 			Date fechaFin) {
 		super();
-		this.idcursos = idcursos;
+		this.idCursos = idCursos;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.nivel = nivel;
@@ -39,12 +39,12 @@ public class CursosModel {
 		this.fechaFin = fechaFin;
 	}
 
-	public int getIdcursos() {
-		return idcursos;
+	public int getIdCursos() {
+		return idCursos;
 	}
 
-	public void setIdcursos(int idcursos) {
-		this.idcursos = idcursos;
+	public void setIdCursos(int idCursos) {
+		this.idCursos = idCursos;
 	}
 
 	public String getNombre() {
@@ -97,7 +97,7 @@ public class CursosModel {
 
 	@Override
 	public String toString() {
-		return "CursosModel [idcursos=" + idcursos + ", nombre=" + nombre + ", descripcion=" + descripcion + ", nivel="
+		return "CursosModel [idCursos=" + idCursos + ", nombre=" + nombre + ", descripcion=" + descripcion + ", nivel="
 				+ nivel + ", idProfesor=" + idProfesor + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
 				+ "]";
 	}

@@ -13,19 +13,23 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.gestioncursos.constantes.Constantes;
 import com.gestioncursos.model.CursosModel;
+import com.gestioncursos.repository.CursosRepository;
 import com.gestioncursos.service.CursosService;
 import com.gestioncursos.service.ProfesoresService;
 
 @Controller
 @RequestMapping("/cursos")
 public class CursoController {
-	private static final String COURSES_VIEW = "cursos";
-	private static final String FORM_VIEW = "formCurso";
 
 	@Autowired
 	@Qualifier("cursosService")
 	private CursosService cursoService;
+	
+	@Autowired
+	@Qualifier("cursosRepository")
+	private CursosRepository cursosRepository;
 
 	@Autowired
 	@Qualifier("profesoresService")
@@ -34,7 +38,7 @@ public class CursoController {
 //	@PreAuthorize("hasRole('ROLE_ADMIN')") NO BORRAR
 	@GetMapping("/listCursos")
 	public ModelAndView listCursos() {
-		ModelAndView mav = new ModelAndView(COURSES_VIEW);
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
 		mav.addObject("cursos", cursoService.listAllCursos());
 		return mav;
 	}
@@ -42,13 +46,12 @@ public class CursoController {
 	@PostMapping("/addCurso")
 	public String addCurso(@ModelAttribute("curso") CursosModel cursoModel, 
 			RedirectAttributes flash) {
-		if (cursoModel.getIdcursos() == 0) {
-			cursoService.addCurso(cursoModel);
-			flash.addFlashAttribute("success", "Curso insertado con éxito");
-
-		} else {
+		if (cursoModel.getIdCursos() != 0) {
 			cursoService.updateCurso(cursoModel);
 			flash.addFlashAttribute("success", "Curso modificado con éxito");
+		} else {
+			cursoService.addCurso(cursoModel);
+			flash.addFlashAttribute("success", "Curso insertado con éxito");
 		}
 		return "redirect:/cursos/listCursos";
 	}
@@ -58,19 +61,18 @@ public class CursoController {
 		model.addAttribute("profesores", profesorService.listAllProfesores());
 		if (id == null) {
 			model.addAttribute("curso", new CursosModel());
-//			System.out.println("x");
 		}
 		else {
 			model.addAttribute("curso", cursoService.findCurso(id));
 			System.out.println(id);
 		}
-		return FORM_VIEW;
+		return Constantes.FORM_COURSE;
 	}
 	
 	
 	// Metodo de borrar
-	@GetMapping("/deleteCurso/{idCursos}")
-	public String deleteCurso(@PathVariable("idCursos") int id, RedirectAttributes flash) {
+	@GetMapping("/deleteCurso/{idcursos}")
+	public String deleteCurso(@PathVariable("idcursos") int id, RedirectAttributes flash) {
 		if (cursoService.removeCurso(id) == 0)
 			flash.addFlashAttribute("success", "Curso eliminado con éxito");
 		else

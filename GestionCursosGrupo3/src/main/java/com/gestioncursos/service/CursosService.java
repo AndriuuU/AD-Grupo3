@@ -2,7 +2,6 @@ package com.gestioncursos.service;
 
 import java.util.List;
 
-import com.gestioncursos.entity.Alumnos;
 import com.gestioncursos.entity.Cursos;
 import com.gestioncursos.model.CursosModel;
 

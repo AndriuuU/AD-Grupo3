@@ -2,18 +2,26 @@
 <html xmlns:th=http://www.thymeleaf.org
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+<link th:href="@{/css/header.css}" rel="stylesheet" />
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> <!-- FontAwesome 4-->
 
 <title>Formulario cursos</title>
 </head>
 <body>
 	<div th:replace="fragments :: header"></div>
 	<br>
-	<form th:action="@{/cursos/addCurso/}" th:object="${curso}" method="post" style="text-align:center;width: 500px;margin: auto;">
+	<form th:action="@{/cursos/addCurso}" th:object="${curso}" method="post" style="text-align:center;width: 500px;margin: auto;">
 		
-		<h1 th:text="${curso.idcursos != 0} ? 'Editar Curso' : 'Nuevo Curso'" >Nuevo Curso</h1>
+<!-- 		<h1 th:text="${curso.idCursos != 0} ? 'Editar Curso' : 'Nuevo Curso'" >Nuevo Curso</h1> -->
 		
-		<input type="hidden" th:field="*{idcursos}" id="idcursos">
+		<input type="hidden" th:field="*{idCursos}" id="idCursos">
 		
 		
 			<label for="nombre">Nombre</label> 
@@ -22,7 +30,7 @@
 
 
 		<div class="form-group">
-			<label for="descripcion">Descripcion</label> <input type="text"
+			<label for="descripcion">Descripción</label> <input type="text"
 				th:field="*{descripcion}" class="form-control" id="descripcion"
 				placeholder="Introduce la descripcion">
 		</div>
@@ -34,11 +42,11 @@
 		</div>
 		
 		<div class="form-group">
-			<label for= "idProfesor">iDProfesor</label>
+			<label for= "idProfesor">Profesor</label>
 			<select class="form-control selectpicker" th:field="*{idProfesor}" id="idProfesor">
 				<option th:each="profesor : ${profesores}"
 						th:value="${profesor.idProfesor}"
-						th:text="${profesor.email}">
+						th:text="${profesor.nombre}">
 				</option>
 			</select>
 		</div>

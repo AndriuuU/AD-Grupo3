@@ -27,7 +27,8 @@ public class CursosServiceImpl implements CursosService {
 
 	@Override
 	public Cursos addCurso(CursosModel cursoModel) {
-		return cursoRepository.save(transform(cursoModel));
+		Cursos curso = transform(cursoModel);
+		return cursoRepository.save(curso);
 	}
 
 	@Override
@@ -38,7 +39,8 @@ public class CursosServiceImpl implements CursosService {
 
 	@Override
 	public Cursos updateCurso(CursosModel cursoModel) {
-		return cursoRepository.save(transform(cursoModel));
+		Cursos curso = transform(cursoModel);
+		return cursoRepository.save(curso);
 	}
 
 	@Override

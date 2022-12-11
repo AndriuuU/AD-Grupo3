@@ -12,7 +12,7 @@ import com.gestioncursos.entity.Cursos;
 @Repository("cursosRepository")
 public interface CursosRepository extends JpaRepository<Cursos, Serializable> {
 	
-	public abstract Cursos findByidCursos(int id);
+	public abstract Cursos findByIdCursos(int id);
 	
 	public abstract Cursos findByFechaInicioBetween(Date fechaInicio, Date fechaFin);
 	

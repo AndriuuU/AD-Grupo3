@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,9 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.gestioncursos.model.CursosModel;
+import com.gestioncursos.constantes.Constantes;
 import com.gestioncursos.model.ProfesoresModel;
-import com.gestioncursos.service.CursosService;
 import com.gestioncursos.service.ProfesoresService;
 
 @Controller
@@ -26,8 +24,7 @@ import com.gestioncursos.service.ProfesoresService;
 
 public class ProfesorController {
 
-	private static final String PROFESORES_VIEW = "profesores";
-	private static final String FORM_VIEW = "formProfesor";
+	
 
 	@Autowired
 	@Qualifier("profesoresService")
@@ -36,7 +33,7 @@ public class ProfesorController {
 //	@PreAuthorize("hasRole('ROLE_ADMIN')") NO BORRAR
 	@GetMapping("/listProfesores")
 	public ModelAndView listProfesores() {
-		ModelAndView mav = new ModelAndView(PROFESORES_VIEW);
+		ModelAndView mav = new ModelAndView(Constantes.PROFESORES_VIEW);
 		mav.addObject("profesores", profesorService.listAllProfesores());
 		return mav;
 	}
@@ -62,7 +59,7 @@ public class ProfesorController {
 			model.addAttribute("profesor", new ProfesoresModel());
 		else
 			model.addAttribute("profesor", profesorService.findProfesor(id));
-		return FORM_VIEW;
+		return Constantes.FORM_PROFESORES;
 	}
 	
 	

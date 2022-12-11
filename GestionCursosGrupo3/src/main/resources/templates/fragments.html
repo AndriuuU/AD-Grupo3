@@ -15,12 +15,15 @@
     <div class="container">
      	<div class="navbar-nav-scroll">
 		    <ul class="navbar-nav bd-navbar-nav flex-row">
-		      <li  th:classappend="${module == 'home' ? 'active' : ''}" class="nav-item">
-		        <a class="nav-link active" href="/" th:href="@{/}">Home</a>
-		      </li>
-		      <li sec:authorize="!isAuthenticated()" class="nav-item">
-		        <a class="nav-link" th:href="@{/auth/registerForm}">Sign Up</a>
-		      </li>
+	    		<li sec:authorize="isAuthenticated()">
+					<a class="nav-item" th:text="'Hello ' + ${#authentication.name}"></a>
+				</li>
+		      	<li  th:classappend="${module == 'home' ? 'active' : ''}" class="nav-item">
+	        		<a class="nav-link active" href="/" th:href="@{/}">Home</a>
+		     	</li>
+		      	<li sec:authorize="!isAuthenticated()" class="nav-item">
+			        <a class="nav-link" th:href="@{/auth/registerForm}">Sign Up</a>
+		      	</li>
 		    </ul>
   		</div>
     </div>
