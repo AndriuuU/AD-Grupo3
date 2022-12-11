@@ -28,7 +28,7 @@ public class CursoController {
 	private CursosService cursoService;
 
 	@Autowired
-	@Qualifier("profesorService")
+	@Qualifier("profesoresService")
 	private ProfesoresService profesorService;
 
 //	@PreAuthorize("hasRole('ROLE_ADMIN')") NO BORRAR

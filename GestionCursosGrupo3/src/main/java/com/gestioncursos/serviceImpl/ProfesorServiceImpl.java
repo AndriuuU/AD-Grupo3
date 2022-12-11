@@ -13,7 +13,7 @@ import com.gestioncursos.entity.Profesores;
 import com.gestioncursos.model.ProfesoresModel;
 import com.gestioncursos.repository.ProfesoresRepository;
 import com.gestioncursos.service.ProfesoresService;
-@Service("profesorService")
+@Service("profesoresService")
 public class ProfesorServiceImpl implements ProfesoresService{
 	
 	@Autowired
