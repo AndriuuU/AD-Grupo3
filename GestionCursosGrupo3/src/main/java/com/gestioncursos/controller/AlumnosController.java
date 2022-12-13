@@ -58,7 +58,6 @@ public class AlumnosController {
 			flash.addFlashAttribute("error", "No se pudo eliminar el alumno");
 		return "redirect:/alumnos/listAlumnos";
 	}
-	
 
 	@GetMapping("/activarUsuario/{username}")
 	public String activate(@PathVariable("username")String username, RedirectAttributes flash) {

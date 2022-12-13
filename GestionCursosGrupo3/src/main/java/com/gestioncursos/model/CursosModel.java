@@ -2,10 +2,6 @@ package com.gestioncursos.model;
 
 import java.sql.Date;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.gestioncursos.entity.Profesores;
 
 public class CursosModel {
 

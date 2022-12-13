@@ -41,6 +41,10 @@
 		      	<li sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item">
 		      		<a class="nav-link active" th:href="@{/cursos/listCursos/}">Ver cursos</a>
 		      	</li>
+		      	
+		      	<li sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item">
+		      		<a class="nav-link active" th:href="@{/noticia/listNoticias/}">Ver Noticias</a>
+		      	</li>
 		      	 
 		      	<li sec:authorize="!isAuthenticated()" class="nav-item">
 		      		<a class="nav-link active" th:href="@{/auth/login}">Log In</a>

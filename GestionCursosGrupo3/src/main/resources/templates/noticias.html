@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+<link th:href="@{/css/header.css}" rel="stylesheet" />
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+<link rel="stylesheet" href="css/font-awesome.min.css">
+
+<title>Noticias</title>
+</head>
+<body>
+	<div th:replace="fragments :: header"></div>
+	<br>
+	<div class="alert alert-success" th:if="${success != null}"
+						th:text="${success}"></div>
+					<div class="alert alert-danger" th:if="${error != null}"
+						th:text="${error}"></div>
+					<div class="alert alert-warning" th:if="${warning != null}"
+						th:text="${warning}"></div>
+					<div class="alert alert-info" th:if="${info != null}"
+						th:text="${info}">
+	</div>
+	<br />
+	<h1 style="text-align: center;">Noticias</h1>
+	<br/>
+	<table class="table table-bordered">
+		<thead class="thead-light">
+			<tr>
+				<th>Imagen</th>
+				<th>Titulo</th>
+				<th>Descripcion</th>
+			</tr>
+		</thead>
+		<tbody th:each="noticia: ${noticias}">
+			<tr>
+				<th th:text=${noticia.imagen}></th>
+				<th th:text=${noticia.titulo}></th>
+				<th th:text=${noticia.descripcion}></th>
+				<th>
+					<div style="text-align:center;margin: auto;">
+						<a th:href="@{/noticia/formNoticias/} + ${noticia.idNoticia}">
+								<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Actualizar</i></button>
+						</a> 
+						<a th:href="@{/noticia/deleteNoticia/} + ${noticia.idNoticia}" th:onclick="return confirm('¿Est&aacute;s seguro que deseas eliminar el registro?');">
+								<button type="button" class="btn btn-danger"><i class="fa-solid fa-trash" aria-hidden="true">Delete</i></button>
+						</a>
+					</div>
+				
+				</th>
+			</tr>
+		</tbody>
+	</table>
+
+<br><br>
+	
+	<div style="text-align:center;width: 500px;margin: auto;">
+		<a th:href="@{/noticia/formNoticias/}">
+			<button type="button" class="btn btn-primary">Nueva Noticia</button>
+		</a>
+		<a th:href="@{/home}">
+			<button type="button" class="btn btn-primary">Regresar</button>
+		</a>
+	</div>
+</body>
+</html>
