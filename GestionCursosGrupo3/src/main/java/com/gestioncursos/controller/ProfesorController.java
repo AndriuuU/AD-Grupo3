@@ -79,4 +79,12 @@ public class ProfesorController {
 		return new RedirectView("/profesores/listProfesores");
 	}
 	
+	// listar cursos
+	@GetMapping("/listCursos")
+	public ModelAndView listCursos() {
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
+		mav.addObject("cursos", profesorService.listAllCursosProfer());
+		return mav;
+	}
+	
 }

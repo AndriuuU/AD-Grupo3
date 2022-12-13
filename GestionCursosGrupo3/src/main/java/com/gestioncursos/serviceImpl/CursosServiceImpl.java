@@ -60,5 +60,11 @@ public class CursosServiceImpl implements CursosService {
 		return modelMapper.map(curso, CursosModel.class);
 	}
 
+	@Override
+	public List<CursosModel> listAllCursosProfesor(int id) {
+		
+		return null;
+	}
+
 
 }
