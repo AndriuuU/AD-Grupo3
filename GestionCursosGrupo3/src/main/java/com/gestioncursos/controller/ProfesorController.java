@@ -17,18 +17,19 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.gestioncursos.constantes.Constantes;
 import com.gestioncursos.model.ProfesoresModel;
 import com.gestioncursos.service.ProfesoresService;
+import com.gestioncursos.serviceImpl.UsersService;
 
 @Controller
-@PreAuthorize("hasRole('ROLE_PROFESOR')")
 @RequestMapping("/profesores")
-
 public class ProfesorController {
-
-	
 
 	@Autowired
 	@Qualifier("profesoresService")
 	private ProfesoresService profesorService;
+	
+	@Autowired
+	@Qualifier("userService")
+	private UsersService usersService;
 
 //	@PreAuthorize("hasRole('ROLE_ADMIN')") NO BORRAR
 	@GetMapping("/listProfesores")
@@ -70,6 +71,18 @@ public class ProfesorController {
 			flash.addFlashAttribute("success", "Profesor eliminado con éxito");
 		else
 			flash.addFlashAttribute("error", "No se pudo eliminar el profesor");
+		return "redirect:/profesores/listProfesores";
+	}
+	
+	@GetMapping("/activarUsuario/{username}")
+	public String activate(@PathVariable("username")String username, RedirectAttributes flash) {
+		int i=usersService.activar(username);
+		if(i==1) {
+			flash.addFlashAttribute("success","Profesor activado con éxito");
+		}else if(i==0) {
+			flash.addFlashAttribute("success","Profesor desactivado con éxito");
+		}else
+			flash.addFlashAttribute("error","No se ha podido activar/desactivar el usuario");	
 		return "redirect:/profesores/listProfesores";
 	}
 	

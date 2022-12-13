@@ -12,7 +12,7 @@
 <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
 <link rel="stylesheet" href="css/font-awesome.min.css">
 
-<title>Lista de alumnos</title>
+<title>Lista de profesores</title>
 </head>
 <body>
 	<div th:replace="fragments :: header"></div>
@@ -25,22 +25,19 @@
 				<th>Nombre</th>
 				<th>Apellidos</th>
 				<th>Email</th>
-				<th>Foto</th>
-				<th>Action</th>
 			</tr>
 		</thead>
-	<tbody th:each="alumno: ${alumnos}">
+	<tbody th:each="profesor: ${profesores}">
 		<tr>
-			<th th:text=${alumno.nombre}></th>
-			<th th:text=${alumno.apellidos}></th>
-			<th th:text=${alumno.email}></th>
-			<th th:text=${alumno.foto}></th>
+			<th th:text=${profesor.nombre}></th>
+			<th th:text=${profesor.apellidos}></th>
+			<th th:text=${profesor.email}></th>
 			<th>
 				<div style="text-align:center;margin: auto;">
-				<a th:href="@{/alumnos/activarUsuario/} + ${alumno.email}">
+				<a th:href="@{/profesores/activarUsuario/} + ${profesor.email}">
 					<button type="button" class="btn btn-primary">Activar</button>
 				</a>
-				<a th:href="@{/alumnos/deleteAlumno/} + ${alumno.idAlumno}" th:onclick="return confirm('Estas seguro que deseas eliminar el registro?');">
+				<a th:href="@{/profesor/deleteProfesor/} + ${profesor.idProfesor}" th:onclick="return confirm('Estas seguro que deseas eliminar el registro?');">
 		        	<button type="button" class="btn btn-danger">Borrar</button>
 				</a> 	
 				</div>
