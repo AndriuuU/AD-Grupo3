@@ -1,11 +1,11 @@
-<html>
-
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 </html>
 <body>
 <form action="#" th:action="@{/edituser/}"
 th:object="${user}" method="post">
-  <h1 
-    th:text="${user.id != 0} ? 'Editar usuario'>Editar usuario</h1>
+  <h1 th:text="${user.id != 0}" ? Editar usuario>Editar usuario</h1>
     <input type="hidden" th:field="*{id}" id="id">
   <div class="form-group">
     <label for="name">Nombre</label><input type="text"

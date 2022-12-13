@@ -21,31 +21,36 @@
 				<li class="nav-item">
 	        		<a class="nav-link active">|</a>
 		     	</li>
+		     	
 		      	<li  th:classappend="${module == 'home' ? 'active' : ''}" class="nav-item">
 	        		<a class="nav-link active" href="/" th:href="@{/}">Home</a>
 		     	</li>
+		     	
 		      	<li sec:authorize="!isAuthenticated()" class="nav-item">
-			        <a class="nav-link" th:href="@{/auth/registerForm}">Sign Up</a>
+			        <a class="nav-link active" th:href="@{/auth/registerForm}">Sign Up</a>
 		      	</li>
+		      	
 		      	<li sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item">
-		      		<a class="nav-link" th:href="@{/profesores/listProfesores/}">Ver profesores</a>
+		      		<a class="nav-link active" th:href="@{/profesores/listProfesores/}">Ver profesores</a>
 		      	</li>
+		      	
 		      	<li sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item">
-		      		<a class="nav-link" th:href="@{/alumnos/listAlumnos/}">Ver alumnos</a>
+		      		<a class="nav-link active" th:href="@{/alumnos/listAlumnos/}">Ver alumnos</a>
 		      	</li>
+		      	
 		      	<li sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item">
-		      		<a class="nav-link" th:href="@{/cursos/listCursos/}">Ver cursos</a>
+		      		<a class="nav-link active" th:href="@{/cursos/listCursos/}">Ver cursos</a>
 		      	</li>
-		      	 <li sec:authorize="!isAuthenticated()" class="nav-item">
-			        <a class="nav-link" th:href="@{/auth/login}">
-						<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" >Log In</button>
-					</a>
+		      	 
+		      	<li sec:authorize="!isAuthenticated()" class="nav-item">
+		      		<a class="nav-link active" th:href="@{/auth/login}">Log In</a>
 		        </li>
+		        
 		        <li sec:authorize="isAuthenticated()" class="nav-item">
-			          <form class="form-inline" th:action="@{/auth/logout}" method="post">
-						<button class="btn btn-link" type="submit"  data-toggle="tooltip" data-placement="bottom">Log Out</button>
+			    	<form class="form-inline" th:action="@{/auth/logout}" method="post">
+						<button class="nav-link active" th:href="@{/auth/login}">Log Out</button>
 					</form>
-       			 </li>
+       			</li>
 		      	
 			  
 			  

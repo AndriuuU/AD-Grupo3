@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html xmlns:th=http://www.thymeleaf.org
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<!DOCTYPE html>
+	<html xmlns:th=http://www.thymeleaf.org
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -9,12 +9,8 @@
 <!-- Bootstrap CSS -->
 <link th:href="@{/css/styles.css}" rel="stylesheet" />
 <link th:href="@{/css/header.css}" rel="stylesheet" />
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
 <link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> <!-- FontAwesome 4-->
-<!-- <link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet" />
-<meta charset="ISO-8859-1"> -->
 
 <title>Lista de alumnos</title>
 </head>
@@ -50,7 +46,11 @@
 					<i class="fas fa-user-times"> </i>
 					</button>
 				</a>
-				
+				<a th:href="@{/alumnos/deleteAlumno/} + ${alumno.idAlumno}" th:onclick="return confirm('Estas seguro que deseas eliminar el registro?');">
+		                   <button type="button" class="btn btn-danger">
+		                   <i class="fa-solid fa-trash" aria-hidden=true></i>
+		                   </button>
+						</a> 	
 				
 			</th>
 			<!-- <th>

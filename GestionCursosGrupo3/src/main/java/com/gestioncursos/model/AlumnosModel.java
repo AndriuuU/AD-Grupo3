@@ -6,7 +6,7 @@ import com.gestioncursos.entity.User;
 
 public class AlumnosModel {
 
-	private int idalumnos;
+	private int idAlumno;
 	
 	private String nombre;
 	
@@ -24,10 +24,10 @@ public class AlumnosModel {
 		super();
 	}
 
-	public AlumnosModel(int idalumnos, String nombre, String apellidos, String email, User usuario, User password,
+	public AlumnosModel(int idAlumno, String nombre, String apellidos, String email, User usuario, User password,
 			byte[] foto) {
 		super();
-		this.idalumnos = idalumnos;
+		this.idAlumno = idAlumno;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
@@ -36,12 +36,12 @@ public class AlumnosModel {
 		this.foto = foto;
 	}
 
-	public int getidalumnos() {
-		return idalumnos;
+	public int getIdAlumno() {
+		return idAlumno;
 	}
 
-	public void setidalumnos(int idalumnos) {
-		this.idalumnos = idalumnos;
+	public void setIdAlumno(int idAlumno) {
+		this.idAlumno = idAlumno;
 	}
 
 	public String getNombre() {
@@ -94,8 +94,13 @@ public class AlumnosModel {
 
 	@Override
 	public String toString() {
-		return "Alumnos [idalumnos=" + idalumnos + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email="
+		return "AlumnosModel [idAlumno=" + idAlumno + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email="
 				+ email + ", usuario=" + usuario + ", password=" + password + ", foto=" + Arrays.toString(foto) + "]";
 	}
+
+	
+	
+	
+
 	
 }
