@@ -17,11 +17,6 @@
 <body>
 	<div th:replace="fragments :: header"></div>
 	<br>
-	<div class="row">
-		<div class="col-lg-12 margin-tb">
-			<div class="pull-left"></div>
-		</div>
-	</div>
 	<br>
 	<table class="table table-bordered">
 	
@@ -31,7 +26,7 @@
 				<th>Apellidos</th>
 				<th>Email</th>
 				<th>Foto</th>
-				<th width="280px">Action</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 	<tbody th:each="alumno: ${alumnos}">
@@ -42,31 +37,21 @@
 			<th th:text=${alumno.foto}></th>
 			<th>
 				<a th:href="@{/alumnos/activarUsuario/} + ${alumno.email}">
-					<button type="button" class="btn btn-success">
-					<i class="fas fa-user-times"> </i>
-					</button>
+					<button type="button" class="btn btn-primary">Activar</button>
 				</a>
 				<a th:href="@{/alumnos/deleteAlumno/} + ${alumno.idAlumno}" th:onclick="return confirm('Estas seguro que deseas eliminar el registro?');">
-		                   <button type="button" class="btn btn-danger">
-		                   <i class="fa-solid fa-trash" aria-hidden=true></i>
-		                   </button>
-						</a> 	
+		        	<button type="button" class="btn btn-danger">Borrar</button>
+				</a> 	
 				
 			</th>
-			<!-- <th>
-						<a th:href="@{/alumnos/deleteAlumno/} + ${alumno.idalumnos}" th:onclick="return confirm('&iquest;Est&aacute;s seguro que deseas eliminar el registro?');">
-		                   <button type="button" class="btn btn-danger">
-		                   <i class="fa-solid fa-trash" aria-hidden=true></i>
-		                   </button>
-						</a> 	
-						<a th:href="@{/usuarios/activarUsuario/} + ${alumno.email}">
-							<button type="button" class="btn btn-default">
-								<i class="fas fa-user-times"> </i>
-							</button>
-						</a>
-			</th> -->
 		</tr>
 	</table>
+	<br>
+	<div>
+		<a th:href="@{/home}">
+			<button type="button" class="btn btn-primary" style="">Regresar</button>
+		</a>
+	</div>
 	<br>
 	<div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
 	<div class="alert alert-danger" th:if="${error != null}"
@@ -75,11 +60,5 @@
 		th:text="${warning}"></div>
 	<div class="alert alert-info" th:if="${info != null}"
 		th:text="${info}"></div>
-	
-	<div>
-		<a th:href="@{/home}">
-			<button type="button" class="btn btn-primary">Regresar</button>
-		</a>
-	</div>
 </body>
 </html>

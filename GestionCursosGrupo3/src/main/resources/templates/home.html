@@ -28,7 +28,7 @@
 			  <a sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item" th:href="@{/profesores/listProfesores/}">Ver profesores</a>
 			  <a sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item" th:href="@{/alumnos/listAlumnos/}">Ver alumnos</a>
 			  <a sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item" th:href="@{/cursos/listCursos/}">Ver cursos</a>
-			  <a th:href="@{/edituser/}">Editar mis datos</a>
+			  <a sec:authorize="isAuthenticated()" th:href="@{/edituser/}">Editar mis datos</a>
 			</div>
 			
 			<tbody th:each="student: ${students}"> 
