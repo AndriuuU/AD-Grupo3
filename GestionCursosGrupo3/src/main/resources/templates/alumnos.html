@@ -36,7 +36,7 @@
 			<th th:text=${alumno.email}></th>
 			<th th:text=${alumno.foto}></th>
 			<th>
-				<a th:href="@{/alumnos/activarUsuario/} + ${alumno.email}">
+				<a th:href="@{/users/activarUsuario/} + ${alumno.email}">
 					<button type="button" class="btn btn-primary">Activar</button>
 				</a>
 				<a th:href="@{/alumnos/deleteAlumno/} + ${alumno.idAlumno}" th:onclick="return confirm('Estas seguro que deseas eliminar el registro?');">
@@ -47,9 +47,9 @@
 		</tr>
 	</table>
 	<br>
-	<div>
+	<div style="text-align:center;width: 500px;margin: auto;">
 		<a th:href="@{/home}">
-			<button type="button" class="btn btn-primary" style="">Regresar</button>
+			<button type="button" class="btn btn-primary">Regresar</button>
 		</a>
 	</div>
 	<br>

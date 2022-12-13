@@ -26,37 +26,46 @@ public class Profesores {
 	public Profesores() {
 		super();
 	}
-	public Profesores(int id, String nombre, String apellidos, String email, String password) {
+
+	public Profesores(int idProfesor, String nombre, String apellidos, String email, String password,
+			List<Cursos> cursosList) {
 		super();
-		this.idProfesor = id;
+		this.idProfesor = idProfesor;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
 		this.password = password;
+		this.cursosList = cursosList;
 	}
 
 	public int getIdProfesor() {
 		return idProfesor;
 	}
+
 	public void setIdProfesor(int idProfesor) {
 		this.idProfesor = idProfesor;
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public String getApellidos() {
 		return apellidos;
 	}
+
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -64,21 +73,26 @@ public class Profesores {
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public List<Cursos> getCursosList() {
 		return cursosList;
 	}
+
 	public void setCursosList(List<Cursos> cursosList) {
 		this.cursosList = cursosList;
 	}
+
 	@Override
 	public String toString() {
-		return "Profesor [idProfesor=" + idProfesor + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email="
+		return "Profesores [idProfesor=" + idProfesor + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email="
 				+ email + ", password=" + password + ", cursosList=" + cursosList + "]";
 	}
-
+	
+	
 	
 	
 }
