@@ -16,19 +16,23 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.gestioncursos.constantes.Constantes;
 import com.gestioncursos.model.ProfesoresModel;
+import com.gestioncursos.service.CursosService;
 import com.gestioncursos.service.ProfesoresService;
 
 @Controller
-@PreAuthorize("hasRole('ROLE_PROFESOR')")
+//@PreAuthorize("hasRole('ROLE_PROFESOR')")
 @RequestMapping("/profesores")
 
 public class ProfesorController {
 
 	
-
 	@Autowired
 	@Qualifier("profesoresService")
 	private ProfesoresService profesorService;
+	
+	@Autowired
+	@Qualifier("cursosService")
+	private CursosService cursoService;
 
 //	@PreAuthorize("hasRole('ROLE_ADMIN')") NO BORRAR
 	@GetMapping("/listProfesores")
@@ -75,15 +79,17 @@ public class ProfesorController {
 	
 	// Metodo redirect
 	@GetMapping("/")
-	public RedirectView redirect() {
-		return new RedirectView("/profesores/listProfesores");
+	public String redirect() {
+		
+		return Constantes.PROFESORES_MENU_VIEW;
+//		return new RedirectView("/profesores/listProfesores");
 	}
 	
-	// listar cursos
-	@GetMapping("/listCursos")
-	public ModelAndView listCursos() {
+	// listar cursos por id del profesor
+	@GetMapping("/listCursos/{idProfesores}")
+	public ModelAndView listCursos(@PathVariable("idProfesores") int id) {
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
-		mav.addObject("cursos", profesorService.listAllCursosProfer());
+		mav.addObject("cursos", cursoService.listAllCursosProfesor(id));
 		return mav;
 	}
 	

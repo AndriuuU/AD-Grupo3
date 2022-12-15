@@ -14,6 +14,8 @@ public class Constantes {
 	
 	public static final String PROFESORES_VIEW = "profesores";
 	
+	public static final String PROFESORES_MENU_VIEW = "menuProfesor";
+	
 	public static final String FORM_PROFESORES = "formProfesor";
 	
 }

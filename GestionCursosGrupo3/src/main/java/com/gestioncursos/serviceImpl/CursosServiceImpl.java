@@ -1,5 +1,6 @@
 package com.gestioncursos.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,8 +63,14 @@ public class CursosServiceImpl implements CursosService {
 
 	@Override
 	public List<CursosModel> listAllCursosProfesor(int id) {
-		
-		return null;
+		List<CursosModel> cursos=cursoRepository.findAll().stream().map(c->transform(c)).collect(Collectors.toList());
+		List<CursosModel> cursosProfesorId=new ArrayList<>();
+		for(CursosModel c:cursos) {
+			if(c.getIdProfesor()==id) {
+				cursosProfesorId.add(c);
+			}
+		}
+		return cursosProfesorId;
 	}
 
 
