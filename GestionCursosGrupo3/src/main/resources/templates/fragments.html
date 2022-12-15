@@ -36,6 +36,18 @@
 		      	<li sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item">
 		      		<a class="nav-link" th:href="@{/cursos/listCursos/}">Ver cursos</a>
 		      	</li>
+		      	<!--
+		      	
+		      	<li sec:authorize="hasAuthority('ROLE_PROFESOR')" class="nav-item">
+		      		<a class="nav-link" th:href="@{/profesores/listProfesores/}">Ver Profesores</a>
+		      	</li>
+		      	<li sec:authorize="hasAuthority('ROLE_PROFESOR')" class="nav-item">
+		      		<a class="nav-link" th:href="@{/profesores/listCursos/}">Ver tus Cursos</a>
+		      	</li>
+		      	 
+		      	 -->
+		      	
+		      	
 		      	 <li sec:authorize="!isAuthenticated()" class="nav-item">
 			        <a class="nav-link" th:href="@{/auth/login}">
 						<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" >Log In</button>
@@ -50,6 +62,7 @@
 			  
 			  
 		    </ul>
+		    
   		</div>
     </div>
   </div>

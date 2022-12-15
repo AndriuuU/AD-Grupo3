@@ -18,9 +18,10 @@ import com.gestioncursos.constantes.Constantes;
 import com.gestioncursos.model.ProfesoresModel;
 import com.gestioncursos.service.CursosService;
 import com.gestioncursos.service.ProfesoresService;
+import com.gestioncursos.serviceImpl.UsersService;
 
 @Controller
-//@PreAuthorize("hasRole('ROLE_PROFESOR')")
+@PreAuthorize("hasRole('ROLE_PROFESOR')")
 @RequestMapping("/profesores")
 
 public class ProfesorController {
@@ -29,6 +30,10 @@ public class ProfesorController {
 	@Autowired
 	@Qualifier("profesoresService")
 	private ProfesoresService profesorService;
+	
+	@Autowired
+	@Qualifier("userService")
+	private UsersService usersService;
 	
 	@Autowired
 	@Qualifier("cursosService")
@@ -77,12 +82,23 @@ public class ProfesorController {
 		return "redirect:/profesores/listProfesores";
 	}
 	
+	@GetMapping("/activarUsuario/{username}")
+	public String activate(@PathVariable("username")String username, RedirectAttributes flash) {
+		int i=usersService.activar(username);
+		if(i==1) {
+			flash.addFlashAttribute("success","Profesor activado con éxito");
+		}else if(i==0) {
+			flash.addFlashAttribute("success","Profesor desactivado con éxito");
+		}else
+			flash.addFlashAttribute("error","No se ha podido activar/desactivar el usuario");	
+		return "redirect:/profesores/listProfesores";
+	}
+	
 	// Metodo redirect
 	@GetMapping("/")
-	public String redirect() {
+	public RedirectView redirect() {
 		
-		return Constantes.PROFESORES_MENU_VIEW;
-//		return new RedirectView("/profesores/listProfesores");
+		return new RedirectView("/profesores/listProfesores");
 	}
 	
 	// listar cursos por id del profesor
