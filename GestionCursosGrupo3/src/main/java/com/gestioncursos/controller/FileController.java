@@ -21,7 +21,7 @@ public class FileController {
 	@ResponseBody
 	public ResponseEntity<Resource> serverFile(@PathVariable String filename){
 		Resource file = storageService.loadAsResource(filename);
-		return ResponseEntity.ok().body(file);
+		return ResponseEntity.ok().body(file);	
 	}
 
 }
