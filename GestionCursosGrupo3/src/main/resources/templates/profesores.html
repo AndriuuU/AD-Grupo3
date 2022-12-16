@@ -17,7 +17,18 @@
 <body>
 	<div th:replace="fragments :: header"></div>
 	<br>
-	<br>
+	<div class="alert alert-success" th:if="${success != null}"
+						th:text="${success}"></div>
+					<div class="alert alert-danger" th:if="${error != null}"
+						th:text="${error}"></div>
+					<div class="alert alert-warning" th:if="${warning != null}"
+						th:text="${warning}"></div>
+					<div class="alert alert-info" th:if="${info != null}"
+						th:text="${info}">
+	</div>
+	<br />
+	<h1 style="text-align: center;">Profesores</h1>
+	<br/>
 	<table class="table table-bordered">
 	
 		<thead class="thead-light">
@@ -50,13 +61,5 @@
 			<button type="button" class="btn btn-primary">Regresar</button>
 		</a>
 	</div>
-	<br>
-	<div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
-	<div class="alert alert-danger" th:if="${error != null}"
-		th:text="${error}"></div>
-	<div class="alert alert-warning" th:if="${warning != null}"
-		th:text="${warning}"></div>
-	<div class="alert alert-info" th:if="${info != null}"
-		th:text="${info}"></div>
 </body>
 </html>

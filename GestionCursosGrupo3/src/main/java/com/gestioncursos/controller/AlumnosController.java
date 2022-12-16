@@ -65,7 +65,7 @@ public class AlumnosController {
 		if(i==1) {
 			flash.addFlashAttribute("success","Alumno activado con éxito");
 		}else if(i==0) {
-			flash.addFlashAttribute("success","Alumno desactivado con éxito");
+			flash.addFlashAttribute("warning","Alumno desactivado con éxito");
 		}else
 			flash.addFlashAttribute("error","No se ha podido activar/desactivar el usuario");	
 		return "redirect:/alumnos/listAlumnos";
