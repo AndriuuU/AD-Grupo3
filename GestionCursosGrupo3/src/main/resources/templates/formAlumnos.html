@@ -12,38 +12,33 @@
 <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
 <link rel="stylesheet" href="css/font-awesome.min.css">
 
-<title>Formulario Noticias</title>
+<title>Formulario Alumnos</title>
 </head>
 <body>
 	<div th:replace="fragments :: header"></div>
 	<br>
-	<form th:action="@{/noticia/addNoticia}" th:object="${noticia}" enctype="multipart/form-data" method="post" style="text-align:center;width: 500px;margin: auto;">
+	<form th:action="@{/alumnos/addAlumno}" th:object="${alumno}" method="post" enctype="multipart/form-data" style="text-align:center;width: 500px;margin: auto;">
 		
-		<h1 th:text="${noticia.idNoticia != 0} ? 'Editar Noticia' : 'Nueva Noticia'" >Nueva Noticia</h1>
-		
-		<input type="hidden" th:field="*{idNoticia}" id="idNoticias">
+		<h1>Nuevo Noticia</h1>
 		
 		<div class="form-group">
-			<label for="titulo">Titulo</label> 
-			<input type="text" th:field="*{titulo}" class="form-control" id="titulo" placeholder="Introduce el titulo">
+			<label for="nombre">Nombre</label> 
+			<input type="text" th:field="*{nombre}" class="form-control" id="nombre" placeholder="Introduce el nombre">
 		</div>
 
 		<div class="form-group">
-			<label for="descripcion">Descripción</label> 
-			<input type="text" th:field="*{descripcion}" class="form-control" id="descripcion" placeholder="Introduce la descripcion">
+			<label for="apellidos">Apellidos</label> 
+			<input type="text" th:field="*{apellidos}" class="form-control" id="apellidos" placeholder="Introduce los apellidos">
 		</div>
 		
 		<div class="form-group">
-			<label for="file">Imagen</label> <input type="file" 
-				class="form-control input-file" id="file" name="file">
-				
+			<label for="email">Email</label> 
+			<input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Introduce el correo">
 		</div>
-		
-	<!-- 	<input type="hidden" th:field="*{usuarioId}" id="usuarioId"> -->
 
 		<br><br>
 		<input type="submit" class="btn btn-primary">
-		<a th:href="@{/noticia/listNoticias/}">
+		<a th:href="@{/alumnos/listAlumnos/}">
 		<button type="button" class="btn btn-primary">Regresar</button>
 		</a>
 

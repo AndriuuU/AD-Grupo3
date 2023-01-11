@@ -1,9 +1,9 @@
-package com.gestioncursos.service;
+package com.gestioncursos.storage;
 
 import java.nio.file.Path;
 import java.util.stream.Stream;
 
-import javax.annotation.Resource;
+import org.springframework.core.io.Resource;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,7 +11,7 @@ public interface StorageService {
 	
 	void init();
 	
-	String store(MultipartFile file, int id);
+	String store(MultipartFile file, String name);
 	
 	Stream<Path> loadAll();
 	

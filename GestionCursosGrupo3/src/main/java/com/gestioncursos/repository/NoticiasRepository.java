@@ -9,6 +9,6 @@ import com.gestioncursos.entity.Noticias;
 
 @Repository("noticiaRepository")
 public interface NoticiasRepository extends JpaRepository<Noticias, Serializable> {
-	public abstract Noticias findByidNoticia(int id);
+	public abstract Noticias findByTitulo(String titulo);
 	
 }

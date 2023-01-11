@@ -48,7 +48,7 @@
 				<a th:href="@{/profesores/activarUsuario/} + ${profesor.email}">
 					<button type="button" class="btn btn-primary">Activar</button>
 				</a>
-				<a th:href="@{/profesor/deleteProfesor/} + ${profesor.idProfesor}" th:onclick="return confirm('Estas seguro que deseas eliminar el registro?');">
+				<a th:href="@{/profesores/deleteProfesor/} + ${profesor.idProfesor}" th:onclick="return confirm('Estas seguro que deseas eliminar el registro?');">
 		        	<button type="button" class="btn btn-danger">Borrar</button>
 				</a> 	
 				</div>

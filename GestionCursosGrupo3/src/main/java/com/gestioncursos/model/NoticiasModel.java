@@ -15,18 +15,21 @@ public class NoticiasModel {
 	
 	private String descripcion;
 	
-	private byte[] imagen;
+	private String imagen;
+	
+	private long idAdmin;
 
 	public NoticiasModel() {
 		super();
 	}
 
-	public NoticiasModel(int idNoticia, String titulo, String descripcion, byte[] imagen) {
+	public NoticiasModel(int idNoticia, String titulo, String descripcion, String imagen, long idAdmin) {
 		super();
 		this.idNoticia = idNoticia;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.imagen = imagen;
+		this.idAdmin = idAdmin;
 	}
 
 	public int getIdNoticia() {
@@ -53,18 +56,26 @@ public class NoticiasModel {
 		this.descripcion = descripcion;
 	}
 
-	public byte[] getImagen() {
+	public String getImagen() {
 		return imagen;
 	}
 
-	public void setImagen(byte[] imagen) {
+	public void setImagen(String imagen) {
 		this.imagen = imagen;
+	}
+
+	public long getIdAdmin() {
+		return idAdmin;
+	}
+
+	public void setIdAdmin(long idAdmin) {
+		this.idAdmin = idAdmin;
 	}
 
 	@Override
 	public String toString() {
 		return "NoticiasModel [idNoticia=" + idNoticia + ", titulo=" + titulo + ", descripcion=" + descripcion
-				+ ", imagen=" + Arrays.toString(imagen) + "]";
+				+ ", imagen=" + imagen + ", idAdmin=" + idAdmin + "]";
 	}
 
 	
