@@ -1,8 +1,13 @@
 package com.gestioncursos.controller;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +20,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.gestioncursos.constantes.Constantes;
+import com.gestioncursos.model.CursosModel;
 import com.gestioncursos.model.ProfesoresModel;
 import com.gestioncursos.service.CursosService;
 import com.gestioncursos.service.ProfesoresService;
 import com.gestioncursos.serviceImpl.UsersService;
+
 
 @Controller
 @RequestMapping("/profesores")
@@ -105,6 +112,96 @@ public class ProfesorController {
 		mav.addObject("cursos", cursosService.listAllCursosProfesor(id));
 		return mav;
 	}
+	
+//	@GetMapping(value = {"/listCursos/{idProfesores}/fechaasc","/listCursos/{idProfesores}/fechadesc"})
 
+	
+	@GetMapping("/listCursos/{idProfesores}/fechaasc")
+	public ModelAndView listCursosFechaAsc(@PathVariable("idProfesores") int id) {
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
+		List<CursosModel> listCursosFechas =cursosService.listAllCursosProfesor(id);
+		
+		Collections.sort(listCursosFechas, (x, y) -> x.getFechaInicio().compareTo(y.getFechaInicio()));
+		
+		
+		mav.addObject("cursos", listCursosFechas);
+		
+		return mav;
+	}
+	
+	@GetMapping("/listCursos/{idProfesores}/fechadesc")
+	public ModelAndView listCursosFechaDesc(@PathVariable("idProfesores") int id) {
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
+		List<CursosModel> listCursosFechas =cursosService.listAllCursosProfesor(id);
+		
+		Collections.sort(listCursosFechas, (x, y) -> y.getFechaInicio().compareTo(x.getFechaInicio()));
+		
+		mav.addObject("cursos", listCursosFechas);
+		
+		return mav;
+	}
+	
+	@GetMapping("/listCursos/{idProfesores}/impartiran")
+	public ModelAndView listCursosImpartiran(@PathVariable("idProfesores") int id) {
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
+		long millis=System.currentTimeMillis();  
+		Date date = new Date(millis); 
+		
+		List<CursosModel> listCursosFechas =cursosService.listAllCursosProfesor(id);
+		
+		List<CursosModel> listCursos=new ArrayList<>();
+		for(CursosModel lista:listCursosFechas) {
+			if(lista.getFechaInicio().after(date)) {
+				listCursos.add(lista);
+				
+			}
+		}
+		
+		mav.addObject("cursos", listCursos);
+		
+		return mav;
+	}
+	
+	@GetMapping("/listCursos/{idProfesores}/impar")
+	public ModelAndView listCursosImpartiendo(@PathVariable("idProfesores") int id) {
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
+		long millis=System.currentTimeMillis();  
+		Date date = new Date(millis); 
+		
+		List<CursosModel> listCursosFechas =cursosService.listAllCursosProfesor(id);
+		
+		List<CursosModel> listCursos=new ArrayList<>();
+		for(CursosModel lista:listCursosFechas) {
+			if(lista.getFechaFin().after(date)) {
+				listCursos.add(lista);
+				
+			}
+		}
+		
+		mav.addObject("cursos", listCursos);
+		
+		return mav;
+	}
+	
+	@GetMapping("/listCursos/{idProfesores}/impartido")
+	public ModelAndView listCursosImpartido(@PathVariable("idProfesores") int id) {
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
+		long millis=System.currentTimeMillis();  
+		Date date = new Date(millis); 
+		
+		List<CursosModel> listCursosFechas =cursosService.listAllCursosProfesor(id);
+		
+		List<CursosModel> listCursos=new ArrayList<>();
+		for(CursosModel lista:listCursosFechas) {
+			if(lista.getFechaFin().before(date)) {
+				listCursos.add(lista);
+			}
+		}
+		
+		mav.addObject("cursos", listCursos);
+		
+		return mav;
+	}
+	
 	
 }

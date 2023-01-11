@@ -10,6 +10,7 @@
 <link th:href="@{/css/styles.css}" rel="stylesheet" />
 <link th:href="@{/css/header.css}" rel="stylesheet" />
 <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
 
 <title>Cursos</title>
@@ -28,6 +29,25 @@
 	</div>
 	<br />
 	<h1 style="text-align: center;">Cursos</h1>
+	
+	<div style="text-align:center;width: 1300px;margin: auto;">
+	
+		<a th:href="@{/profesores/listCursos/1/fechaasc}">
+			<button type="button" class="btn btn-info"><span class="bi bi-arrow-up"></span> Filtrar Fecha Ascendente</button>
+		</a>
+		<a th:href="@{/profesores/listCursos/1/fechadesc}">
+			<button type="button" class="btn btn-info"><span class="bi bi-arrow-down"></span> Filtrar Fecha Descendente</button>
+		</a>
+		<a th:href="@{/profesores/listCursos/1/impartido}">
+			<button type="button" class="btn btn-info"><span class="bi bi-calendar-check"></span> Impartido</button>
+		</a>
+		<a th:href="@{/profesores/listCursos/1/impar}">
+			<button type="button" class="btn btn-info"><span class="bi bi-calendar-range"></span> Impartiendo</button>
+		</a>
+		<a th:href="@{/profesores/listCursos/1/impartiran}">
+			<button type="button" class="btn btn-info"><span class="bi bi-calendar-event"></span> Se impartiran</button>
+		</a>
+	</div>
 	<br/>
 	<table class="table table-bordered">
 		<thead class="thead-light">
@@ -66,9 +86,7 @@
 <br><br>
 	
 	<div style="text-align:center;width: 500px;margin: auto;">
-		<a th:href="@{/cursos/formCurso/}">
-			<button type="button" class="btn btn-primary">Nuevo Curso</button>
-		</a>
+		
 		<a th:href="@{/home}">
 			<button type="button" class="btn btn-primary">Regresar</button>
 		</a>
