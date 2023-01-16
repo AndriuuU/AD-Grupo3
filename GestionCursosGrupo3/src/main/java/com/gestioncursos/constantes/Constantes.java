@@ -18,4 +18,6 @@ public class Constantes {
 	
 	public static final String FORM_PROFESORES = "formProfesor";
 	
+	public static final String CALIFICA_ALUMNOS_CURSO = "calificaAlumnoCurso";
+
 }

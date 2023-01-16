@@ -1,7 +1,6 @@
 package com.gestioncursos.controller;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,9 +19,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.gestioncursos.constantes.Constantes;
+import com.gestioncursos.model.AlumnosModel;
 import com.gestioncursos.model.CursosModel;
+import com.gestioncursos.model.MatriculaModel;
 import com.gestioncursos.model.ProfesoresModel;
+import com.gestioncursos.service.AlumnosService;
 import com.gestioncursos.service.CursosService;
+import com.gestioncursos.service.MatriculaService;
 import com.gestioncursos.service.ProfesoresService;
 import com.gestioncursos.serviceImpl.UsersService;
 
@@ -42,6 +45,14 @@ public class ProfesorController {
 	@Autowired
 	@Qualifier("cursosService")
 	private CursosService cursosService;
+	
+	@Autowired
+	@Qualifier("matriculaService")
+	private MatriculaService matriculaService;
+	
+	@Autowired
+	@Qualifier("alumnoService")
+	private AlumnosService alumnosService;
 	
 
 //	@PreAuthorize("hasRole('ROLE_ADMIN')") NO BORRAR
@@ -202,6 +213,27 @@ public class ProfesorController {
 		
 		return mav;
 	}
+	
+	@GetMapping("/listCursos/{idProfesores}/califica/{idCurso}")
+	public ModelAndView listCursosCalifica(@PathVariable("idProfesores") int idProfesor,@PathVariable("idCurso") int idCurso) {
+		ModelAndView mav = new ModelAndView(Constantes.CALIFICA_ALUMNOS_CURSO);
+		long millis=System.currentTimeMillis();  
+		Date date = new Date(millis); 
+		
+		List<MatriculaModel> listMatriCursos =matriculaService.listMatriculasCurso(idCurso);
+		
+		List<AlumnosModel> listAlumnosMatriCurso=new ArrayList<>();
+		for(MatriculaModel lista:listMatriCursos) {
+			if(alumnosService.findAlumno(lista.getAlumno_id()) != null) {
+				listAlumnosMatriCurso.add(alumnosService.findAlumno(lista.getAlumno_id()));
+			}
+		}
+		
+		mav.addObject("alumnos", listAlumnosMatriCurso);
+		
+		return mav;
+	}
+	
 	
 	
 }

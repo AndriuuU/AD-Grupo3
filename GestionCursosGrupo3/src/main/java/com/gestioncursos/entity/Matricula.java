@@ -12,7 +12,7 @@ public class Matricula {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idMatricula;
-	private int valoracion;
+	private float valoracion;
 
 	@ManyToOne
 	@JoinColumn(name = "cursoId")
@@ -42,11 +42,11 @@ public class Matricula {
 		this.idMatricula = idMatricula;
 	}
 
-	public int getValoracion() {
+	public float getValoracion() {
 		return valoracion;
 	}
 
-	public void setValoracion(int valoracion) {
+	public void setValoracion(float valoracion) {
 		this.valoracion = valoracion;
 	}
 

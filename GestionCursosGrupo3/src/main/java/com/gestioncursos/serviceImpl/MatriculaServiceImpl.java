@@ -1,5 +1,6 @@
 package com.gestioncursos.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,5 +61,22 @@ public class MatriculaServiceImpl implements MatriculaService {
 	public MatriculaModel findMatricula(int id) {
 		return transform(matriculaRepository.findById(id).orElse(null));
 	}
+	
+	@Override
+	public List<MatriculaModel> listMatriculasCurso(int idCurso) {
+		if (listAllMatriculas() != null) {
+			List<MatriculaModel> ListAllMatri = listAllMatriculas();
+			List<MatriculaModel> ListMatriCurso = new ArrayList<>();
+			for (MatriculaModel matriCurso : ListAllMatri) {
+				if (matriCurso.getCurso_id() == idCurso) {
+					ListMatriCurso.add(matriCurso);
+				}
+			}
+			return ListMatriCurso;
+		}
+		return null;
+		
+	}
+
 
 }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+<link th:href="@{/css/header.css}" rel="stylesheet" />
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+
+<title>Calificaciones</title>
+</head>
+<body>
+	<div th:replace="fragments :: header"></div>
+	<br>
+	<div class="alert alert-success" th:if="${success != null}"
+						th:text="${success}"></div>
+					<div class="alert alert-danger" th:if="${error != null}"
+						th:text="${error}"></div>
+					<div class="alert alert-warning" th:if="${warning != null}"
+						th:text="${warning}"></div>
+					<div class="alert alert-info" th:if="${info != null}"
+						th:text="${info}">
+	</div>
+	<br />
+	<h1 style="text-align: center;">Cursos</h1>
+	
+	<div style="text-align:center;width: 1300px;margin: auto;">
+	
+		<a th:href="@{/profesores/listCursos/1/fechaasc}">
+			<button type="button" class="btn btn-info"><span class="bi bi-arrow-up"></span> Filtrar Fecha Ascendente</button>
+		</a>
+		<a th:href="@{/profesores/listCursos/1/fechadesc}">
+			<button type="button" class="btn btn-info"><span class="bi bi-arrow-down"></span> Filtrar Fecha Descendente</button>
+		</a>
+		<a th:href="@{/profesores/listCursos/1/impartido}">
+			<button type="button" class="btn btn-info"><span class="bi bi-calendar-check"></span> Impartido</button>
+		</a>
+		<a th:href="@{/profesores/listCursos/1/impar}">
+			<button type="button" class="btn btn-info"><span class="bi bi-calendar-range"></span> Impartiendo</button>
+		</a>
+		<a th:href="@{/profesores/listCursos/1/impartiran}">
+			<button type="button" class="btn btn-info"><span class="bi bi-calendar-event"></span> Se impartiran</button>
+		</a>
+	</div>
+	<br/>
+	<table class="table table-bordered">
+		<thead class="thead-light">
+			<tr>
+				<th>ID</th>
+				<th>Foto</th>
+				<th>Nombre</th>
+				<th>Apellidos</th>
+				<th>Email</th>
+				<th>Nota</th>
+			</tr>
+		</thead>
+		<tbody th:each="alumno: ${alumnos}">
+			<tr>
+				<th th:text=${alumno.id_alumno}></th>
+				<th th:text=${alumno.foto}></th>
+				<th th:text=${alumno.nombre}></th>
+				<th th:text=${alumno.apellidos}></th>
+				<th th:text=${alumno.email}></th>
+				<th></th>
+				<th>
+				<!--  
+					<div style="text-align:center;margin: auto;">
+						<a th:href="@{/cursos/formCurso/} + ${curso.idCursos}">
+								<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Actualizar</i></button>
+						</a> 
+						<a th:href="@{/cursos/deleteCurso/} + ${curso.idCursos}" th:onclick="return confirm('¿Est&aacute;s seguro que deseas eliminar el registro?');">
+								<button type="button" class="btn btn-danger"><i class="fa-solid fa-trash" aria-hidden="true">Delete</i></button>
+						</a>
+					</div>
+				-->
+				</th>
+			</tr>
+		</tbody>
+	</table>
+
+<br><br>
+	
+	<div style="text-align:center;width: 500px;margin: auto;">
+		
+		<a th:href="@{/home}">
+			<button type="button" class="btn btn-primary">Volver a CURSOS</button>
+		</a>
+	</div>
+</body>
+</html>
