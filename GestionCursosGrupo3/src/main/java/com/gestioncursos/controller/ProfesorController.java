@@ -183,7 +183,7 @@ public class ProfesorController {
 		
 		List<CursosModel> listCursos=new ArrayList<>();
 		for(CursosModel lista:listCursosFechas) {
-			if(lista.getFechaFin().after(date)) {
+			if(lista.getFechaFin().after(date) && lista.getFechaInicio().before(date)) {
 				listCursos.add(lista);
 				
 			}
