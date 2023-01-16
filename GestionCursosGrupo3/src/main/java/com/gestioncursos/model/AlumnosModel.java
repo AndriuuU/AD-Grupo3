@@ -2,6 +2,9 @@ package com.gestioncursos.model;
 
 import java.util.Arrays;
 
+import javax.persistence.Column;
+import javax.validation.constraints.Size;
+
 import com.gestioncursos.entity.User;
 
 public class AlumnosModel {
@@ -16,6 +19,8 @@ public class AlumnosModel {
 	
 	private User usuario;
 	
+	@Column(name = "password", nullable = false)
+	@Size(max = 100)
 	private User password;
 	
 	private byte[] foto;

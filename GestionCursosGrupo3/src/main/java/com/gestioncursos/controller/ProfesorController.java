@@ -250,32 +250,19 @@ public class ProfesorController {
 	@GetMapping("/listCursos/califica/{idCurso}")
 	public ModelAndView listCursosCalifica(@PathVariable(name = "idCurso", required = false) int idCurso, Model model) {
 		ModelAndView mav = new ModelAndView(Constantes.CALIFICA_ALUMNOS_CURSO);
-//		Profesores p = profesorRepository.findByEmail(email);
-//		long id1 = p.getIdProfesor();
-//		System.out.println(id1);
-		
-		
-//		List<MatriculaModel> matriculas = matriculaService.listAllMatriculas();
-//		MatriculaModel matricula = null;
-//		
-//		for(MatriculaModel m:matriculas) {
-//			if(m.getIdCurso()==idCurso) {
-//				matricula = m;
-//			}
-//		}
 
-		List<AlumnosModel> alumnos = alumnosService.listAllAlumnos();
-		List<MatriculaModel> matricula = matriculaService.listMatriculasCurso(idCurso);	
-		List<AlumnosModel> matriculados = new ArrayList<>();
+		List<AlumnosModel> listAlumnos = alumnosService.listAllAlumnos();
+		List<MatriculaModel> matriculas = matriculaService.listMatriculasCurso(idCurso);	
+		List<AlumnosModel> alumnos = new ArrayList<>();
 		
-		for(AlumnosModel a : alumnos) {
-			for(MatriculaModel m : matricula)
+		for(AlumnosModel a : listAlumnos) {
+			for(MatriculaModel m : matriculas)
 			if(a.getIdAlumno() == m.getIdAlumno()) {
-				matriculados.add(a);
+				alumnos.add(a);
 			}
 		}
-		
-		mav.addObject("matriculas", matriculados);
+		mav.addObject("matriculas", matriculas);
+		mav.addObject("alumnos", alumnos);
 				
 //		long millis=System.currentTimeMillis();  
 //		Date date = new Date(millis); 

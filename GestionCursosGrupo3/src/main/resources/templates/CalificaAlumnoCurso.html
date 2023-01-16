@@ -60,15 +60,18 @@
 				<th>Nota</th>
 			</tr>
 		</thead>
-		<tbody th:each="alumno: ${matriculas}">
+		<tbody th:each="alumno: ${alumnos}">
 			<tr>
 				<th th:text=${alumno.idAlumno}></th>
 				<th th:text=${alumno.foto}></th>
 				<th th:text=${alumno.nombre}></th>
 				<th th:text=${alumno.apellidos}></th>
 				<th th:text=${alumno.email}></th>
-				<th></th>
-				<th>
+				<span th:each="matricula : ${matriculas}" th:if="${alumno.idAlumno == matricula.idAlumno}">
+					<th th:text=${matricula.valoracion}>
+				</span>
+				
+					
 				<!--  
 					<div style="text-align:center;margin: auto;">
 						<a th:href="@{/cursos/formCurso/} + ${curso.idCursos}">

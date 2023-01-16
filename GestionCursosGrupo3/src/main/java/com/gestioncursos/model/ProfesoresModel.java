@@ -1,5 +1,8 @@
 package com.gestioncursos.model;
 
+import javax.persistence.Column;
+import javax.validation.constraints.Size;
+
 import com.gestioncursos.entity.User;
 
 public class ProfesoresModel {
@@ -14,6 +17,8 @@ public class ProfesoresModel {
 	
 	private User usuario;
 	
+	@Column(name = "password", nullable = false)
+	@Size(max = 100)
 	private User password;
 
 	public ProfesoresModel() {
