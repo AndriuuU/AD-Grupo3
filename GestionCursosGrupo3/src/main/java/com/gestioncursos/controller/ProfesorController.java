@@ -171,19 +171,41 @@ public class ProfesorController {
 		Profesores p = profesorRepository.findByEmail(email);
 		long id = p.getIdProfesor();
 		List<CursosModel> listCursosFechas =cursosService.listAllCursosProfesor(id);
-		
 		Collections.sort(listCursosFechas, (x, y) -> y.getFechaInicio().compareTo(x.getFechaInicio()));
-		
 		mav.addObject("cursos", listCursosFechas);
 		
 		return mav;
 	}
 	
-	@GetMapping("/listCursos/{idProfesores}/impartiran")
-	public ModelAndView listCursosImpartiran(@PathVariable("idProfesores") int id) {
+	@GetMapping("/listCursos/impartido/{email}")
+	public ModelAndView listCursosImpartido(@PathVariable(name = "email", required = false) String email, Model model) {
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
 		long millis=System.currentTimeMillis();  
 		Date date = new Date(millis); 
+		Profesores p = profesorRepository.findByEmail(email);
+		long id = p.getIdProfesor();
+		
+		List<CursosModel> listCursosFechas =cursosService.listAllCursosProfesor(id);
+		
+		List<CursosModel> listCursos=new ArrayList<>();
+		for(CursosModel lista:listCursosFechas) {
+			if(lista.getFechaFin().before(date)) {
+				listCursos.add(lista);
+			}
+		}
+		
+		mav.addObject("cursos", listCursos);
+		
+		return mav;
+	}
+	
+	@GetMapping("/listCursos/impartiran/{email}")
+	public ModelAndView listCursosImpartiran(@PathVariable(name = "email", required = false) String email, Model model) {
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
+		long millis=System.currentTimeMillis();  
+		Date date = new Date(millis); 
+		Profesores p = profesorRepository.findByEmail(email);
+		long id = p.getIdProfesor();
 		
 		List<CursosModel> listCursosFechas =cursosService.listAllCursosProfesor(id);
 		
@@ -200,11 +222,13 @@ public class ProfesorController {
 		return mav;
 	}
 	
-	@GetMapping("/listCursos/{idProfesores}/impar")
-	public ModelAndView listCursosImpartiendo(@PathVariable("idProfesores") int id) {
+	@GetMapping("/listCursos/impar/{email}")
+	public ModelAndView listCursosImpartiendo(@PathVariable(name = "email", required = false) String email, Model model) {
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
 		long millis=System.currentTimeMillis();  
 		Date date = new Date(millis); 
+		Profesores p = profesorRepository.findByEmail(email);
+		long id = p.getIdProfesor();
 		
 		List<CursosModel> listCursosFechas =cursosService.listAllCursosProfesor(id);
 		
@@ -221,25 +245,7 @@ public class ProfesorController {
 		return mav;
 	}
 	
-	@GetMapping("/listCursos/{idProfesores}/impartido")
-	public ModelAndView listCursosImpartido(@PathVariable("idProfesores") int id) {
-		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
-		long millis=System.currentTimeMillis();  
-		Date date = new Date(millis); 
-		
-		List<CursosModel> listCursosFechas =cursosService.listAllCursosProfesor(id);
-		
-		List<CursosModel> listCursos=new ArrayList<>();
-		for(CursosModel lista:listCursosFechas) {
-			if(lista.getFechaFin().before(date)) {
-				listCursos.add(lista);
-			}
-		}
-		
-		mav.addObject("cursos", listCursos);
-		
-		return mav;
-	}
+	
 	
 	@GetMapping("/listCursos/{idProfesores}/califica/{idCurso}")
 	public ModelAndView listCursosCalifica(@PathVariable("idProfesores") int idProfesor,@PathVariable("idCurso") int idCurso) {
