@@ -47,7 +47,7 @@
 		      	</li>
 		      	
 		      	<li sec:authorize="hasAuthority('ROL_PROFESOR')" class="nav-item">
-		      		<a class="nav-link active" th:href="@{/profesores/listCursos/${profesor.id}}">Mis cursos</a>
+		      		<a class="nav-link active" th:href="@{/profesores/listCursosEmail/}+${#authentication.name}">Mis cursos</a>
 		      	</li>
 		      	 
 		      	<li sec:authorize="!isAuthenticated()" class="nav-item">

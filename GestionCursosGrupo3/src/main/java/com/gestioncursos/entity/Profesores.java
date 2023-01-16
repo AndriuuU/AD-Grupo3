@@ -3,6 +3,7 @@ package com.gestioncursos.entity;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,8 +18,10 @@ public class Profesores {
 	private int idProfesor;
 	private String nombre;
 	private String apellidos;
+	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 	private String password;
+	
 	
 	@OneToMany(cascade= CascadeType.ALL, mappedBy="profesor")
 	private List<Cursos> cursosList;

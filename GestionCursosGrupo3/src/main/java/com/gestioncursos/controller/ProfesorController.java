@@ -19,10 +19,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.gestioncursos.constantes.Constantes;
+import com.gestioncursos.entity.Profesores;
+import com.gestioncursos.entity.User;
 import com.gestioncursos.model.AlumnosModel;
 import com.gestioncursos.model.CursosModel;
 import com.gestioncursos.model.MatriculaModel;
 import com.gestioncursos.model.ProfesoresModel;
+import com.gestioncursos.repository.ProfesoresRepository;
+import com.gestioncursos.repository.UserRepository;
 import com.gestioncursos.service.AlumnosService;
 import com.gestioncursos.service.CursosService;
 import com.gestioncursos.service.MatriculaService;
@@ -39,8 +43,16 @@ public class ProfesorController {
 	private ProfesoresService profesorService;
 	
 	@Autowired
+	@Qualifier("profesorRepository")
+	private ProfesoresRepository profesorRepository;
+	
+	@Autowired
 	@Qualifier("userService")
 	private UsersService usersService;
+	
+	@Autowired
+	@Qualifier("userRepository")
+	private UserRepository userRepository;
 	
 	@Autowired
 	@Qualifier("cursosService")
@@ -116,13 +128,27 @@ public class ProfesorController {
 		return new RedirectView("/profesores/listProfesores");
 	}
 	
-	// listar cursos por id del profesor
-	@GetMapping("/listCursos/{idProfesores}")
-	public ModelAndView listCursos(@PathVariable("idProfesores") int id) {
+	// listar cursos por email del profesor
+	@GetMapping("/listCursosEmail/{email}")
+	public ModelAndView listCursoEmail(@PathVariable(name = "email", required = false) String email, Model model) {
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
+		Profesores p = profesorRepository.findByEmail(email);
+		long id = p.getIdProfesor();
+		System.out.println(id);
 		mav.addObject("cursos", cursosService.listAllCursosProfesor(id));
 		return mav;
 	}
+	
+	// listar cursos por id del profesor
+	/*
+		@GetMapping("/listCursos/{idProfesores}")
+		public ModelAndView listCursos(@PathVariable("idProfesores") int id) {
+			ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
+			List<CursosModel> listCursos =cursosService.listAllCursosProfesor(id);
+			mav.addObject("cursos", cursosService.listAllCursosProfesor(id));
+			return mav;
+		}
+		*/
 	
 //	@GetMapping(value = {"/listCursos/{idProfesores}/fechaasc","/listCursos/{idProfesores}/fechadesc"})
 
