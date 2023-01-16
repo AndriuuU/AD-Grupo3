@@ -21,7 +21,7 @@ public class SecurityConfig {
 	        .antMatchers("/cursos/**").hasAnyAuthority("ROL_ADMIN")
 	        .antMatchers("/profesores/**").hasAnyAuthority("ROL_ADMIN","ROL_PROFESOR")
 	        .antMatchers("/comentarios/**","/matricula/**").hasAnyAuthority("ROL_PROFESOR")
-	        .antMatchers("/comentarios/**").hasAnyAuthority("ROL_ALUMNO")
+	        .antMatchers("/comentarios/**","/cursos/**").hasAnyAuthority("ROL_ALUMNO")
 	        .antMatchers("/alumnos/**").hasAnyAuthority("ROL_ALUMNO","ROL_PROFESOR","ROL_ADMIN")
 	        .anyRequest().authenticated())
 	        

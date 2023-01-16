@@ -62,7 +62,7 @@ public class CursosServiceImpl implements CursosService {
 	}
 	
 	@Override
-	public List<CursosModel> listAllCursosProfesor(int id) {
+	public List<CursosModel> listAllCursosProfesor(long id) {
 		List<CursosModel> cursos=cursoRepository.findAll().stream().map(c->transform(c)).collect(Collectors.toList());
 		List<CursosModel> cursosProfesorId=new ArrayList<>();
 		for(CursosModel c:cursos) {
