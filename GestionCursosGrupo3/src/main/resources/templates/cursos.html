@@ -76,6 +76,10 @@
 						<a th:href="@{/cursos/deleteCurso/} + ${curso.idCursos}" th:onclick="return confirm('¿Est&aacute;s seguro que deseas eliminar el registro?');">
 								<button type="button" class="btn btn-danger"><i class="fa-solid fa-trash" aria-hidden="true">Delete</i></button>
 						</a>
+						<a th:href="@{/profesores/listCursos/califica/}+${curso.idCursos}">
+								<button type="button" class="btn btn-danger"><i class="fa-solid fa-trash" aria-hidden="true">Matriculados</i></button>
+						</a>
+						
 					</div>
 				
 				</th>

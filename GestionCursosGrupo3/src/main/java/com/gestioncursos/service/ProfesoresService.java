@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.gestioncursos.entity.Profesores;
+import com.gestioncursos.model.CursosModel;
+import com.gestioncursos.model.MatriculaModel;
 import com.gestioncursos.model.ProfesoresModel;
 
 
@@ -25,4 +27,5 @@ public interface ProfesoresService {
 	public abstract ProfesoresModel findProfesor(int id);
 
 	public abstract ProfesoresModel findProfesor(String email);
+
 }

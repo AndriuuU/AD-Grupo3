@@ -1,6 +1,7 @@
 package com.gestioncursos.serviceImpl;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,8 +11,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.gestioncursos.entity.Profesores;
+import com.gestioncursos.model.CursosModel;
+import com.gestioncursos.model.MatriculaModel;
 import com.gestioncursos.model.ProfesoresModel;
 import com.gestioncursos.repository.ProfesoresRepository;
+import com.gestioncursos.service.MatriculaService;
 import com.gestioncursos.service.ProfesoresService;
 @Service("profesoresService")
 public class ProfesorServiceImpl implements ProfesoresService{
@@ -19,6 +23,12 @@ public class ProfesorServiceImpl implements ProfesoresService{
 	@Autowired
 	@Qualifier("profesorRepository")
 	private ProfesoresRepository profesorRepository;
+	
+	
+	@Autowired
+	@Qualifier("matriculaService")
+	private MatriculaService matriculaService;
+	
 
 	@Override
 	public List<ProfesoresModel> listAllProfesores() {
@@ -61,6 +71,8 @@ public class ProfesorServiceImpl implements ProfesoresService{
 	public ProfesoresModel findProfesor(int id) {
 		return transform(profesorRepository.findById(id).orElse(null));
 	}
+	
+	
 	
 	
 

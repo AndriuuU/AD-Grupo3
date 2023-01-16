@@ -71,6 +71,7 @@ public class CursoController {
 	}
 	
 	
+	
 	// Metodo de borrar
 	@GetMapping("/deleteCurso/{idcursos}")
 	public String deleteCurso(@PathVariable("idcursos") int id, RedirectAttributes flash) {

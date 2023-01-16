@@ -22,7 +22,6 @@ public interface CursosService {
 	public abstract CursosModel findCurso(int id);
 	
 	public abstract List<CursosModel> listAllCursosProfesor(long id);
-	public abstract List<CursosModel> listAllCursosProfesorCorreo(String correo);
 //	public abstract List<Alumnos> listAllAlumnos(CursosModel cursosModel);
 	
 	public abstract List<CursosModel> listAllCursosByNivelAsc();

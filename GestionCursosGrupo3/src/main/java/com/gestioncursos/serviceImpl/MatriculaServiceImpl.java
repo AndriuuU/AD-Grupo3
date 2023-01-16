@@ -21,6 +21,7 @@ public class MatriculaServiceImpl implements MatriculaService {
 	@Qualifier("matriculaRepository")
 	private MatriculaRepository matriculaRepository;
 	
+	
 	@Override
 	public List<MatriculaModel> listAllMatriculas() {
 		return matriculaRepository.findAll().stream()
@@ -63,19 +64,16 @@ public class MatriculaServiceImpl implements MatriculaService {
 	}
 	
 	@Override
-	public List<MatriculaModel> listMatriculasCurso(int idCurso) {
-		if (listAllMatriculas() != null) {
-			List<MatriculaModel> ListAllMatri = listAllMatriculas();
-			List<MatriculaModel> ListMatriCurso = new ArrayList<>();
-			for (MatriculaModel matriCurso : ListAllMatri) {
-				if (matriCurso.getCurso_id() == idCurso) {
-					ListMatriCurso.add(matriCurso);
-				}
+	public List<MatriculaModel> listMatriculasCurso(int idCurso) {		
+		List<MatriculaModel> matriculas = matriculaRepository.findAll().stream()
+				.map(c->transform(c)).collect(Collectors.toList());
+		List<MatriculaModel> listMatriculas = new ArrayList<>();
+		for(MatriculaModel m: matriculas) {
+			if(m.getIdCurso()==idCurso) {
+				listMatriculas.add(m);
 			}
-			return ListMatriCurso;
 		}
-		return null;
-		
+		return listMatriculas;
 	}
 
 

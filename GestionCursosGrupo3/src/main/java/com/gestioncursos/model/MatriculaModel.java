@@ -6,9 +6,9 @@ public class MatriculaModel {
 	
 	private float valoracion;
 	
-	private int alumno_id;
+	private int idAlumno;
 	
-	private int curso_id;
+	private int idCurso;
 
 	public MatriculaModel() {
 		super();
@@ -19,22 +19,13 @@ public class MatriculaModel {
 		this.idMatricula = idmatricula;
 	}
 
-	public MatriculaModel(int idMatricula, float valoracion, int alumno_id, int curso_id) {
-		super();
-		this.idMatricula = idMatricula;
-		this.valoracion = valoracion;
-		this.alumno_id = alumno_id;
-		this.curso_id = curso_id;
-	}
-
-	public int getIdmatricula() {
+	public int getIdMatricula() {
 		return idMatricula;
 	}
 
-	public void setIdmatricula(int idMatricula) {
+	public void setIdMatricula(int idMatricula) {
 		this.idMatricula = idMatricula;
 	}
-	
 
 	public float getValoracion() {
 		return valoracion;
@@ -44,28 +35,29 @@ public class MatriculaModel {
 		this.valoracion = valoracion;
 	}
 
-	public int getAlumno_id() {
-		return alumno_id;
+	public int getIdAlumno() {
+		return idAlumno;
 	}
 
-	public void setAlumno_id(int alumno_id) {
-		this.alumno_id = alumno_id;
+	public void setIdAlumno(int idAlumno) {
+		this.idAlumno = idAlumno;
 	}
 
-	public int getCurso_id() {
-		return curso_id;
+	public int getIdCurso() {
+		return idCurso;
 	}
 
-	public void setCurso_id(int curso_id) {
-		this.curso_id = curso_id;
+	public void setIdCurso(int idCurso) {
+		this.idCurso = idCurso;
 	}
 
 	@Override
 	public String toString() {
-		return "MatriculaModel [idMatricula=" + idMatricula + ", valoracion=" + valoracion + ", alumno_id=" + alumno_id
-				+ ", curso_id=" + curso_id + "]";
+		return "MatriculaModel [idMatricula=" + idMatricula + ", valoracion=" + valoracion + ", idAlumno=" + idAlumno
+				+ ", idCurso=" + idCurso + "]";
 	}
 
+	
 	
 
 }

@@ -223,7 +223,7 @@ public class ProfesorController {
 	}
 	
 	@GetMapping("/listCursos/impar/{email}")
-	public ModelAndView listCursosImpartiendo(@PathVariable(name = "email", required = false) String email, Model model) {
+	public ModelAndView listCursosImpartiendo(@PathVariable(name = "email", required = false) String email, Model model) {		
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
 		long millis=System.currentTimeMillis();  
 		Date date = new Date(millis); 
@@ -247,22 +247,49 @@ public class ProfesorController {
 	
 	
 	
-	@GetMapping("/listCursos/{idProfesores}/califica/{idCurso}")
-	public ModelAndView listCursosCalifica(@PathVariable("idProfesores") int idProfesor,@PathVariable("idCurso") int idCurso) {
+	@GetMapping("/listCursos/califica/{idCurso}")
+	public ModelAndView listCursosCalifica(@PathVariable(name = "idCurso", required = false) int idCurso, Model model) {
 		ModelAndView mav = new ModelAndView(Constantes.CALIFICA_ALUMNOS_CURSO);
-		long millis=System.currentTimeMillis();  
-		Date date = new Date(millis); 
+//		Profesores p = profesorRepository.findByEmail(email);
+//		long id1 = p.getIdProfesor();
+//		System.out.println(id1);
 		
-		List<MatriculaModel> listMatriCursos =matriculaService.listMatriculasCurso(idCurso);
 		
-		List<AlumnosModel> listAlumnosMatriCurso=new ArrayList<>();
-		for(MatriculaModel lista:listMatriCursos) {
-			if(alumnosService.findAlumno(lista.getAlumno_id()) != null) {
-				listAlumnosMatriCurso.add(alumnosService.findAlumno(lista.getAlumno_id()));
+//		List<MatriculaModel> matriculas = matriculaService.listAllMatriculas();
+//		MatriculaModel matricula = null;
+//		
+//		for(MatriculaModel m:matriculas) {
+//			if(m.getIdCurso()==idCurso) {
+//				matricula = m;
+//			}
+//		}
+
+		List<AlumnosModel> alumnos = alumnosService.listAllAlumnos();
+		List<MatriculaModel> matricula = matriculaService.listMatriculasCurso(idCurso);	
+		List<AlumnosModel> matriculados = new ArrayList<>();
+		
+		for(AlumnosModel a : alumnos) {
+			for(MatriculaModel m : matricula)
+			if(a.getIdAlumno() == m.getIdAlumno()) {
+				matriculados.add(a);
 			}
 		}
 		
-		mav.addObject("alumnos", listAlumnosMatriCurso);
+		mav.addObject("matriculas", matriculados);
+				
+//		long millis=System.currentTimeMillis();  
+//		Date date = new Date(millis); 
+//		
+//		List<MatriculaModel> listMatriCursos =matriculaService.listMatriculasCurso(idCurso);
+//		
+//		List<AlumnosModel> listAlumnosMatriCurso=new ArrayList<>();
+//		for(MatriculaModel lista:listMatriCursos) {
+//			if(alumnosService.findAlumno(lista.getAlumno_id()) != null) {
+//				listAlumnosMatriCurso.add(alumnosService.findAlumno(lista.getAlumno_id()));
+//			}
+//		}
+//		
+//		mav.addObject("alumnos", listAlumnosMatriCurso);
 		
 		return mav;
 	}

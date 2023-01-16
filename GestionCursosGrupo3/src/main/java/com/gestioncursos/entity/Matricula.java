@@ -26,14 +26,6 @@ public class Matricula {
 		super();
 	}
 
-	public Matricula(int idMatricula, int valoracion, Cursos curso, Alumnos alumno) {
-		super();
-		this.idMatricula = idMatricula;
-		this.valoracion = valoracion;
-		this.curso = curso;
-		this.alumno = alumno;
-	}
-
 	public int getIdMatricula() {
 		return idMatricula;
 	}
@@ -71,5 +63,7 @@ public class Matricula {
 		return "Matricula [idMatricula=" + idMatricula + ", valoracion=" + valoracion + ", curso=" + curso + ", alumno="
 				+ alumno + "]";
 	}
+
+	
 
 }
