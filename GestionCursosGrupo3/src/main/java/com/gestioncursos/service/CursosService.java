@@ -24,4 +24,10 @@ public interface CursosService {
 	public abstract List<CursosModel> listAllCursosProfesor(int id);
 //	public abstract List<Alumnos> listAllAlumnos(CursosModel cursosModel);
 	
+	public abstract List<CursosModel> listAllCursosByNivelAsc();
+	
+	public abstract List<CursosModel> listAllCursosByNivelDesc();
+	
+	public abstract List<CursosModel> ListAllCursosDisponibles();
+	
 }

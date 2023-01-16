@@ -73,5 +73,23 @@ public class CursosServiceImpl implements CursosService {
 		return cursosProfesorId;
 	}
 
+	@Override
+	public List<CursosModel> listAllCursosByNivelAsc() {
+		return cursoRepository.findByOrderByNivelAsc().stream()
+				.map(c->transform(c)).collect(Collectors.toList());
+	}
+	
+	@Override
+	public List<CursosModel> listAllCursosByNivelDesc() {
+		return cursoRepository.findByOrderByNivelDesc().stream()
+				.map(c->transform(c)).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<CursosModel> ListAllCursosDisponibles() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

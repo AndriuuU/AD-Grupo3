@@ -17,5 +17,9 @@ public interface CursosRepository extends JpaRepository<Cursos, Serializable> {
 	public abstract Cursos findByFechaInicioBetween(Date fechaInicio, Date fechaFin);
 	
 	public abstract List<Cursos> findByNombreOrderByNivel(String nombre);
+	
+	public abstract List<Cursos> findByOrderByNivelAsc();
+	
+	public abstract List<Cursos> findByOrderByNivelDesc();
 
 }

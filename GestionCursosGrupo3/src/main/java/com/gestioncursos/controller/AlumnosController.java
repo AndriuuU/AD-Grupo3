@@ -16,9 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.gestioncursos.constantes.Constantes;
 import com.gestioncursos.model.AlumnosModel;
+import com.gestioncursos.repository.CursosRepository;
 import com.gestioncursos.service.AlumnosService;
 import com.gestioncursos.service.CursosService;
+import com.gestioncursos.service.MatriculaService;
 import com.gestioncursos.serviceImpl.UsersService;
 
 
@@ -34,12 +37,20 @@ public class AlumnosController {
 	private AlumnosService alumnosService;
 	
 	@Autowired
-	@Qualifier("cursosService")
-	private CursosService courseService;
-	
-	@Autowired
 	@Qualifier("userService")
 	private UsersService usersService;
+	
+	@Autowired
+	@Qualifier("cursosService")
+	private CursosService cursosService;
+	
+	@Autowired
+	@Qualifier("cursosRepository")
+	private CursosRepository cursosRepository;
+	
+	@Autowired
+	@Qualifier("matriculaService")
+	private MatriculaService matriculaService;
 		
 //	
 	@GetMapping("/")
@@ -51,7 +62,7 @@ public class AlumnosController {
 	public String addAlumno(@Valid @ModelAttribute("alumno") AlumnosModel studentModel, BindingResult bindingResult,
 			RedirectAttributes flash, Model model) {
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("curso", courseService.listAllCursos());
+			model.addAttribute("curso", cursosService.listAllCursos());
 			return ALUMNOS_VIEW;
 		} else {
 			alumnosService.updateAlumno(studentModel);
@@ -96,5 +107,34 @@ public class AlumnosController {
 		}else
 			flash.addFlashAttribute("error","No se ha podido activar/desactivar el usuario");	
 		return "redirect:/alumnos/listAlumnos";
+	}
+	
+	@GetMapping("/listCursos")
+	public ModelAndView listCursosAlumnos() {
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
+		mav.addObject("cursos", cursosService.listAllCursos());
+		return mav;
+	}
+	
+	@GetMapping("/listCursos/nivelasc")
+	public ModelAndView listCursosFechaAsc() {
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
+		mav.addObject("cursos", cursosService.listAllCursosByNivelAsc());
+		return mav;
+	}
+	
+	@GetMapping("/listCursos/niveldesc")
+	public ModelAndView listCursosFechaDesc() {
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
+		mav.addObject("cursos", cursosService.listAllCursosByNivelDesc());
+		return mav;
+	}
+	
+	@GetMapping("/listCursos/disponibles")
+	public ModelAndView listCursosDisponibles() {
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
+		mav.addObject("cursos", cursosService.listAllCursos());
+		mav.addObject("matriculas", matriculaService.listAllMatriculas());
+		return mav;
 	}
 }
