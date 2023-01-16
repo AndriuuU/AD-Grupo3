@@ -32,10 +32,10 @@
 	
 	<div style="text-align:center;width: 1300px;margin: auto;">
 	
-		<a th:href="@{/profesores/listCursos/1/fechaasc}">
+		<a th:href="@{/profesores/listCursos/fechaasc/}+${#authentication.name}">
 			<button type="button" class="btn btn-info"><span class="bi bi-arrow-up"></span> Filtrar Fecha Ascendente</button>
 		</a>
-		<a th:href="@{/profesores/listCursos/1/fechadesc}">
+		<a th:href="@{/profesores/listCursos/fechadesc/}+${#authentication.name}">
 			<button type="button" class="btn btn-info"><span class="bi bi-arrow-down"></span> Filtrar Fecha Descendente</button>
 		</a>
 		<a th:href="@{/profesores/listCursos/1/impartido}">

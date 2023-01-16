@@ -153,22 +153,23 @@ public class ProfesorController {
 //	@GetMapping(value = {"/listCursos/{idProfesores}/fechaasc","/listCursos/{idProfesores}/fechadesc"})
 
 	
-	@GetMapping("/listCursos/{idProfesores}/fechaasc")
-	public ModelAndView listCursosFechaAsc(@PathVariable("idProfesores") int id) {
+	@GetMapping("/listCursos/fechaasc/{email}")
+	public ModelAndView listCursosFechaAsc(@PathVariable(name = "email", required = false) String email, Model model) {
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
+		Profesores p = profesorRepository.findByEmail(email);
+		long id = p.getIdProfesor();
 		List<CursosModel> listCursosFechas =cursosService.listAllCursosProfesor(id);
-		
 		Collections.sort(listCursosFechas, (x, y) -> x.getFechaInicio().compareTo(y.getFechaInicio()));
-		
-		
 		mav.addObject("cursos", listCursosFechas);
 		
 		return mav;
 	}
 	
-	@GetMapping("/listCursos/{idProfesores}/fechadesc")
-	public ModelAndView listCursosFechaDesc(@PathVariable("idProfesores") int id) {
+	@GetMapping("/listCursos/fechadesc/{email}")
+	public ModelAndView listCursosFechaDesc(@PathVariable(name = "email", required = false) String email, Model model) {
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
+		Profesores p = profesorRepository.findByEmail(email);
+		long id = p.getIdProfesor();
 		List<CursosModel> listCursosFechas =cursosService.listAllCursosProfesor(id);
 		
 		Collections.sort(listCursosFechas, (x, y) -> y.getFechaInicio().compareTo(x.getFechaInicio()));
