@@ -47,7 +47,7 @@ public class CursoController {
 	@PostMapping("/addCurso")
 	public String addCurso(@ModelAttribute("curso") CursosModel cursoModel, 
 			RedirectAttributes flash) {
-		if (cursoModel.getIdCurso	() != 0) {
+		if (cursoModel.getIdCurso() != 0) {
 			cursoService.updateCurso(cursoModel);
 			flash.addFlashAttribute("success", "Curso modificado con éxito");
 		} else {
