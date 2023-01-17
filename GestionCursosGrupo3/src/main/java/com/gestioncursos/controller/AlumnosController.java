@@ -4,6 +4,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.gestioncursos.constantes.Constantes;
 import com.gestioncursos.model.AlumnosModel;
 import com.gestioncursos.repository.CursosRepository;
+import com.gestioncursos.repository.UserRepository;
 import com.gestioncursos.service.AlumnosService;
 import com.gestioncursos.service.CursosService;
 import com.gestioncursos.service.MatriculaService;
@@ -51,6 +54,12 @@ public class AlumnosController {
 	@Autowired
 	@Qualifier("matriculaService")
 	private MatriculaService matriculaService;
+	
+	@Autowired
+	@Qualifier("userRepository")
+	private UserRepository userRepository;
+	
+	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 //	
 	@GetMapping("/")
@@ -133,7 +142,7 @@ public class AlumnosController {
 	@GetMapping("/listCursos/disponibles")
 	public ModelAndView listCursosDisponibles() {
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
-		mav.addObject("cursos", cursosService.ListAllCursosDisponibles());
+		mav.addObject("cursos", cursosService.ListAllCursosDisponibles(auth.getName()));
 		return mav;
 	}
 }

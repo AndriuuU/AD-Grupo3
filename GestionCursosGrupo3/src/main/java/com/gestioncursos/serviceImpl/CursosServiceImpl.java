@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.gestioncursos.entity.Cursos;
 import com.gestioncursos.model.CursosModel;
 import com.gestioncursos.repository.CursosRepository;
+import com.gestioncursos.repository.UserRepository;
 import com.gestioncursos.service.CursosService;
 @Service("cursosService")
 public class CursosServiceImpl implements CursosService {
@@ -19,6 +20,10 @@ public class CursosServiceImpl implements CursosService {
 	@Autowired
 	@Qualifier("cursosRepository")
 	private CursosRepository cursoRepository;
+	
+	@Autowired
+	@Qualifier("userRepository")
+	private UserRepository userRepository;
 	
 	@Override
 	public List<CursosModel> listAllCursos() {
@@ -86,8 +91,8 @@ public class CursosServiceImpl implements CursosService {
 	}
 
 	@Override
-	public List<CursosModel> ListAllCursosDisponibles() {
-		return cursoRepository.findCursoByQuery().stream()
+	public List<CursosModel> ListAllCursosDisponibles(String username) {
+		return cursoRepository.findCursoByQuery(userRepository.findByUsername(username).getId()).stream()
 				.map(c->transform(c)).collect(Collectors.toList());
 	}
 

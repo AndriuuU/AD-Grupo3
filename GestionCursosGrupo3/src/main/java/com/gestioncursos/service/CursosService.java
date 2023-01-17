@@ -28,6 +28,6 @@ public interface CursosService {
 	
 	public abstract List<CursosModel> listAllCursosByNivelDesc();
 	
-	public abstract List<CursosModel> ListAllCursosDisponibles();
+	public abstract List<CursosModel> ListAllCursosDisponibles(String username);
 	
 }
