@@ -288,9 +288,18 @@ public class ProfesorController {
 		
 		model.addAttribute("curso", new CursosModel());
 		
-		return Constantes.FORM_COURSE;
+		return Constantes.FORM_CURSOS_PROFESOR;
 	}
 	
+	@PostMapping("/addCurso")
+	public String addCurso(@ModelAttribute("curso") CursosModel cursoModel, 
+			RedirectAttributes flash) {
+		
+			cursosService.addCurso(cursoModel);
+			flash.addFlashAttribute("success", "Curso insertado con éxito");
+		
+		return "redirect:/profesores/listCursos";
+	}
 	
 	
 	

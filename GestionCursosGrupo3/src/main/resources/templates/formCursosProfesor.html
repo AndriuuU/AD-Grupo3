@@ -17,7 +17,7 @@
 <body>
 	<div th:replace="fragments :: header"></div>
 	<br>
-	<form th:action="@{/cursos/addCurso}" th:object="${curso}" method="post" style="text-align:center;width: 500px;margin: auto;">
+	<form th:action="@{/profesores/addCurso}" th:object="${curso}" method="post" style="text-align:center;width: 500px;margin: auto;">
 		
 		<h1 th:text="${curso.idCurso != 0} ? 'Editar Curso' : 'Nuevo Curso'" >Nuevo Curso</h1>
 		
