@@ -297,7 +297,7 @@ public class ProfesorController {
 		
 		model.addAttribute("curso", new CursosModel());
 		
-		return Constantes.FORM_CURSOS_PROFESOR;
+		return Constantes.FORM_COURSE;
 	}
 	
 	@PostMapping("/addCurso")

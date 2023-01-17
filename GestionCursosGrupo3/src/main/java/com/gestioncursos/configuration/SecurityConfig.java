@@ -18,7 +18,7 @@ public class SecurityConfig {
 	  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	      http.authorizeRequests((requests)->requests
 	        .antMatchers("/", "/imgs/","/photos/","/auth/**","/webjars/**","/css/**","/noticias/**","/files/**").permitAll()
-	        .antMatchers("/cursos/**").hasAnyAuthority("ROL_ADMIN","ROL_ALUMNO")
+	        .antMatchers("/cursos/**").hasAnyAuthority("ROL_ADMIN","ROL_ALUMNO","ROL_PROFESOR")
 	        .antMatchers("/profesores/**").hasAnyAuthority("ROL_ADMIN","ROL_PROFESOR")
 	        .antMatchers("/comentarios/**","/matricula/**").hasAnyAuthority("ROL_PROFESOR")
 	        .antMatchers("/comentarios/**").hasAnyAuthority("ROL_ALUMNO")
