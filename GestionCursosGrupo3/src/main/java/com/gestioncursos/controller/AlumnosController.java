@@ -140,7 +140,8 @@ public class AlumnosController {
 	}
 	
 	@GetMapping("/listCursos/disponibles")
-	public ModelAndView listCursosDisponibles() {
+	public ModelAndView listCursosDisponibles(Authentication auth) {
+		System.out.println(auth.getName());
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
 		mav.addObject("cursos", cursosService.ListAllCursosDisponibles(auth.getName()));
 		return mav;
