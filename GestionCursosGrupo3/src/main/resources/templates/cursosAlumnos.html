@@ -41,6 +41,9 @@
 		<a th:href="@{/alumnos/listCursos/disponibles}">
 			<button type="button" class="btn btn-info"> Disponibles </button>
 		</a>
+		<a th:href="@{/alumnos/listCursos/disponibles}">
+			<button type="button" class="btn btn-info"> Matriculados </button>
+		</a>
 	</div>
 	<br/>
 	<table class="table table-bordered">
@@ -52,7 +55,7 @@
 				<th>Nivel</th>
 				<th>Fecha Inicio</th>
 				<th>Fecha Fin</th>
-				<th>Matriculado</th>
+<!-- 				<th>Matriculado</th> -->
 			</tr>
 		</thead>
 		<tbody th:each="curso: ${cursos}">
@@ -63,10 +66,10 @@
 				<th th:text=${curso.nivel}></th>
 				<th th:text=${curso.fechaInicio}></th>
 				<th th:text=${curso.fechaFin}></th>
-				<th style="text-align:center">
-					<img th:if="${curso.nivel == 4}" th:src="@{/resources/no.png}">
-					<img th:unless="${curso.nivel == 4}" th:src="@{/resources/yes.png}">
-				</th>
+<!-- 				<th style="text-align:center"> -->
+<!-- 					<img th:if="${curso.nivel == 4}" th:src="@{/resources/no.png}"> -->
+<!-- 					<img th:unless="${curso.nivel == 4}" th:src="@{/resources/yes.png}"> -->
+<!-- 				</th> -->
 			</tr>
 		</tbody>
 	</table>

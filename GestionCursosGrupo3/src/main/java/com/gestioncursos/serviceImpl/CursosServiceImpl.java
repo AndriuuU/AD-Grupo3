@@ -87,8 +87,8 @@ public class CursosServiceImpl implements CursosService {
 
 	@Override
 	public List<CursosModel> ListAllCursosDisponibles() {
-		// TODO Auto-generated method stub
-		return null;
+		return cursoRepository.findCursoByQuery().stream()
+				.map(c->transform(c)).collect(Collectors.toList());
 	}
 
 

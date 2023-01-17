@@ -133,8 +133,7 @@ public class AlumnosController {
 	@GetMapping("/listCursos/disponibles")
 	public ModelAndView listCursosDisponibles() {
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
-		mav.addObject("cursos", cursosService.listAllCursos());
-		mav.addObject("matriculas", matriculaService.listAllMatriculas());
+		mav.addObject("cursos", cursosService.ListAllCursosDisponibles());
 		return mav;
 	}
 }
