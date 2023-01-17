@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
 
+
+
 <title>Calificaciones</title>
 </head>
 <body>
@@ -49,7 +51,7 @@
 		</a>
 	</div>
 	<br/>
-	<table class="table table-bordered">
+	<table class="table table-bordered" style="width:100%">
 		<thead class="thead-light">
 			<tr>
 				<th>ID</th>
@@ -57,7 +59,7 @@
 				<th>Nombre</th>
 				<th>Apellidos</th>
 				<th>Email</th>
-				<th>Nota</th>
+				<th style="width:20%">Nota</th>
 			</tr>
 		</thead>
 		<tbody th:each="alumno: ${alumnos}">
@@ -67,9 +69,17 @@
 				<th th:text=${alumno.nombre}></th>
 				<th th:text=${alumno.apellidos}></th>
 				<th th:text=${alumno.email}></th>
-				<span th:each="matricula : ${matriculas}" th:if="${alumno.idAlumno == matricula.idAlumno}">
-					<th th:text=${matricula.valoracion}>
-				</span>
+				<th>
+					<div class="input-group">
+						<span th:each="matricula : ${matriculas}" th:if="${alumno.idAlumno == matricula.idAlumno}">
+							<form th:action="${'/matricula/calificar/' + {matricula.idCurso} + '/' + {matricula.idAlumno}}" method="post">
+									<input style="width: 25%;font-size: 25px" th:id="${matricula.idMatricula}" type=number step=0.5 id="valoracion" name="valoracion" min=0 max=10 th:value="${matricula.valoracion}">
+									<button class="btn btn-success" type="submit">Confirmar</button>
+							</form>	
+						</span>
+					</div>
+				</th>
+				
 				
 					
 				<!--  

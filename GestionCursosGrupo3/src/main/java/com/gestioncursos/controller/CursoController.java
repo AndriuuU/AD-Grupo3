@@ -41,13 +41,13 @@ public class CursoController {
 	public ModelAndView listCursos() {
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
 		mav.addObject("cursos", cursoService.listAllCursos());
-		return mav;
+		return mav;	
 	}
 
 	@PostMapping("/addCurso")
 	public String addCurso(@ModelAttribute("curso") CursosModel cursoModel, 
 			RedirectAttributes flash) {
-		if (cursoModel.getIdCursos() != 0) {
+		if (cursoModel.getIdCurso	() != 0) {
 			cursoService.updateCurso(cursoModel);
 			flash.addFlashAttribute("success", "Curso modificado con éxito");
 		} else {

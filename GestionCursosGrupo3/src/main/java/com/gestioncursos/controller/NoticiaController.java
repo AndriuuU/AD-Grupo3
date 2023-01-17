@@ -69,7 +69,7 @@ public class NoticiaController {
 			String imagen=storageService.store(file,noticiaModel.getTitulo());
 			noticiaModel.setImagen(imagen);
 			
-			if(noticiaModel.getIdNoticia()==0) {
+			if(noticiaModel.getIdNoticias()==0) {
 				
 				Noticias n =noticiaRepository.findByTitulo(noticiaModel.getTitulo());
 				if(n!=null) {

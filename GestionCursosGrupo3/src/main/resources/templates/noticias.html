@@ -39,15 +39,17 @@
 		</thead>
 		<tbody th:each="noticia: ${noticias}">
 			<tr>
-				<th th:text=${noticia.imagen}></th>
+				<th>
+				<img  th:src="@{/resources/}+${noticia.imagen}">
+				</th>
 				<th th:text=${noticia.titulo}></th>
 				<th th:text=${noticia.descripcion}></th>
 				<th>
 					<div style="text-align:center;margin: auto;">
-						<a th:href="@{/noticia/formNoticias/} + ${noticia.idNoticia}">
+						<a th:href="@{/noticia/formNoticias/} + ${noticia.idNoticias}">
 								<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Actualizar</i></button>
 						</a> 
-						<a th:href="@{/noticia/deleteNoticia/} + ${noticia.idNoticia}" th:onclick="return confirm('¿Est&aacute;s seguro que deseas eliminar el registro?');">
+						<a th:href="@{/noticia/deleteNoticia/} + ${noticia.idNoticias}" th:onclick="return confirm('¿Est&aacute;s seguro que deseas eliminar el registro?');">
 								<button type="button" class="btn btn-danger"><i class="fa-solid fa-trash" aria-hidden="true">Delete</i></button>
 						</a>
 					</div>

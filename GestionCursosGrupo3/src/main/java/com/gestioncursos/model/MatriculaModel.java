@@ -13,8 +13,6 @@ public class MatriculaModel {
 	public MatriculaModel() {
 		super();
 	}
-	
-	
 
 	public MatriculaModel(int idMatricula, float valoracion, int idAlumno, int idCurso) {
 		super();
@@ -22,13 +20,6 @@ public class MatriculaModel {
 		this.valoracion = valoracion;
 		this.idAlumno = idAlumno;
 		this.idCurso = idCurso;
-	}
-
-
-
-	public MatriculaModel(int idmatricula) {
-		super();
-		this.idMatricula = idmatricula;
 	}
 
 	public int getIdMatricula() {
@@ -69,6 +60,11 @@ public class MatriculaModel {
 				+ ", idCurso=" + idCurso + "]";
 	}
 
+	
+	
+	
+
+	
 	
 	
 

@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class CursosModel {
 
-	private int idCursos;
+	private int idCurso;
 
 	private String nombre;
 	
@@ -23,10 +23,10 @@ public class CursosModel {
 		super();
 	}
 
-	public CursosModel(int idCursos, String nombre, String descripcion, int nivel , int idProfesor, Date fechaInicio,
+	public CursosModel(int idCurso, String nombre, String descripcion, int nivel, int idProfesor, Date fechaInicio,
 			Date fechaFin) {
 		super();
-		this.idCursos = idCursos;
+		this.idCurso = idCurso;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.nivel = nivel;
@@ -35,12 +35,12 @@ public class CursosModel {
 		this.fechaFin = fechaFin;
 	}
 
-	public int getIdCursos() {
-		return idCursos;
+	public int getIdCurso() {
+		return idCurso;
 	}
 
-	public void setIdCursos(int idCursos) {
-		this.idCursos = idCursos;
+	public void setIdCurso(int idCurso) {
+		this.idCurso = idCurso;
 	}
 
 	public String getNombre() {
@@ -93,7 +93,7 @@ public class CursosModel {
 
 	@Override
 	public String toString() {
-		return "CursosModel [idCursos=" + idCursos + ", nombre=" + nombre + ", descripcion=" + descripcion + ", nivel="
+		return "CursosModel [idCurso=" + idCurso + ", nombre=" + nombre + ", descripcion=" + descripcion + ", nivel="
 				+ nivel + ", idProfesor=" + idProfesor + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
 				+ "]";
 	}
