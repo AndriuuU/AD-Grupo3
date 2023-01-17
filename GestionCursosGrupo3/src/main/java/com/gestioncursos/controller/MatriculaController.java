@@ -30,8 +30,8 @@ public class MatriculaController {
 	
 	
 	@PostMapping("/calificar/{idCurso}/{idAlumno}")
-	public String calificar(@PathVariable(name = "idCurso", required = true) Integer idCurso,@PathVariable(name = "idAlumno", required = true) Integer idAlumno,@ModelAttribute("valoracion") Float valoracion, RedirectAttributes flash) {
-		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
+	public String calificar(@PathVariable(name = "idCurso", required = true) Integer idCurso,@PathVariable(name = "idAlumno", required = true) 
+	Integer idAlumno,@ModelAttribute("valoracion") Float valoracion, RedirectAttributes flash) {
 		MatriculaModel m=matriculaService.findMatriculaCurso(idCurso,idAlumno);
 		m.setValoracion(valoracion);	
 		matriculaService.updateMatricula(m);

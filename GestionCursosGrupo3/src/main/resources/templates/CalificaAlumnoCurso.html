@@ -71,11 +71,14 @@
 				<th th:text=${alumno.email}></th>
 				<th>
 					<div class="input-group">
-						<span th:each="matricula : ${matriculas}" th:if="${alumno.idAlumno == matricula.idAlumno}">
-							<form th:action="${'/matricula/calificar/' + {matricula.idCurso} + '/' + {matricula.idAlumno}}" method="post">
+						<span th:each="matricula : ${matriculas}" th:if="${alumno.idAlumno == matricula.idAlumno}" >
+							<form th:if="${finalizado==true}" th:action="${'/matricula/calificar/' + {matricula.idCurso} + '/' + {matricula.idAlumno}}" method="post">
 									<input style="width: 25%;font-size: 25px" th:id="${matricula.idMatricula}" type=number step=0.5 id="valoracion" name="valoracion" min=0 max=10 th:value="${matricula.valoracion}">
-									<button class="btn btn-success" type="submit">Confirmar</button>
+									<button class="btn btn-success" type="submit" style="border-radius: 1px;padding: 10px 24px;margin-left:5%;">Evaluar</button>
 							</form>	
+							<span th:if="${finalizado==false }">
+								<span th:text=${matricula.valoracion}></span>
+							</span>
 						</span>
 					</div>
 				</th>

@@ -34,8 +34,8 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="file">Imagen</label> <input type="file" 
-				class="form-control input-file" id="file" name="file">
+			<label for="file">Imagen</label> 
+			<input type="file" accept=".jpg, .jpeg, .png" th:src="*{imagen}" class="form-control input-file" id="file" name="file" required>
 				
 		</div>
 		
