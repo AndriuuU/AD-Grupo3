@@ -92,7 +92,7 @@ public class CursosServiceImpl implements CursosService {
 
 	@Override
 	public List<CursosModel> ListAllCursosDisponibles(String username) {
-		return cursoRepository.findCursoByQuery(userRepository.findByUsername(username).getId()).stream()
+		return cursoRepository.findCursoByQuery((int) (userRepository.findByUsername(username).getId()-1)).stream()
 				.map(c->transform(c)).collect(Collectors.toList());
 	}
 

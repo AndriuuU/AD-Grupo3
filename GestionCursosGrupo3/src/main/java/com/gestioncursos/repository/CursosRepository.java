@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.gestioncursos.entity.Cursos;
-import com.gestioncursos.entity.User;
 
 @Repository("cursosRepository")
 public interface CursosRepository extends JpaRepository<Cursos, Serializable> {
@@ -24,8 +23,8 @@ public interface CursosRepository extends JpaRepository<Cursos, Serializable> {
 	
 	public abstract List<Cursos> findByOrderByNivelDesc();
 	
-	@Query("select curso from Cursos curso inner join curso.matriculaList matricula where matricula.alumno = ?#{[0]}")
-	public abstract List<Cursos> findCursoByQuery(long id);
+	@Query("select curso from Cursos curso inner join curso.matriculaList matricula where matricula.alumno.id = ?#{[0]}")
+	public abstract List<Cursos> findCursoByQuery(Integer id);
 
 //	https://spring.io/blog/2014/07/15/spel-support-in-spring-data-jpa-query-definitions
 
