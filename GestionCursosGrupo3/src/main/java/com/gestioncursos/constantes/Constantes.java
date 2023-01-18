@@ -28,4 +28,6 @@ public class Constantes {
 	
 	public static final String NOTICIAS_ALUMNOS = "NoticiasAlumnos";
 
+	public static final String NOTAS_CALIFICADOS = "NotasCalificados";
+
 }
