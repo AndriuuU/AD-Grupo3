@@ -30,6 +30,11 @@ public interface CursosService {
 	
 	public abstract List<CursosModel> ListAllCursosDisponibles(String username);
 	
+	public abstract List<CursosModel> ListAllCursosMatriculados(String username);
+
 	public abstract List<CursosModel> listCursosAlumno(int idAlumno);
+
+	
+
 	
 }

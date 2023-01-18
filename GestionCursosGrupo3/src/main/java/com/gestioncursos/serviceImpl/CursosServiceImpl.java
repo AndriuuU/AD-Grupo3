@@ -98,7 +98,13 @@ public class CursosServiceImpl implements CursosService {
 
 	@Override
 	public List<CursosModel> ListAllCursosDisponibles(String username) {
-		return cursoRepository.findCursoByQuery((int) (userRepository.findByUsername(username).getId()-1)).stream()
+		return cursoRepository.findCursoDisponibleByQuery((int) (userRepository.findByUsername(username).getId()-1)).stream()
+				.map(c->transform(c)).collect(Collectors.toList());
+	}
+	
+	@Override
+	public List<CursosModel> ListAllCursosMatriculados(String username) {
+		return cursoRepository.findCursoMatriculadoByQuery((int) (userRepository.findByUsername(username).getId()-1)).stream()
 				.map(c->transform(c)).collect(Collectors.toList());
 	}
 	

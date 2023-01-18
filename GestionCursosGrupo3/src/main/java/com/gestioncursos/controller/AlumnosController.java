@@ -164,6 +164,14 @@ public class AlumnosController {
 		return mav;
 	}
 	
+	@GetMapping("/listCursos/matriculados")
+	public ModelAndView listCursosMatriculados(Authentication auth) {
+		System.out.println(auth.getName());
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
+		mav.addObject("cursos", cursosService.ListAllCursosMatriculados(auth.getName()));
+		return mav;
+	}
+	
 
 	@GetMapping("/listNoticias")
 	public ModelAndView listNoticiasAlumnos() {
