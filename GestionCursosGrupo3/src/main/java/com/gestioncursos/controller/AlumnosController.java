@@ -174,13 +174,14 @@ public class AlumnosController {
 	
 	@GetMapping("/listNotas")
 	public ModelAndView listNotas(Authentication auth) {
+		ModelAndView mav = new ModelAndView(Constantes.NOTAS_CALIFICADOS);
 		AlumnosModel alumno = alumnosService.findAlumno(auth.getName());
 		List<CursosModel> cursosAlumno = cursosService.listCursosAlumno(alumno.getIdAlumno());
 		List<MatriculaModel> matriculasAlumno = matriculaService.listMatriculasAlumno(alumno.getIdAlumno());
 		
-		
-		System.out.println(matriculasAlumno);
-		System.out.println(cursosAlumno);
-		return null;
+		mav.addObject("cursos", cursosAlumno);
+		mav.addObject("matriculas", matriculasAlumno);
+	
+		return mav;
 	}
 }

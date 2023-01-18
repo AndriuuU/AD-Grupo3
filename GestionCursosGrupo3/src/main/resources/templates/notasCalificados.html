@@ -28,7 +28,7 @@
 						th:text="${info}">
 	</div>
 	<br />
-	<h1 style="text-align: center;">Valoraciones</h1>
+	<h1 style="text-align: center;">Notas</h1>
 	
 	<div style="text-align:center;width: 1300px;margin: auto;">
 	
@@ -39,15 +39,18 @@
 		<thead class="thead-light">
 			<tr>
 				<th>Nombre</th>
+				<th>Descripcion</th>
+				
 				<th>Valoracion</th>
 			</tr>
 		</thead>
 		<tbody th:each="curso: ${cursos}">
 			<tr>
-				
-				<th th:text=${curso.nombre}></th>
-				<th th:text=${matricula.valoracion></th>
-
+				<span th:each="matricula: ${matriculas}" th:if="${matricula.idCurso == curso.idCurso and matricula.valoracion>0}">
+					<th th:text=${curso.nombre}></th>
+					<th th:text=${curso.descripcion}></th>
+					<th th:text=${matricula.valoracion}></th>
+				</span>
 			</tr>
 		</tbody>
 	</table>
