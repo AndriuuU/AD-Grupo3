@@ -12,6 +12,10 @@ public class Constantes {
 	
 	public static final String FORM_COURSE = "formCurso";
 	
+	public static final String COMMENTS_VIEW = "comentarios";
+	
+	public static final String FORM_COMENTARIO = "formComentario";
+	
 	public static final String COURSES_ALUMNOS_VIEW = "cursosAlumnos";
 	
 	public static final String PROFESORES_VIEW = "profesores";
