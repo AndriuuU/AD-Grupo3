@@ -1,6 +1,8 @@
 package com.gestioncursos.controller;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,7 +22,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.gestioncursos.constantes.Constantes;
 import com.gestioncursos.entity.Profesores;
-import com.gestioncursos.entity.User;
 import com.gestioncursos.model.AlumnosModel;
 import com.gestioncursos.model.CursosModel;
 import com.gestioncursos.model.MatriculaModel;
@@ -250,10 +251,16 @@ public class ProfesorController {
 	@GetMapping("/listCursos/califica/{idCurso}")
 	public ModelAndView listCursosCalifica(@PathVariable(name = "idCurso", required = false) int idCurso, Model model) {
 		ModelAndView mav = new ModelAndView(Constantes.CALIFICA_ALUMNOS_CURSO);
-
+		
+		CursosModel cursos = cursosService.findCurso(idCurso);
 		List<AlumnosModel> listAlumnos = alumnosService.listAllAlumnos();
 		List<MatriculaModel> matriculas = matriculaService.listMatriculasCurso(idCurso);	
 		List<AlumnosModel> alumnos = new ArrayList<>();
+		
+		long millis = System.currentTimeMillis();
+        Date today = new java.sql.Date(millis);
+		
+        boolean finalizado = cursos.getFechaFin().before(today);
 		
 		for(AlumnosModel a : listAlumnos) {
 			for(MatriculaModel m : matriculas)
@@ -261,8 +268,10 @@ public class ProfesorController {
 				alumnos.add(a);
 			}
 		}
+		mav.addObject("cursos", cursos);
 		mav.addObject("matriculas", matriculas);
 		mav.addObject("alumnos", alumnos);
+		mav.addObject("finalizado",finalizado);
 				
 //		long millis=System.currentTimeMillis();  
 //		Date date = new Date(millis); 
@@ -279,6 +288,26 @@ public class ProfesorController {
 //		mav.addObject("alumnos", listAlumnosMatriCurso);
 		
 		return mav;
+	}
+	
+	// Isertar curso para el profesor
+	@GetMapping("/formCursos/{email}" )
+	public String formCursos(@PathVariable(name = "email", required = false) String email, Model model) {
+		model.addAttribute("profesores", profesorService.findProfesor(email));
+		
+		model.addAttribute("curso", new CursosModel());
+		
+		return Constantes.FORM_COURSE;
+	}
+	
+	@PostMapping("/addCurso")
+	public String addCurso(@ModelAttribute("curso") CursosModel cursoModel, 
+			RedirectAttributes flash) {
+		
+			cursosService.addCurso(cursoModel);
+			flash.addFlashAttribute("success", "Curso insertado con éxito");
+		
+		return "redirect:/profesores/listCursos";
 	}
 	
 	

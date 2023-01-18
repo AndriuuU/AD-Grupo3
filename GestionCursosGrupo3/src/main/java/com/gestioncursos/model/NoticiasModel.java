@@ -9,7 +9,7 @@ import com.gestioncursos.entity.Administradores;
 
 public class NoticiasModel {
 
-	private int idNoticia;
+	private int idNoticias;
 	
 	private String titulo;
 	
@@ -23,21 +23,21 @@ public class NoticiasModel {
 		super();
 	}
 
-	public NoticiasModel(int idNoticia, String titulo, String descripcion, String imagen, long idAdmin) {
+	public NoticiasModel(int idNoticias, String titulo, String descripcion, String imagen, long idAdmin) {
 		super();
-		this.idNoticia = idNoticia;
+		this.idNoticias = idNoticias;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.imagen = imagen;
 		this.idAdmin = idAdmin;
 	}
 
-	public int getIdNoticia() {
-		return idNoticia;
+	public int getIdNoticias() {
+		return idNoticias;
 	}
 
-	public void setIdNoticia(int idNoticia) {
-		this.idNoticia = idNoticia;
+	public void setIdNoticias(int idNoticias) {
+		this.idNoticias = idNoticias;
 	}
 
 	public String getTitulo() {
@@ -74,10 +74,11 @@ public class NoticiasModel {
 
 	@Override
 	public String toString() {
-		return "NoticiasModel [idNoticia=" + idNoticia + ", titulo=" + titulo + ", descripcion=" + descripcion
+		return "NoticiasModel [idNoticias=" + idNoticias + ", titulo=" + titulo + ", descripcion=" + descripcion
 				+ ", imagen=" + imagen + ", idAdmin=" + idAdmin + "]";
 	}
 
+	
 	
 
 	

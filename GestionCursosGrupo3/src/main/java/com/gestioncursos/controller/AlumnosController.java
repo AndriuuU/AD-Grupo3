@@ -4,6 +4,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,9 +22,11 @@ import com.gestioncursos.constantes.Constantes;
 import com.gestioncursos.model.AlumnosModel;
 import com.gestioncursos.repository.CursosRepository;
 import com.gestioncursos.repository.MatriculaRepository;
+import com.gestioncursos.repository.UserRepository;
 import com.gestioncursos.service.AlumnosService;
 import com.gestioncursos.service.CursosService;
 import com.gestioncursos.service.MatriculaService;
+import com.gestioncursos.service.NoticiasService;
 import com.gestioncursos.serviceImpl.UsersService;
 
 
@@ -55,6 +59,14 @@ public class AlumnosController {
 	
 	@Autowired
 	private MatriculaRepository matriculaRepository;
+	@Qualifier("userRepository")
+	private UserRepository userRepository;
+	
+	@Autowired
+	@Qualifier("noticiaService")
+	private NoticiasService noticiaService;
+	
+	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 //	
 	@GetMapping("/")
@@ -140,10 +152,18 @@ public class AlumnosController {
 	}
 	
 	@GetMapping("/listCursos/disponibles")
-	public ModelAndView listCursosDisponibles() {
+	public ModelAndView listCursosDisponibles(Authentication auth) {
+		System.out.println(auth.getName());
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
-		mav.addObject("cursos", cursosService.listAllCursos());
-		mav.addObject("matriculas", matriculaService.listAllMatriculas());
+		mav.addObject("cursos", cursosService.ListAllCursosDisponibles(auth.getName()));
+		return mav;
+	}
+	
+
+	@GetMapping("/listNoticias")
+	public ModelAndView listNoticiasAlumnos() {
+		ModelAndView mav = new ModelAndView(Constantes.NOTICIAS_ALUMNOS);
+		mav.addObject("noticias", noticiaService.listAllNoticias());
 		return mav;
 	}
 }

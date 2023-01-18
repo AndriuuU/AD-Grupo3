@@ -12,7 +12,7 @@
 <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
 <link rel="stylesheet" href="css/font-awesome.min.css">
 
-<title>Noticias</title>
+<title>Noticias Alumno	</title>
 </head>
 <body>
 	<div th:replace="fragments :: header"></div>
@@ -27,33 +27,34 @@
 						th:text="${info}">
 	</div>
 	<br />
-	<h1 style="text-align: center;">Noticias</h1>
-	<br/>
-	<table class="table table-bordered">
+	<h1 style="text-align: center;">Noticias Alumno</h1>
+	
+	<br/><br/>
+	
+		
+		
+	<table class="table">
 		<thead class="thead-light">
 			<tr>
 				<th></th>
 				<th></th>
 			</tr>
 		</thead>
-		<tbody th:each="noticia: ${noticias}">
-			<tr>
-				<th>
-				<img  th:src="@{/resources/}+${noticia.imagen}">
-				</th>
-				<th th:text=${noticia.titulo}></th>
-				<th th:text=${noticia.descripcion}></th>
-				<th>
-					<div style="text-align:center;margin: auto;">
-						<a th:href="@{/noticia/formNoticias/} + ${noticia.idNoticias}">
-								<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Actualizar</i></button>
-						</a> 
-						<a th:href="@{/noticia/deleteNoticia/} + ${noticia.idNoticias}" th:onclick="return confirm('¿Est&aacute;s seguro que deseas eliminar el registro?');">
-								<button type="button" class="btn btn-danger"><i class="fa-solid fa-trash" aria-hidden="true">Delete</i></button>
-						</a>
+		<tbody>
+			<tr th:each="noticia: ${noticias}"  >
+				<th style="margin:0 auto;text-align: center">
+					<div class="tarjeta"  style="margin-bottom:5%;margin-top:5%">
+						<div class="titulo">
+							<a th:text=${noticia.titulo}></a>
+						</div>
+						<div class="cuerpo">
+							<img th:src="@{/resources/}+${noticia.imagen}" alt="Imagen no encontrada">
+							<br/>
+							<a th:text=${noticia.descripcion}></a>
+						</div>
 					</div>
-				
 				</th>
+				<br/>
 			</tr>
 		</tbody>
 	</table>
@@ -61,9 +62,6 @@
 <br><br>
 	
 	<div style="text-align:center;width: 500px;margin: auto;">
-		<a th:href="@{/noticia/formNoticias/}">
-			<button type="button" class="btn btn-primary">Nueva Noticia</button>
-		</a>
 		<a th:href="@{/home}">
 			<button type="button" class="btn btn-primary">Regresar</button>
 		</a>

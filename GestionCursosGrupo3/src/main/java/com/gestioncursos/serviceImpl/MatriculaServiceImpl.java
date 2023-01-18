@@ -1,4 +1,4 @@
-package com.gestioncursos.serviceImpl;
+	package com.gestioncursos.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.gestioncursos.entity.Matricula;
 import com.gestioncursos.model.MatriculaModel;
 import com.gestioncursos.repository.MatriculaRepository;
+import com.gestioncursos.service.AlumnosService;
+import com.gestioncursos.service.CursosService;
 import com.gestioncursos.service.MatriculaService;
 
 @Service("matriculaService")
@@ -20,6 +22,12 @@ public class MatriculaServiceImpl implements MatriculaService {
 	@Autowired
 	@Qualifier("matriculaRepository")
 	private MatriculaRepository matriculaRepository;
+	@Autowired
+	@Qualifier("alumnoService")
+	private AlumnosService alumnoService;
+	@Autowired
+	@Qualifier("cursosService")
+	private CursosService cursosService;
 	
 	
 	@Override
@@ -43,6 +51,7 @@ public class MatriculaServiceImpl implements MatriculaService {
 	@Override
 	public Matricula updateMatricula(MatriculaModel matriculaModel) {
 		Matricula matricula = transform(matriculaModel);
+//		System.out.println(matricula);
 		return matriculaRepository.save(matricula);
 	}
 
@@ -62,6 +71,20 @@ public class MatriculaServiceImpl implements MatriculaService {
 	public MatriculaModel findMatricula(int id) {
 		return transform(matriculaRepository.findById(id).orElse(null));
 	}
+	
+	
+	@Override
+	public MatriculaModel findMatriculaCurso(int idCurso,int idAlumno) {
+	List<MatriculaModel> listMatriculas = listAllMatriculas();
+	
+	for(MatriculaModel m:listMatriculas) {
+		if(m.getIdCurso()==idCurso && m.getIdAlumno()==idAlumno) {
+			return m;
+		}
+		
+	}
+	return null;
+}
 	
 	@Override
 	public List<MatriculaModel> listMatriculasCurso(int idCurso) {		

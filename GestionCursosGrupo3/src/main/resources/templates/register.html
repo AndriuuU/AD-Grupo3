@@ -32,7 +32,7 @@
 			<div class="form-field d-flex align-items-center">
 				<span class="far fa-user"></span>
 				<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/> 
-				<input type="text" class="form-control" th:field="*{nombre}" placeholder="nombre" name="nombre" id="nombre" /> 
+				<input type="text" class="form-control" th:field="*{nombre}" placeholder="Nombre" name="nombre" id="nombre" /> 
 			</div>
 			
 			<label for="inputApellidos" >Apellidos</label> 
@@ -46,7 +46,7 @@
 			<div class="form-field d-flex align-items-center">
 				<span class="far fa-user"></span>
 				<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/> 
-				<input type="text" class="form-control" th:field="*{email}" placeholder="username" name="username" id="username" pattern='([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'/> 
+				<input type="text" class="form-control" th:field="*{email}" placeholder="Username" name="username" id="username" pattern='([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'/> 
 			</div>
 							
 			<label for="inputPassword">Password</label>

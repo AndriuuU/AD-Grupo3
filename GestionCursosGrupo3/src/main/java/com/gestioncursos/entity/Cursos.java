@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 public class Cursos {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int idCursos;
+	private int idCurso;
 	private String nombre;
 	private String descripcion;
 	private int nivel;
@@ -37,95 +37,102 @@ public class Cursos {
 		super();
 	}
 
-
-	public Cursos(int idCursos, String nombre, String descripcion, int nivel, Date fechaInicio, Date fechaFin,
-			Profesores profesor) {
+	public Cursos(int idCurso, String nombre, String descripcion, int nivel, Date fechaInicio, Date fechaFin,
+			Profesores profesor, List<Comentarios> comentarioList, List<Matricula> matriculaList) {
 		super();
-		this.idCursos = idCursos;
+		this.idCurso = idCurso;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.nivel = nivel;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.profesor = profesor;
+		this.comentarioList = comentarioList;
+		this.matriculaList = matriculaList;
 	}
 
-
-	public int getIdCursos() {
-		return idCursos;
+	public int getIdCurso() {
+		return idCurso;
 	}
 
-
-	public void setIdCursos(int idCursos) {
-		this.idCursos = idCursos;
+	public void setIdCurso(int idCurso) {
+		this.idCurso = idCurso;
 	}
-
 
 	public String getNombre() {
 		return nombre;
 	}
 
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 
 	public String getDescripcion() {
 		return descripcion;
 	}
 
-
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
 
 	public int getNivel() {
 		return nivel;
 	}
 
-
 	public void setNivel(int nivel) {
 		this.nivel = nivel;
 	}
-
 
 	public Date getFechaInicio() {
 		return fechaInicio;
 	}
 
-
 	public void setFechaInicio(Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
-
 
 	public Date getFechaFin() {
 		return fechaFin;
 	}
 
-
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-
 
 	public Profesores getProfesor() {
 		return profesor;
 	}
 
-
 	public void setProfesor(Profesores profesor) {
 		this.profesor = profesor;
 	}
 
+	public List<Comentarios> getComentarioList() {
+		return comentarioList;
+	}
+
+	public void setComentarioList(List<Comentarios> comentarioList) {
+		this.comentarioList = comentarioList;
+	}
+
+	public List<Matricula> getMatriculaList() {
+		return matriculaList;
+	}
+
+	public void setMatriculaList(List<Matricula> matriculaList) {
+		this.matriculaList = matriculaList;
+	}
 
 	@Override
 	public String toString() {
-		return "Curso [idCursos=" + idCursos + ", nombre=" + nombre + ", descripcion=" + descripcion + ", nivel="
-				+ nivel + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", profesor=" + profesor + "]";
+		return "Cursos [idCurso=" + idCurso + ", nombre=" + nombre + ", descripcion=" + descripcion + ", nivel=" + nivel
+				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", profesor=" + profesor
+				+ ", comentarioList=" + comentarioList + ", matriculaList=" + matriculaList + "]";
 	}
+
+	
+	
+	
 	
 	
 }

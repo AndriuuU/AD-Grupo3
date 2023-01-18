@@ -19,9 +19,9 @@
 	<br>
 	<form th:action="@{/noticia/addNoticia}" th:object="${noticia}" enctype="multipart/form-data" method="post" style="text-align:center;width: 500px;margin: auto;">
 		
-		<h1 th:text="${noticia.idNoticia != 0} ? 'Editar Noticia' : 'Nueva Noticia'" >Nueva Noticia</h1>
+		<h1 th:text="${noticia.idNoticias != 0} ? 'Editar Noticia' : 'Nueva Noticia'" >Nueva Noticia</h1>
 		
-		<input type="hidden" th:field="*{idNoticia}" id="idNoticias">
+		<input type="hidden" th:field="*{idNoticias}" id="idNoticias">
 		
 		<div class="form-group">
 			<label for="titulo">Titulo</label> 
@@ -34,8 +34,8 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="file">Imagen</label> <input type="file" 
-				class="form-control input-file" id="file" name="file">
+			<label for="file">Imagen</label> 
+			<input type="file" accept=".jpg, .jpeg, .png" th:src="*{imagen}" class="form-control input-file" id="file" name="file" required>
 				
 		</div>
 		

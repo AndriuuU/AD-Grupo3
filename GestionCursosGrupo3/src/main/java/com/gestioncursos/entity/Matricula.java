@@ -26,6 +26,14 @@ public class Matricula {
 		super();
 	}
 
+	public Matricula(int idMatricula, float valoracion, Cursos curso, Alumnos alumno) {
+		super();
+		this.idMatricula = idMatricula;
+		this.valoracion = valoracion;
+		this.curso = curso;
+		this.alumno = alumno;
+	}
+
 	public int getIdMatricula() {
 		return idMatricula;
 	}
@@ -64,6 +72,7 @@ public class Matricula {
 				+ alumno + "]";
 	}
 
+	
 	
 
 }
