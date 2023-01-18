@@ -18,15 +18,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
+import com.gestioncursos.constantes.Constantes;
+import com.gestioncursos.entity.Noticias;
+import com.gestioncursos.entity.User;
 import com.gestioncursos.model.NoticiasModel;
 import com.gestioncursos.repository.NoticiasRepository;
 import com.gestioncursos.repository.UserRepository;
 import com.gestioncursos.service.NoticiasService;
 import com.gestioncursos.storage.StorageService;
-import com.gestioncursos.constantes.Constantes;
-import com.gestioncursos.entity.Noticias;
-import com.gestioncursos.entity.User;
 
 @Controller
 @RequestMapping("/noticia")
@@ -53,6 +54,11 @@ public class NoticiaController {
 		ModelAndView mav = new ModelAndView(Constantes.NOTICIAS_VIEW);
 		mav.addObject("noticias", noticiasService.listAllNoticias());
 		return mav;
+	}
+		
+	@GetMapping("/")
+	public RedirectView redirect() {
+		return new RedirectView("/noticias/listNoticias");
 	}
 	
 	
