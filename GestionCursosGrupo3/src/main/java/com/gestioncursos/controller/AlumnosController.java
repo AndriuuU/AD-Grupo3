@@ -102,7 +102,7 @@ public class AlumnosController {
 		else
 			mav.addObject("alumnos", alumnosService.listAllAlumnos()
 					.stream()
-					.filter(x->x.getIdAlumno() == matriculaRepository.findByCurso(id).getAlumno().getIdAlumno()).toList());
+					.filter(x->x.getIdAlumno() == matriculaRepository.findByCurso(id).getAlumno().getIdAlumno()));
 		return mav;
 	}
 	
