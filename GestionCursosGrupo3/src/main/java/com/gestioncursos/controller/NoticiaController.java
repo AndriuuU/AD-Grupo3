@@ -24,15 +24,14 @@ import com.gestioncursos.repository.NoticiasRepository;
 import com.gestioncursos.repository.UserRepository;
 import com.gestioncursos.service.NoticiasService;
 import com.gestioncursos.storage.StorageService;
+import com.gestioncursos.constantes.Constantes;
 import com.gestioncursos.entity.Noticias;
 import com.gestioncursos.entity.User;
 
 @Controller
 @RequestMapping("/noticia")
 public class NoticiaController {
-	private static final String NOTICIAS_VIEW = "noticias";
-	private static final String FORM_NOTICIAS = "formNoticias";
-	
+
 	@Autowired
 	@Qualifier("noticiaService")
 	private NoticiasService noticiasService;
@@ -51,7 +50,7 @@ public class NoticiaController {
 	
 	@GetMapping("/listNoticias")
 	public ModelAndView listAlumnos() {
-		ModelAndView mav = new ModelAndView(NOTICIAS_VIEW);
+		ModelAndView mav = new ModelAndView(Constantes.NOTICIAS_VIEW);
 		mav.addObject("noticias", noticiasService.listAllNoticias());
 		return mav;
 	}
@@ -101,7 +100,7 @@ public class NoticiaController {
 			model.addAttribute("noticia", noticiasService.findNoticia(id));
 			System.out.println(id);
 		}
-		return FORM_NOTICIAS;
+		return Constantes.FORM_NOTICIAS;
 	}
 	
 	@GetMapping("/deleteNoticia/{idNoticia}")

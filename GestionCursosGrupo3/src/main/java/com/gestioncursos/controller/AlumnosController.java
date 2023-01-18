@@ -25,6 +25,7 @@ import com.gestioncursos.repository.UserRepository;
 import com.gestioncursos.service.AlumnosService;
 import com.gestioncursos.service.CursosService;
 import com.gestioncursos.service.MatriculaService;
+import com.gestioncursos.service.NoticiasService;
 import com.gestioncursos.serviceImpl.UsersService;
 
 
@@ -58,6 +59,10 @@ public class AlumnosController {
 	@Autowired
 	@Qualifier("userRepository")
 	private UserRepository userRepository;
+	
+	@Autowired
+	@Qualifier("noticiaService")
+	private NoticiasService noticiaService;
 	
 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
@@ -144,6 +149,14 @@ public class AlumnosController {
 		System.out.println(auth.getName());
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
 		mav.addObject("cursos", cursosService.ListAllCursosDisponibles(auth.getName()));
+		return mav;
+	}
+	
+
+	@GetMapping("/listNoticias")
+	public ModelAndView listNoticiasAlumnos() {
+		ModelAndView mav = new ModelAndView(Constantes.NOTICIAS_ALUMNOS);
+		mav.addObject("noticias", noticiaService.listAllNoticias());
 		return mav;
 	}
 }
