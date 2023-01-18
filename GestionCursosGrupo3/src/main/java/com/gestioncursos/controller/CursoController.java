@@ -43,6 +43,13 @@ public class CursoController {
 		mav.addObject("cursos", cursoService.listAllCursos());
 		return mav;
 	}
+	
+	@GetMapping("/listCursosAlumno")
+	public ModelAndView listCursosAlumno() {
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
+		mav.addObject("cursos", cursoService.listAllCursos());
+		return mav;
+	}
 
 	@PostMapping("/addCurso")
 	public String addCurso(@ModelAttribute("curso") CursosModel cursoModel, 

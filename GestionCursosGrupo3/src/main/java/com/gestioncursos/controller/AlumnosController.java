@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.gestioncursos.constantes.Constantes;
 import com.gestioncursos.model.AlumnosModel;
 import com.gestioncursos.repository.CursosRepository;
+import com.gestioncursos.repository.MatriculaRepository;
 import com.gestioncursos.service.AlumnosService;
 import com.gestioncursos.service.CursosService;
 import com.gestioncursos.service.MatriculaService;
@@ -51,6 +52,9 @@ public class AlumnosController {
 	@Autowired
 	@Qualifier("matriculaService")
 	private MatriculaService matriculaService;
+	
+	@Autowired
+	private MatriculaRepository matriculaRepository;
 		
 //	
 	@GetMapping("/")
@@ -78,10 +82,15 @@ public class AlumnosController {
 	}
 	
 	// Listar alumnos
-	@GetMapping("/listAlumnos")
-	public ModelAndView listAlumnos() {
+	@GetMapping(value={"/listAlumnos","/listAlumnos/{id}"})
+	public ModelAndView listAlumnos(@PathVariable(name="id") Integer id) {
 		ModelAndView mav = new ModelAndView(ALUMNOS_VIEW);
-		mav.addObject("alumnos", alumnosService.listAllAlumnos());
+		if(id==null)
+			mav.addObject("alumnos", alumnosService.listAllAlumnos());
+		else
+			mav.addObject("alumnos", alumnosService.listAllAlumnos()
+					.stream()
+					.filter(x->x.getIdAlumno() == matriculaRepository.findByCurso(id).getAlumno().getIdAlumno()).toList());
 		return mav;
 	}
 	

@@ -50,12 +50,11 @@ public class NoticiaController {
 	private StorageService storageService;
 	
 	@GetMapping("/listNoticias")
-	public ModelAndView listAlumnos() {
+	public ModelAndView listNoticias() {
 		ModelAndView mav = new ModelAndView(NOTICIAS_VIEW);
 		mav.addObject("noticias", noticiasService.listAllNoticias());
 		return mav;
 	}
-	
 	
 	
 	@PostMapping("/addNoticia")

@@ -28,6 +28,7 @@
 			  <a sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item" th:href="@{/profesores/listProfesores/}">Ver profesores</a>
 			  <a sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item" th:href="@{/alumnos/listAlumnos/}">Ver alumnos</a>
 			  <a sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item" th:href="@{/cursos/listCursos/}">Ver cursos</a>
+			  <a sec:authorize="hasAuthority('ROL_ALUMNO')" class="nav-item" th:href="@{/cursos/listCursosAlumno/}">Ver cursos</a>
 			  <a sec:authorize="isAuthenticated()" th:href="@{/edituser/}">Editar mis datos</a>
 			</div>
 			
@@ -42,6 +43,9 @@
 				</tr> 
 			</tbody>
     </section>
+    
+    <h2>Noticias</h2>
+    
     <footer>
         <p>My custom footer</p>
         <p layout:fragment="custom-footer">Footer</p>		

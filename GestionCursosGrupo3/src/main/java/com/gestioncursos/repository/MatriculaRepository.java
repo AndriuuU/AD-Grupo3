@@ -11,5 +11,7 @@ import com.gestioncursos.entity.Matricula;
 public interface MatriculaRepository extends JpaRepository<Matricula, Serializable> {
 
 	public abstract Matricula findByIdMatricula(int id);
+
+	public abstract Matricula findByCurso(Integer id);
 	
 }
