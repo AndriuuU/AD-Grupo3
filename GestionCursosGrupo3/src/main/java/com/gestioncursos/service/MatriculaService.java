@@ -25,4 +25,7 @@ public interface MatriculaService {
 	public abstract MatriculaModel findMatriculaCurso(int idCurso,int idAlumno);
 	
 	public abstract List<MatriculaModel> listMatriculasCurso(int idCurso);
+	
+	
+	public abstract List<MatriculaModel> listMatriculasAlumno(int idAlumno);
 }
