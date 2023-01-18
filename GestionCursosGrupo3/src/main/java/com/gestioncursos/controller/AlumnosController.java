@@ -69,9 +69,9 @@ public class AlumnosController {
 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 //	
-	@GetMapping("/")
+	@GetMapping("/home")
 	public RedirectView redirect() {
-		return new RedirectView("/alumnos/listAlumnos");
+		return new RedirectView("/alumnos/listNoticias");
 	}
 	
 	@PostMapping("/addAlumno")
@@ -102,7 +102,7 @@ public class AlumnosController {
 		else
 			mav.addObject("alumnos", alumnosService.listAllAlumnos()
 					.stream()
-					.filter(x->x.getIdAlumno() == matriculaRepository.findByCurso(id).getAlumno().getIdAlumno()).toList());
+					.filter(x->x.getIdAlumno() == matriculaRepository.findByCurso(id).getAlumno().getIdAlumno()));
 		return mav;
 	}
 	

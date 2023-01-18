@@ -1,7 +1,5 @@
 package com.gestioncursos.model;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import com.gestioncursos.entity.Alumnos;
 import com.gestioncursos.entity.Cursos;
@@ -11,15 +9,21 @@ public class ComentariosModel {
 	private int idcomentarios;
 	
 	private String comentario;
+	
+	private Cursos curso;
+	
+	private Alumnos alumno;
 
 	public ComentariosModel() {
 		super();
 	}
 
-	public ComentariosModel(int idcomentarios, String comentario) {
+	public ComentariosModel(int idcomentarios, String comentario, Cursos curso, Alumnos alumno) {
 		super();
 		this.idcomentarios = idcomentarios;
 		this.comentario = comentario;
+		this.curso = curso;
+		this.alumno = alumno;
 	}
 
 	public int getIdcomentarios() {
@@ -29,6 +33,22 @@ public class ComentariosModel {
 	public void setIdcomentarios(int idcomentarios) {
 		this.idcomentarios = idcomentarios;
 	}
+	
+	public Cursos getCurso() {
+		return this.curso;
+	}
+	
+	public void setCurso(Cursos curso) {
+		this.curso=curso;
+	}
+	
+	public Alumnos getAlumno() {
+		return this.alumno;
+	}
+	
+	public void setAlumno(Alumnos alumno) {
+		this.alumno=alumno;
+	}
 
 	public String getComentario() {
 		return comentario;
@@ -37,7 +57,7 @@ public class ComentariosModel {
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "ComentariosModel [idcomentarios=" + idcomentarios + ", comentario=" + comentario + "]";

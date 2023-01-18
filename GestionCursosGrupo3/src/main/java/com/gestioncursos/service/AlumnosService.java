@@ -10,6 +10,8 @@ public interface AlumnosService {
 
 	public abstract List<AlumnosModel> listAllAlumnos();
 	
+	public abstract Alumnos findByEmail(String email);
+	
 	public abstract Alumnos addAlumno(AlumnosModel alumnosModel);
 
 	public abstract int removeAlumno(int id);
