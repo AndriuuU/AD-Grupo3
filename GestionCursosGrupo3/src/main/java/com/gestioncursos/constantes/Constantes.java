@@ -30,6 +30,6 @@ public class Constantes {
 	
 	public static final String FORM_NOTICIAS = "formNoticias";
 	
-	public static final String NOTICIAS_ALUMNOS = "NoticiasAlumnos";
+	public static final String NOTICIAS_ALUMNOS = "noticiasAlumno";
 
 }
