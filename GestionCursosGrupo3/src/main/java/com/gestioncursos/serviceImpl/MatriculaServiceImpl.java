@@ -10,12 +10,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.gestioncursos.entity.Matricula;
-import com.gestioncursos.model.AlumnosModel;
-import com.gestioncursos.model.CursosModel;
 import com.gestioncursos.model.MatriculaModel;
 import com.gestioncursos.repository.MatriculaRepository;
 import com.gestioncursos.service.AlumnosService;
-import com.gestioncursos.service.CursosService;
 import com.gestioncursos.service.MatriculaService;
 
 @Service("matriculaService")

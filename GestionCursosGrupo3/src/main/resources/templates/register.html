@@ -18,7 +18,9 @@
 <body>
 <div th:replace="fragments :: header"></div>
 <br>
+
 <div class="wrapper">	
+	<div th:if="${error!=null}" class="alert alert-danger" role="alert">Usuario ya existente</div>
         <div class="logo">
             <img src="https://www.freepnglogos.com/uploads/hacker-png/hacker-anonymous-group-wikipedia-23.png" width="200" alt="hacker, anonymous group wikipedia" />
         </div>	
@@ -27,39 +29,39 @@
         </div>
         <br>
 		<form class="p-3 mt-3" th:action="@{/auth/register}" th:object="${alumno}" method="post">
-		
+			
 			<label for="inputNombre" >Nombre</label> 
 			<div class="form-field d-flex align-items-center">
 				<span class="far fa-user"></span>
 				<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/> 
-				<input type="text" class="form-control" th:field="*{nombre}" placeholder="Nombre" name="nombre" id="nombre" /> 
+				<input type="text" class="form-control" th:field="*{nombre}" placeholder="Nombre" name="nombre" id="nombre" required/> 
 			</div>
 			
 			<label for="inputApellidos" >Apellidos</label> 
 			<div class="form-field d-flex align-items-center">
 				<span class="far fa-user"></span>
 				<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/> 
-				<input type="text" class="form-control" th:field="*{apellidos}" placeholder="Apellidos" name="Apellidos" id="Apellidos" /> 
+				<input type="text" class="form-control" th:field="*{apellidos}" placeholder="Apellidos" name="Apellidos" id="Apellidos" required/> 
 			</div>
 			
 			<label for="inputEmail" >Email</label> 
 			<div class="form-field d-flex align-items-center">
 				<span class="far fa-user"></span>
 				<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/> 
-				<input type="text" class="form-control" th:field="*{email}" placeholder="Username" name="username" id="username" pattern='([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'/> 
+				<input type="text" class="form-control" th:field="*{email}" placeholder="Username" name="username" id="username" pattern='([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+' required/> 
 			</div>
 							
 			<label for="inputPassword">Password</label>
 			<div class="form-field d-flex align-items-center">
 				<span class="far fa-key"></span>
-				<input type="password" class="form-control" th:field="*{password}" placeholder="Password" name="password" id="password" />
+				<input type="password" class="form-control" th:field="*{password}" placeholder="Password" name="password" id="password" required/>
 			</div>
 			
 			<label for="inputFoto" >Foto</label> 
 			<div class="form-field d-flex align-items-center">
 				<span class="far fa-user"></span>
 				<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/> 
-				<input type="file" class="form-control" th:field="*{foto}" placeholder="foto" name="foto" id="foto"/> 
+				<input type="file" class="form-control" th:field="*{foto}" placeholder="foto" name="foto" id="foto" required/> 
 			</div>
 		
 			<br>
@@ -70,48 +72,7 @@
             <a th:href="@{/auth/login/}">Iniciar Sesion</a>
         </div>
 		</form>
-		
-		<div class="alert alert-success" th:if="${success != null}"
-						th:text="${success}"></div>
-					<div class="alert alert-danger" th:if="${error != null}"
-						th:text="${error}"></div>
-					<div class="alert alert-warning" th:if="${warning != null}"
-						th:text="${warning}"></div>
-					<div class="alert alert-info" th:if="${info != null}"
-						th:text="${info}"></div>
-		
+				
 </div>
-<!-- <div style="text-align:center;width: 500px;margin: auto;">
-	<h1>Registro</h1>
-	</div>
-	<br><br><br>
-	<form th:action="@{/auth/register}" th:object="${alumno}" method="post" style="text-align:center;width: 500px;margin: auto;">
-		<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/>
-		<label>Nombre: </label>
-		<input type="text" class="form-control" th:field="*{nombre}" placeholder="Nombre" name="nombre" id="nombre"/>
-		<br>
-		<label>Apellidos: </label>
-		<input type="text" class="form-control" th:field="*{apellidos}" placeholder="Apellidos" name="apellidos" id="apellidos"/>
-		<br>
-		<label>Email: </label>
-		<input type="text" class="form-control" th:field="*{email}" placeholder="Correo electr&oacute;nico" name="username" id="username" pattern='([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'/>
-		<br>
-		<label>Clave: </label>
-		<input type="password" class="form-control" th:field="*{password}" placeholder="Clave" name="password" id="password"/>
-		<br>
-		<label>Foto: </label>
-		<input type="file" class="form-control" th:field="*{foto}" placeholder="foto" name="foto" id="foto"/>
-		<br>
-		<input class="btn btn-primary btn-block text-uppercase" id="boton" type="submit" value="Registrarse"/>
-	</form>
-	
-	<div class="alert alert-success" th:if="${success != null}"
-						th:text="${success}"></div>
-					<div class="alert alert-danger" th:if="${error != null}"
-						th:text="${error}"></div>
-					<div class="alert alert-warning" th:if="${warning != null}"
-						th:text="${warning}"></div>
-					<div class="alert alert-info" th:if="${info != null}"
-						th:text="${info}"></div> -->
 </body>
 </html>

@@ -1,11 +1,5 @@
 package com.gestioncursos.model;
 
-import java.util.Arrays;
-
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.gestioncursos.entity.Administradores;
 
 public class NoticiasModel {
 
