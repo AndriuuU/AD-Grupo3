@@ -1,5 +1,8 @@
 package com.gestioncursos.controller;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
@@ -16,8 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.gestioncursos.constantes.Constantes;
-import com.gestioncursos.entity.Comentarios;
 import com.gestioncursos.model.ComentariosModel;
+import com.gestioncursos.model.CursosModel;
 import com.gestioncursos.repository.ComentariosRepository;
 import com.gestioncursos.service.AlumnosService;
 import com.gestioncursos.service.ComentariosService;
@@ -52,9 +55,14 @@ public class ComentariosController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    String userEmail = authentication.getName();
 	    Integer idAlumno = alumnoService.findByEmail(userEmail).getIdAlumno();
-		mav.addObject("idAlumno", idAlumno);
+	    List<ComentariosModel> comentarios = comentariosService.listAllComentarios();
+	    
+	   
+	    System.out.println(comentarios);		
+	    mav.addObject("idAlumno", idAlumno);
 	    mav.addObject("idCurso", idCurso);
-		mav.addObject("cursos", comentariosService.listAllComentarios().stream().filter(x->x.getIdCurso()==idCurso));
+//	    System.out.println(comentariosService.listAllComentarios().stream().filter(x->x.getIdCurso()==idCurso));
+		mav.addObject("comentarios", comentariosService.listAllComentarios());
 		return mav;	
 	}
 
