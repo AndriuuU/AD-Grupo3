@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th=http://www.thymeleaf.org
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
@@ -17,20 +17,16 @@
 <body>
 	<div th:replace="fragments :: header"></div>
 	<br>
-	<form th:action="@{/comentarios/addComentario}" th:object="${comentario}" method="post" style="text-align:center;width: 500px;margin: auto;">
+	<form th:action="@{/comentarios/{/addComentario}" th:object="${comentario}" method="post" style="text-align:center;width: 500px;margin: auto;">
 		
 		<h1>Nuevo comentario</h1>
-		<h1 th:text="${comentario.idComentarios != 0} ? 'Editar Comentario' : 'Nuevo Comentario'" >Nuevo Comentario</h1>
+		
+		<input type="hidden" th:field="*{idcomentarios}" id="idcomentarios">
 		
 		
-		<input type="hidden" th:field="*{idComentarios}" id="idcomentarios">
-		<input type="hidden" th:field="*{idAlumno}" id="idAlumno">
-		
-		<div class="form-group">
-		<label for="comentario">Comentario</label> 
-		<input type="text" th:field="*{comentario}"
-			class="form-control" id="comentario" placeholder="Introduce el comentario">
-		</div>	
+			<label for="comentario">Comentario</label> 
+			<input type="text" th:field="*{comentario}"
+				class="form-control" id="comentario" placeholder="Introduce el comentario">
 
 		<br><br>
 		<input type="submit" class="btn btn-primary">

@@ -12,7 +12,6 @@ public class Comentarios {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idComentarios;
-	
 	private String comentario;
 	
 	@ManyToOne

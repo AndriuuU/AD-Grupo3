@@ -6,32 +6,48 @@ import com.gestioncursos.entity.Cursos;
 
 public class ComentariosModel {
 
-	private int idComentarios;
+	private int idcomentarios;
 	
 	private String comentario;
 	
-	private int idCurso;
+	private Cursos curso;
 	
-	private int idAlumno;
+	private Alumnos alumno;
 
 	public ComentariosModel() {
 		super();
 	}
 
-	public ComentariosModel(int idComentarios, String comentario, int idCurso, int idAlumno) {
+	public ComentariosModel(int idcomentarios, String comentario, Cursos curso, Alumnos alumno) {
 		super();
-		this.idComentarios = idComentarios;
+		this.idcomentarios = idcomentarios;
 		this.comentario = comentario;
-		this.idCurso = idCurso;
-		this.idAlumno = idAlumno;
+		this.curso = curso;
+		this.alumno = alumno;
 	}
 
-	public int getIdComentarios() {
-		return idComentarios;
+	public int getIdcomentarios() {
+		return idcomentarios;
 	}
 
-	public void setIdComentarios(int idComentarios) {
-		this.idComentarios = idComentarios;
+	public void setIdcomentarios(int idcomentarios) {
+		this.idcomentarios = idcomentarios;
+	}
+	
+	public Cursos getCurso() {
+		return this.curso;
+	}
+	
+	public void setCurso(Cursos curso) {
+		this.curso=curso;
+	}
+	
+	public Alumnos getAlumno() {
+		return this.alumno;
+	}
+	
+	public void setAlumno(Alumnos alumno) {
+		this.alumno=alumno;
 	}
 
 	public String getComentario() {
@@ -41,32 +57,10 @@ public class ComentariosModel {
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
-
-	public int getIdCurso() {
-		return idCurso;
-	}
-
-	public void setIdCurso(int idCurso) {
-		this.idCurso = idCurso;
-	}
-
-	public int getIdAlumno() {
-		return idAlumno;
-	}
-
-	public void setIdAlumno(int idAlumno) {
-		this.idAlumno = idAlumno;
-	}
-
+	
 	@Override
 	public String toString() {
-		return "ComentariosModel [idComentarios=" + idComentarios + ", comentario=" + comentario + ", idCurso="
-				+ idCurso + ", idAlumno=" + idAlumno + "]";
+		return "ComentariosModel [idcomentarios=" + idcomentarios + ", comentario=" + comentario + "]";
 	}
-
-	
-
-	
-	
 
 }
