@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.gestioncursos.converter.ComentariosConverter;
 import com.gestioncursos.entity.Comentarios;
 import com.gestioncursos.model.ComentariosModel;
 import com.gestioncursos.repository.ComentariosRepository;
@@ -19,6 +20,10 @@ public class ComentariosServiceImpl implements ComentariosService{
 	@Autowired
 	@Qualifier("comentariosRepository")
 	private ComentariosRepository comentariosRepository;
+	
+	@Autowired
+	@Qualifier("comentariosConverter")
+	private ComentariosConverter comentariosConverter;
 
 	@Override
 	public List<ComentariosModel> listAllComentarios() {
@@ -29,7 +34,10 @@ public class ComentariosServiceImpl implements ComentariosService{
 	@Override
 	public Comentarios addComentario(ComentariosModel comentariosModel) {
 		// TODO Auto-generated method stub
+		//Comentarios comentarios=comentariosConverter.model2entity(comentariosModel);
+		//return comentariosRepository.save(comentarios);
 		return comentariosRepository.save(transform(comentariosModel));
+		
 	}
 
 	@Override
@@ -54,7 +62,6 @@ public class ComentariosServiceImpl implements ComentariosService{
 
 	@Override
 	public ComentariosModel transform(Comentarios comentarios) {
-		// TODO Auto-generated method stub
 		ModelMapper modelMapper = new ModelMapper();
 		return modelMapper.map(comentarios, ComentariosModel.class);
 	}
