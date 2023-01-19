@@ -50,7 +50,7 @@ public class ComentariosController {
 	@GetMapping("/listComentarios/{idCurso}")
 	public ModelAndView listComentarios(@PathVariable("idCurso") int idCurso) {
 		ModelAndView mav = new ModelAndView(Constantes.COMMENTS_VIEW);
-		mav.addObject("cursos", comentariosService.listAllComentarios().stream().filter(x->x.getCurso().getIdCurso()==idCurso));
+		mav.addObject("cursos", comentariosService.listAllComentarios().stream().filter(x->x.getIdCurso()==idCurso));
 		return mav;	
 	}
 
@@ -60,25 +60,28 @@ public class ComentariosController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    String userEmail = authentication.getName();
 	    Alumnos alumno = alumnoService.findByEmail(userEmail);
-		comentariosModel.setAlumno(alumno);
-		comentariosModel.setCurso(cursosService.transform(cursosService.findCurso(idCurso)));
+		comentariosModel.setIdAlumno(alumno.getIdAlumno());
+		comentariosModel.setIdCurso(cursosService.transform(cursosService.findCurso(idCurso)).getIdCurso());
 		comentariosService.addComentario(comentariosModel);
 		flash.addFlashAttribute("success", "Comentario insertado con éxito");
 		return "redirect:/comentario/listComentarios";
 	}
 
-	@GetMapping(value = { "/formComentario", "/formComentario/{id}" })
-	public String formComentario(@PathVariable(name = "id", required = false) Integer id, Model model) {
+	@GetMapping(value = { "/formComentario", "/formComentario/{idComentario}" })
+	public String formComentario(@PathVariable(name = "idComentario", required = false) Integer idComentario, Model model) {
+		ModelAndView mav = new ModelAndView(Constantes.FORM_COMENTARIO);
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    String userEmail = authentication.getName();
 	    int idAlumno = alumnoService.findByEmail(userEmail).getIdAlumno();
-		if (id == null) {
+		if (idComentario == null) {
 			model.addAttribute("comentario", new ComentariosModel());
+			mav.addObject("idAlumno",idAlumno);
 		}
 		else {
-			model.addAttribute("comentario", comentariosService.findComentario(id));
+			model.addAttribute("comentario", comentariosService.findComentario(idComentario));
+			 
 		}
-		model.addAttribute("idAlumno", idAlumno);
+		
 		return Constantes.FORM_COMENTARIO;
 	}
 	
