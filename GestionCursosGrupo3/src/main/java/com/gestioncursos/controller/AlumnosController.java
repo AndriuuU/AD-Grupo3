@@ -100,7 +100,7 @@ public class AlumnosController {
 	
 	// Listar alumnos
 	@GetMapping(value={"/listAlumnos","/listAlumnos/{id}"})
-	public ModelAndView listAlumnos(@PathVariable(name="id") Integer id) {
+	public ModelAndView listAlumnos(@PathVariable(name="id", required = false) Integer id) {
 		ModelAndView mav = new ModelAndView(ALUMNOS_VIEW);
 		if(id==null)
 			mav.addObject("alumnos", alumnosService.listAllAlumnos());
@@ -138,7 +138,11 @@ public class AlumnosController {
 	@GetMapping("/listCursos")
 	public ModelAndView listCursosAlumnos() {
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String userEmail = authentication.getName();
+	    int idAlumno = alumnosService.findByEmail(userEmail).getIdAlumno();
 		mav.addObject("cursos", cursosService.listAllCursos());
+		mav.addObject("idAlumno", idAlumno);
 		return mav;
 	}
 	

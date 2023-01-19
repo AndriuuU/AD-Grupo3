@@ -16,10 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.gestioncursos.constantes.Constantes;
-import com.gestioncursos.entity.Alumnos;
+import com.gestioncursos.entity.Comentarios;
 import com.gestioncursos.model.ComentariosModel;
 import com.gestioncursos.repository.ComentariosRepository;
-import com.gestioncursos.repository.CursosRepository;
 import com.gestioncursos.service.AlumnosService;
 import com.gestioncursos.service.ComentariosService;
 import com.gestioncursos.service.CursosService;
@@ -48,38 +47,44 @@ public class ComentariosController {
 	
 //	@PreAuthorize("hasRole('ROLE_ADMIN')") NO BORRAR
 	@GetMapping("/listComentarios/{idCurso}")
-	public ModelAndView listComentarios(@PathVariable("idCurso") int idCurso) {
+	public ModelAndView listComentarios(@PathVariable("idCurso") Integer idCurso) {
 		ModelAndView mav = new ModelAndView(Constantes.COMMENTS_VIEW);
-		mav.addObject("cursos", comentariosService.listAllComentarios().stream().filter(x->x.getCurso().getIdCurso()==idCurso));
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String userEmail = authentication.getName();
+	    Integer idAlumno = alumnoService.findByEmail(userEmail).getIdAlumno();
+		mav.addObject("idAlumno", idAlumno);
+	    mav.addObject("idCurso", idCurso);
+		mav.addObject("cursos", comentariosService.listAllComentarios().stream().filter(x->x.getIdCurso()==idCurso));
 		return mav;	
 	}
 
-	@PostMapping("/{idCurso}/addComentario")
-	public String addComentario(@PathVariable("idCurso") Integer idCurso,@ModelAttribute("comentario") ComentariosModel comentariosModel, 
-			RedirectAttributes flash) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    String userEmail = authentication.getName();
-	    Alumnos alumno = alumnoService.findByEmail(userEmail);
-		comentariosModel.setAlumno(alumno);
-		comentariosModel.setCurso(cursosService.transform(cursosService.findCurso(idCurso)));
-		comentariosService.addComentario(comentariosModel);
-		flash.addFlashAttribute("success", "Comentario insertado con éxito");
-		return "redirect:/comentario/listComentarios";
+	@PostMapping("/addComentario")
+	public String addComentario(@ModelAttribute("comentario") ComentariosModel comentarioModel, RedirectAttributes flash) {
+		System.out.println("AAAAAAAAAA" + comentarioModel);
+			comentariosService.addComentario(comentarioModel);
+//			flash.addFlashAttribute("success", "Comentario insertado con éxito");
+		return "redirect:/alumnos/listCursos";
 	}
 
-	@GetMapping(value = { "/formComentario", "/formComentario/{id}" })
-	public String formComentario(@PathVariable(name = "id", required = false) Integer id, Model model) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    String userEmail = authentication.getName();
-	    int idAlumno = alumnoService.findByEmail(userEmail).getIdAlumno();
-		if (id == null) {
+	@GetMapping(value = { "/formComentario/{idCurso}/{idAlumno}", "/formComentario/{id}" })
+	public ModelAndView formComentario(@PathVariable(name = "id", required = false) Integer id,@PathVariable(name = "idCurso", required = false) Integer idCurso,@PathVariable(name = "idAlumno", required = false) 
+	Integer idAlumno, Model model) {
+		ModelAndView mav = new ModelAndView(Constantes.FORM_COMENTARIO);
+		ComentariosModel comentario=new ComentariosModel();
+        comentario.setIdCurso(idCurso);
+        comentario.setIdAlumno(idAlumno);
+        
+	    if (id == null) {
 			model.addAttribute("comentario", new ComentariosModel());
 		}
 		else {
 			model.addAttribute("comentario", comentariosService.findComentario(id));
 		}
-		model.addAttribute("idAlumno", idAlumno);
-		return Constantes.FORM_COMENTARIO;
+	    model.addAttribute("comentario", comentario);
+	    mav.addObject("idAlumno", idAlumno);
+	    mav.addObject("idCurso", idCurso);
+		
+		return mav;
 	}
 	
 	// Metodo redirect

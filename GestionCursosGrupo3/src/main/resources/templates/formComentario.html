@@ -17,20 +17,23 @@
 <body>
 	<div th:replace="fragments :: header"></div>
 	<br>
-	<form th:action="@{/comentarios/{/addComentario}" th:object="${comentario}" method="post" style="text-align:center;width: 500px;margin: auto;">
+	<form th:action="@{/comentarios/addComentario}" th:object="${comentario}" method="post" style="text-align:center;width: 500px;margin: auto;">
 		
 		<h1>Nuevo comentario</h1>
 		
-		<input type="hidden" th:field="*{idcomentarios}" id="idcomentarios">
+
+		<input type="hidden" th:field="*{idCurso}" id="idCurso">
+		<input type="hidden" th:field="*{idAlumno}" id="idAlumno">
 		
-		
+		<div class="form-group">
 			<label for="comentario">Comentario</label> 
 			<input type="text" th:field="*{comentario}"
-				class="form-control" id="comentario" placeholder="Introduce el comentario">
-
+				class="form-control" id="comentario" placeholder="Introduce el comentario"/>
+		</div>
+		
 		<br><br>
 		<input type="submit" class="btn btn-primary">
-		<a th:href="@{/cursos/listCursos/}+${idAlumno}">
+		<a th:href="@{/cursos/listCursos/}">
 		<button type="button" class="btn btn-primary">Regresar</button>
 		</a>
 

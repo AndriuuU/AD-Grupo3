@@ -37,17 +37,16 @@
 				<th>Comentario</th>
 			</tr>
 		</thead>
-		<tbody th:each="comentario: ${comentarios}">
+		<tbody th:each="comentarios: ${comentarios}">
 			<tr>
-				<th th:text=${comentario.comentario}></th>
+				<th th:text=${comentarios.comentario}></th>
 			</tr>
 		</tbody>
 	</table>
 
 <br><br>
-	
 	<div style="text-align:center;width: 500px;margin: auto;">
-		<a th:href="@{/comentarios/formComentario/}+${idCurso}">
+		<a th:href="@{/comentarios/formComentario/{idCurso}/{idAlumno} (idCurso=${idCurso},idAlumno=${idAlumno})}">
 			<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Crear comentario</i></button>
 		</a> 
 		<a th:href="@{/cursos/listCursosAlumno}">

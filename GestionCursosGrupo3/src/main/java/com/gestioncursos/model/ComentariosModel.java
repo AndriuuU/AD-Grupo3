@@ -1,53 +1,35 @@
 package com.gestioncursos.model;
 
 
-import com.gestioncursos.entity.Alumnos;
-import com.gestioncursos.entity.Cursos;
 
 public class ComentariosModel {
 
-	private int idcomentarios;
+	private int idComentarios;
 	
 	private String comentario;
 	
-	private Cursos curso;
+	private int idCurso;
 	
-	private Alumnos alumno;
+	private int idAlumno;
 
 	public ComentariosModel() {
 		super();
 	}
 
-	public ComentariosModel(int idcomentarios, String comentario, Cursos curso, Alumnos alumno) {
+	public ComentariosModel(int idComentarios, String comentario, int idCurso, int idAlumno) {
 		super();
-		this.idcomentarios = idcomentarios;
+		this.idComentarios = idComentarios;
 		this.comentario = comentario;
-		this.curso = curso;
-		this.alumno = alumno;
+		this.idCurso = idCurso;
+		this.idAlumno = idAlumno;
 	}
 
-	public int getIdcomentarios() {
-		return idcomentarios;
+	public int getIdComentarios() {
+		return idComentarios;
 	}
 
-	public void setIdcomentarios(int idcomentarios) {
-		this.idcomentarios = idcomentarios;
-	}
-	
-	public Cursos getCurso() {
-		return this.curso;
-	}
-	
-	public void setCurso(Cursos curso) {
-		this.curso=curso;
-	}
-	
-	public Alumnos getAlumno() {
-		return this.alumno;
-	}
-	
-	public void setAlumno(Alumnos alumno) {
-		this.alumno=alumno;
+	public void setIdComentarios(int idComentarios) {
+		this.idComentarios = idComentarios;
 	}
 
 	public String getComentario() {
@@ -57,10 +39,32 @@ public class ComentariosModel {
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
-	
+
+	public int getIdCurso() {
+		return idCurso;
+	}
+
+	public void setIdCurso(int idCurso) {
+		this.idCurso = idCurso;
+	}
+
+	public int getIdAlumno() {
+		return idAlumno;
+	}
+
+	public void setIdAlumno(int idAlumno) {
+		this.idAlumno = idAlumno;
+	}
+
 	@Override
 	public String toString() {
-		return "ComentariosModel [idcomentarios=" + idcomentarios + ", comentario=" + comentario + "]";
+		return "ComentariosModel [idComentarios=" + idComentarios + ", comentario=" + comentario + ", idCurso="
+				+ idCurso + ", idAlumno=" + idAlumno + "]";
 	}
+	
+	
+
+	
+	
 
 }
