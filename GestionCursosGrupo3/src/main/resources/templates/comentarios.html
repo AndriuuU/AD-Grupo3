@@ -39,8 +39,8 @@
 		</thead>
 		<tbody th:each="comentarios: ${comentarios}">
 			<tr>
-			<span th:if=${comentarios.idCurso==idCurso}>
-			<th th:text=${comentarios.comentario}></th>
+			<span th:if="${comentarios.idCurso==idCurso}">
+				<th th:text=${comentarios.comentario}></th>
 			</span>
 				
 			</tr>
