@@ -158,18 +158,27 @@ public class AlumnosController {
 	
 	@GetMapping("/listCursos/disponibles")
 	public ModelAndView listCursosDisponibles(Authentication auth) {
-		System.out.println(auth.getName());
-		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_DISPONIBLES_VIEW);
 		mav.addObject("cursos", cursosService.ListAllCursosDisponibles(auth.getName()));
 		return mav;
 	}
 	
 	@GetMapping("/listCursos/matriculados")
 	public ModelAndView listCursosMatriculados(Authentication auth) {
-		System.out.println(auth.getName());
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
 		mav.addObject("cursos", cursosService.ListAllCursosMatriculados(auth.getName()));
 		return mav;
+	}
+	
+	@PostMapping("/matricularse/{idCurso}")
+	public String matricularse(@PathVariable("idCurso") Integer idCurso, @ModelAttribute("matricula") MatriculaModel matriculaModel,
+			RedirectAttributes flash) {
+		int idAlumno = alumnosService.findAlumno(auth.getName()).getIdAlumno();
+		matriculaModel.setIdAlumno(idAlumno);
+		matriculaModel.setIdCurso(idCurso);
+		matriculaService.addMatricula(matriculaModel);
+		flash.addFlashAttribute("success", "Matriculado con éxito");
+		return "redirect:/alumnos/listCursos";
 	}
 	
 
