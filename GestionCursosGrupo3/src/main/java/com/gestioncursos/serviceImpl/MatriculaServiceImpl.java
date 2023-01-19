@@ -13,7 +13,6 @@ import com.gestioncursos.entity.Matricula;
 import com.gestioncursos.model.MatriculaModel;
 import com.gestioncursos.repository.MatriculaRepository;
 import com.gestioncursos.service.AlumnosService;
-import com.gestioncursos.service.CursosService;
 import com.gestioncursos.service.MatriculaService;
 
 @Service("matriculaService")
@@ -25,9 +24,9 @@ public class MatriculaServiceImpl implements MatriculaService {
 	@Autowired
 	@Qualifier("alumnoService")
 	private AlumnosService alumnoService;
-	@Autowired
-	@Qualifier("cursosService")
-	private CursosService cursosService;
+//	@Autowired
+//	@Qualifier("cursosService")
+//	private CursosService cursosService;
 	
 	
 	@Override
@@ -99,5 +98,18 @@ public class MatriculaServiceImpl implements MatriculaService {
 		return listMatriculas;
 	}
 
+	@Override
+	public List<MatriculaModel> listMatriculasAlumno(int idAlumno) {
+		List<MatriculaModel> matriculas = listAllMatriculas();
+		List<MatriculaModel> matriculasAlumno = new ArrayList<>();
+		
+		for(MatriculaModel m :  matriculas) {
+			if(m.getIdAlumno()==idAlumno) {
+				matriculasAlumno.add(m);
+			}
+		}
+		return matriculasAlumno;
+	}
+	
 
 }

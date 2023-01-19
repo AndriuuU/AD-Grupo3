@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.gestioncursos.constantes.Constantes;
 import com.gestioncursos.entity.Alumnos;
 import com.gestioncursos.entity.User;
+import com.gestioncursos.model.AlumnosModel;
+import com.gestioncursos.repository.UserRepository;
 import com.gestioncursos.service.AlumnosService;
 import com.gestioncursos.serviceImpl.UsersService;
 
@@ -25,7 +26,11 @@ public class LoginController {
 	
 	@Autowired
 	@Qualifier("userService")
-	private UsersService usuarioService;
+	private UsersService userService;
+	
+	@Autowired
+	@Qualifier("userRepository")
+	private UserRepository userRepository;
 	
 	@Autowired
 	@Qualifier("alumnoService")
@@ -51,22 +56,27 @@ public class LoginController {
 	}
 	
 	@GetMapping("/auth/registerForm")
-	public String registerForm(Model model) {
+	public String registerForm(Model model,@RequestParam(name="error",required=false)String error) {
 		model.addAttribute("alumno", new Alumnos());
+		model.addAttribute("error",error);
 		return Constantes.REGISTER_VIEW;
 	}
 	
 	@PostMapping("/auth/register")
-	public String register(@ModelAttribute Alumnos alumno,RedirectAttributes flash) {
-		alumnoService.addAlumno(alumnoService.transform(alumno));
-		User user = new User();
-		user.setUsername(alumno.getEmail());
-		user.setPassword(alumno.getPassword());
-		user.setRole("ROL_ALUMNO");
-		usuarioService.registrar(user);
-		flash.addFlashAttribute("success","User registered successfully");
+	public String register(@ModelAttribute Alumnos alumno,RedirectAttributes flash) {	
+		if(userRepository.findByUsername(alumno.getEmail())==null) {
+			alumnoService.addAlumno(alumnoService.transform(alumno));
+			User user = new User();
+			user.setUsername(alumno.getEmail());
+			user.setPassword(alumno.getPassword());
+			user.setRole("ROL_ALUMNO");
+			userService.registrar(user);
+			flash.addFlashAttribute("success","User registered successfully");
+			return Constantes.LOGIN_VIEW;
+		}else {
+			return "redirect:/auth/registerForm?error";
+		}
 		
-		return "redirect:/auth/login";
 	}
 	
 }

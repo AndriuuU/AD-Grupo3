@@ -48,6 +48,9 @@
 		      	<li sec:authorize="hasAuthority('ROL_ALUMNO')" class="nav-item">
 		      		<a class="nav-link active" th:href="@{/alumnos/listNoticias/}">Ver Noticias</a>
 		      	</li>
+		      	<li sec:authorize="hasAuthority('ROL_ALUMNO')" class="nav-item">
+		      		<a class="nav-link active" th:href="@{/alumnos/listNotas/}">Ver Notas</a>
+		      	</li>
 		      	
 		      	<li sec:authorize="hasAuthority('ROL_PROFESOR')" class="nav-item">
 		      		<a class="nav-link active" th:href="@{/profesores/listCursosEmail/}+${#authentication.name}">Mis cursos</a>

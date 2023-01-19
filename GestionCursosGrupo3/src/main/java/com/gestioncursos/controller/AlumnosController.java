@@ -1,5 +1,8 @@
 package com.gestioncursos.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.gestioncursos.constantes.Constantes;
 import com.gestioncursos.model.AlumnosModel;
+import com.gestioncursos.model.CursosModel;
+import com.gestioncursos.model.MatriculaModel;
 import com.gestioncursos.repository.CursosRepository;
 import com.gestioncursos.repository.MatriculaRepository;
 import com.gestioncursos.repository.UserRepository;
@@ -159,11 +164,32 @@ public class AlumnosController {
 		return mav;
 	}
 	
+	@GetMapping("/listCursos/matriculados")
+	public ModelAndView listCursosMatriculados(Authentication auth) {
+		System.out.println(auth.getName());
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
+		mav.addObject("cursos", cursosService.ListAllCursosMatriculados(auth.getName()));
+		return mav;
+	}
+	
 
 	@GetMapping("/listNoticias")
 	public ModelAndView listNoticiasAlumnos() {
 		ModelAndView mav = new ModelAndView(Constantes.NOTICIAS_ALUMNOS);
 		mav.addObject("noticias", noticiaService.listAllNoticias());
+		return mav;
+	}
+	
+	@GetMapping("/listNotas")
+	public ModelAndView listNotas(Authentication auth) {
+		ModelAndView mav = new ModelAndView(Constantes.NOTAS_CALIFICADOS);
+		AlumnosModel alumno = alumnosService.findAlumno(auth.getName());
+		List<CursosModel> cursosAlumno = cursosService.listCursosAlumno(alumno.getIdAlumno());
+		List<MatriculaModel> matriculasAlumno = matriculaService.listMatriculasAlumno(alumno.getIdAlumno());
+		
+		mav.addObject("cursos", cursosAlumno);
+		mav.addObject("matriculas", matriculasAlumno);
+	
 		return mav;
 	}
 }

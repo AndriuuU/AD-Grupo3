@@ -31,14 +31,14 @@
 				
 				<span class="far fa-user"></span>
 				<input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/> 
-				<input type="text" class="form-control" placeholder="Correo electronico" name="username" id="username" /> 
+				<input type="text" class="form-control" placeholder="Correo electronico" name="username" id="username" required/> 
 			</div>
 				<br> 
 				<label for="inputPassword">Password</label>
 			<div class="form-field d-flex align-items-center">
 				
 				<span class="far fa-key"></span>
-				<input type="password" class="form-control" placeholder="Password" name="password" id="password" /> <br>
+				<input type="password" class="form-control" placeholder="Password" name="password" id="password" required/> <br>
 			</div>
 				
 				<div th:if="${error!=null}" class="alert alert-danger" role="alert">Usuario o password incorrectas</div>

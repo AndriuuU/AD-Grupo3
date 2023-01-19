@@ -23,8 +23,11 @@ public interface CursosRepository extends JpaRepository<Cursos, Serializable> {
 	
 	public abstract List<Cursos> findByOrderByNivelDesc();
 	
-	@Query("select curso from Cursos curso inner join curso.matriculaList matricula where matricula.alumno.id = ?#{[0]}")
-	public abstract List<Cursos> findCursoByQuery(Integer id);
+	@Query("SELECT curso FROM Cursos curso LEFT JOIN curso.matriculaList matricula WHERE matricula.alumno.id IS NULL OR matricula.alumno.id IS NOT ?#{[0]}")
+	public abstract List<Cursos> findCursoDisponibleByQuery(Integer id);
+	
+	@Query("SELECT curso FROM Cursos curso INNER JOIN curso.matriculaList matricula WHERE matricula.alumno.id = ?#{[0]}")
+	public abstract List<Cursos> findCursoMatriculadoByQuery(Integer id);
 
 //	https://spring.io/blog/2014/07/15/spel-support-in-spring-data-jpa-query-definitions
 
