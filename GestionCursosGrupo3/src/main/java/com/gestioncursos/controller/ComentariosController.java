@@ -71,7 +71,7 @@ public class ComentariosController {
 		System.out.println("AAAAAAAAAA" + comentarioModel);
 			comentariosService.addComentario(comentarioModel);
 //			flash.addFlashAttribute("success", "Comentario insertado con éxito");
-		return "redirect:/alumnos/listCursos";
+		return "redirect:/cursos/listCursosAlumno";
 	}
 
 	@GetMapping(value = { "/formComentario/{idCurso}/{idAlumno}", "/formComentario/{id}" })

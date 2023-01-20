@@ -273,20 +273,6 @@ public class ProfesorController {
 		mav.addObject("alumnos", alumnos);
 		mav.addObject("finalizado",finalizado);
 				
-//		long millis=System.currentTimeMillis();  
-//		Date date = new Date(millis); 
-//		
-//		List<MatriculaModel> listMatriCursos =matriculaService.listMatriculasCurso(idCurso);
-//		
-//		List<AlumnosModel> listAlumnosMatriCurso=new ArrayList<>();
-//		for(MatriculaModel lista:listMatriCursos) {
-//			if(alumnosService.findAlumno(lista.getAlumno_id()) != null) {
-//				listAlumnosMatriCurso.add(alumnosService.findAlumno(lista.getAlumno_id()));
-//			}
-//		}
-//		
-//		mav.addObject("alumnos", listAlumnosMatriCurso);
-		
 		return mav;
 	}
 	
