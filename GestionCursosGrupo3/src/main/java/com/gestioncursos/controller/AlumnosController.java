@@ -174,15 +174,15 @@ public class AlumnosController {
 		return mav;
 	}
 	
-	@PostMapping("/matricularse/{idCurso}")
+	@GetMapping("/matricularse/{idCurso}")
 	public String matricularse(@PathVariable("idCurso") Integer idCurso, @ModelAttribute("matricula") MatriculaModel matriculaModel,
-			RedirectAttributes flash) {
-		int idAlumno = alumnosService.findAlumno(auth.getName()).getIdAlumno();
-		matriculaModel.setIdAlumno(idAlumno);
+			RedirectAttributes flash, Authentication auth) {
+		AlumnosModel alumno = alumnosService.findAlumno(auth.getName());
+		matriculaModel.setIdAlumno(alumno.getIdAlumno());
 		matriculaModel.setIdCurso(idCurso);
 		matriculaService.addMatricula(matriculaModel);
 		flash.addFlashAttribute("success", "Matriculado con éxito");
-		return "redirect:/alumnos/listCursos";
+		return "redirect:/alumnos/listCursos/disponibles";
 	}
 	
 
