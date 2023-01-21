@@ -69,7 +69,6 @@ public class ComentariosController {
 
 	@PostMapping("/addComentario")
 	public String addComentario(@ModelAttribute("comentario") ComentariosModel comentarioModel, RedirectAttributes flash) {
-		System.out.println("AAAAAAAAAA" + comentarioModel);
 			comentariosService.addComentario(comentarioModel);
 //			flash.addFlashAttribute("success", "Comentario insertado con éxito");
 		return "redirect:/alumnos/listCursos";

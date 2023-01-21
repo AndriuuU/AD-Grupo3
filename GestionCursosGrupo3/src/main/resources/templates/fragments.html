@@ -23,7 +23,7 @@
 		     	</li>
 		     	
 		      	<li  th:classappend="${module == 'home' ? 'active' : ''}" class="nav-item">
-	        		<a class="nav-link active" href="/" th:href="@{/alumnos/listNoticias/}">Home</a>
+	        		<a class="nav-link active" href="/" th:href="@{/home}">Home</a>
 		     	</li>
 		     	
 		      	<li sec:authorize="!isAuthenticated()" class="nav-item">
@@ -34,9 +34,9 @@
 		      		<a class="nav-link active" th:href="@{/profesores/listProfesores/}">Ver profesores</a>
 		      	</li>
 		      	
-		      	<li sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item">
+		      	<!--   <li sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item">
 		      		<a class="nav-link active" th:href="@{/alumnos/listAlumnos/}">Ver alumnos</a>
-		      	</li>
+		      	</li> -->
 		      	
 		      	<li sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item">
 		      		<a class="nav-link active" th:href="@{/cursos/listCursos/}">Ver cursos</a>

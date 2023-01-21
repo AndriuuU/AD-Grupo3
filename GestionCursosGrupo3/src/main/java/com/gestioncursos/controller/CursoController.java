@@ -80,19 +80,25 @@ public class CursoController {
 	@PostMapping("/addCurso")
 	public String addCurso(@ModelAttribute("curso") CursosModel cursoModel, 
 			RedirectAttributes flash) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String userEmail = authentication.getName();
 		if (cursoModel.getIdCurso() != 0) {
 			cursoService.updateCurso(cursoModel);
 			flash.addFlashAttribute("success", "Curso modificado con éxito");
+			return "redirect:/profesores/listCursosEmail/"+userEmail;
 		} else {
 			cursoService.addCurso(cursoModel);
 			flash.addFlashAttribute("success", "Curso insertado con éxito");
+			return "redirect:/cursos/listCursos";
 		}
-		return "redirect:/cursos/listCursos";
+		
 	}
 
 	@GetMapping(value = { "/formCurso", "/formCurso/{id}" })
 	public String formCurso(@PathVariable(name = "id", required = false) Integer id, Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		model.addAttribute("profesores", profesorService.listAllProfesores());
+		model.addAttribute("emailProfesor", authentication.getName());
 		if (id == null) {
 			model.addAttribute("curso", new CursosModel());
 		}
@@ -108,16 +114,14 @@ public class CursoController {
 	// Metodo de borrar
 	@GetMapping("/deleteCurso/{idcursos}")
 	public String deleteCurso(@PathVariable("idcursos") int id, RedirectAttributes flash) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String userEmail = authentication.getName();
 		if (cursoService.removeCurso(id) == 0)
 			flash.addFlashAttribute("success", "Curso eliminado con éxito");
 		else
 			flash.addFlashAttribute("error", "No se pudo eliminar el curso");
-		return "redirect:/cursos/listCursos";
+		return "redirect:/profesores/listCursosEmail/"+userEmail;
 	}
 	
-	// Metodo redirect
-	@GetMapping("/")
-	public RedirectView redirect() {
-		return new RedirectView("/cursos/listCursos");
-	}
+
 }

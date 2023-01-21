@@ -63,8 +63,7 @@ public class AlumnosController {
 	@Qualifier("matriculaService")
 	private MatriculaService matriculaService;
 	
-	@Autowired
-	private MatriculaRepository matriculaRepository;
+	
 	@Qualifier("userRepository")
 	private UserRepository userRepository;
 	
@@ -179,16 +178,18 @@ public class AlumnosController {
 	}
 	
 	@GetMapping("/listCursos/disponibles")
-	public ModelAndView listCursosDisponibles(Authentication auth) {
-		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_DISPONIBLES_VIEW);
-		mav.addObject("cursos", cursosService.ListAllCursosDisponibles(auth.getName()));
+	public ModelAndView listCursosAlumnoDisponible(Authentication auth) {
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
+		AlumnosModel alumno = alumnosService.findAlumno(auth.getName());
+		mav.addObject("cursos", cursosService.listCursosDisponiblesAlumno(alumno.getIdAlumno()));
 		return mav;
 	}
 	
 	@GetMapping("/listCursos/matriculados")
 	public ModelAndView listCursosMatriculados(Authentication auth) {
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
-		mav.addObject("cursos", cursosService.ListAllCursosMatriculados(auth.getName()));
+		AlumnosModel alumno = alumnosService.findAlumno(auth.getName());
+		mav.addObject("cursos", cursosService.listCursosAlumno(alumno.getIdAlumno()));
 		return mav;
 	}
 	

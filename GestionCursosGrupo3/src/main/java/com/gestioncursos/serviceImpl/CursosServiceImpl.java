@@ -16,25 +16,25 @@ import com.gestioncursos.repository.CursosRepository;
 import com.gestioncursos.repository.UserRepository;
 import com.gestioncursos.service.CursosService;
 import com.gestioncursos.service.MatriculaService;
+
 @Service("cursosService")
 public class CursosServiceImpl implements CursosService {
 
 	@Autowired
 	@Qualifier("cursosRepository")
 	private CursosRepository cursoRepository;
-	
+
 	@Autowired
 	@Qualifier("userRepository")
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	@Qualifier("matriculaService")
 	private MatriculaService matriculaService;
-	
+
 	@Override
 	public List<CursosModel> listAllCursos() {
-		return cursoRepository.findAll().stream()
-				.map(c->transform(c)).collect(Collectors.toList());
+		return cursoRepository.findAll().stream().map(c -> transform(c)).collect(Collectors.toList());
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class CursosServiceImpl implements CursosService {
 	public CursosModel findCurso(int id) {
 		return transform(cursoRepository.findById(id).orElse(null));
 	}
-	
+
 	@Override
 	public Cursos transform(CursosModel cursoModel) {
 		ModelMapper modelMapper = new ModelMapper();
@@ -71,13 +71,14 @@ public class CursosServiceImpl implements CursosService {
 		ModelMapper modelMapper = new ModelMapper();
 		return modelMapper.map(curso, CursosModel.class);
 	}
-	
+
 	@Override
 	public List<CursosModel> listAllCursosProfesor(long id) {
-		List<CursosModel> cursos=cursoRepository.findAll().stream().map(c->transform(c)).collect(Collectors.toList());
-		List<CursosModel> cursosProfesorId=new ArrayList<>();
-		for(CursosModel c:cursos) {
-			if(c.getIdProfesor()==id) {
+		List<CursosModel> cursos = cursoRepository.findAll().stream().map(c -> transform(c))
+				.collect(Collectors.toList());
+		List<CursosModel> cursosProfesorId = new ArrayList<>();
+		for (CursosModel c : cursos) {
+			if (c.getIdProfesor() == id) {
 				cursosProfesorId.add(c);
 			}
 		}
@@ -86,37 +87,35 @@ public class CursosServiceImpl implements CursosService {
 
 	@Override
 	public List<CursosModel> listAllCursosByNivelAsc() {
-		return cursoRepository.findByOrderByNivelAsc().stream()
-				.map(c->transform(c)).collect(Collectors.toList());
+		return cursoRepository.findByOrderByNivelAsc().stream().map(c -> transform(c)).collect(Collectors.toList());
 	}
-	
+
 	@Override
 	public List<CursosModel> listAllCursosByNivelDesc() {
-		return cursoRepository.findByOrderByNivelDesc().stream()
-				.map(c->transform(c)).collect(Collectors.toList());
+		return cursoRepository.findByOrderByNivelDesc().stream().map(c -> transform(c)).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<CursosModel> ListAllCursosDisponibles(String username) {
-		return cursoRepository.findCursoDisponibleByQuery((int) (userRepository.findByUsername(username).getId()-1)).stream()
-				.map(c->transform(c)).collect(Collectors.toList());
+		return cursoRepository.findCursoDisponibleByQuery((int) (userRepository.findByUsername(username).getId() - 1))
+				.stream().map(c -> transform(c)).collect(Collectors.toList());
 	}
-	
+
 	@Override
 	public List<CursosModel> ListAllCursosMatriculados(String username) {
-		return cursoRepository.findCursoMatriculadoByQuery((int) (userRepository.findByUsername(username).getId()-1)).stream()
-				.map(c->transform(c)).collect(Collectors.toList());
+		return cursoRepository.findCursoMatriculadoByQuery((int) (userRepository.findByUsername(username).getId()))
+				.stream().map(c -> transform(c)).collect(Collectors.toList());
 	}
-	
+
 	@Override
 	public List<CursosModel> listCursosAlumno(int idAlumno) {
 		List<MatriculaModel> matriculasAlumno = matriculaService.listMatriculasAlumno(idAlumno);
 		List<CursosModel> cursos = listAllCursos();
 		List<CursosModel> cursosAlumno = new ArrayList<>();
-		
-		for(CursosModel c : cursos) {
-			for(MatriculaModel m : matriculasAlumno) {
-				if(c.getIdCurso() == m.getIdCurso()) {
+
+		for (CursosModel c : cursos) {
+			for (MatriculaModel m : matriculasAlumno) {
+				if (c.getIdCurso() == m.getIdCurso()) {
 					cursosAlumno.add(c);
 				}
 			}
@@ -124,6 +123,22 @@ public class CursosServiceImpl implements CursosService {
 		return cursosAlumno;
 	}
 
-
+//	@Override
+//	public List<CursosModel> listCursosDisponiblesAlumno(int idAlumno) {
+//		List<MatriculaModel> matriculasAlumno = matriculaService.listMatriculasAlumno(idAlumno);
+//		List<CursosModel> cursos = listAllCursos();
+//		List<CursosModel> cursosAlumno = new ArrayList<>();
+//
+//		for (MatriculaModel m : matriculasAlumno) {
+//			for (CursosModel c : cursos) {
+//				if (c.getIdCurso() == m.getIdCurso()) {
+//					cursos.remove(c);
+//				}
+//				System.out.println("forcuersos" + cursos);
+//			}
+//			System.out.println("matriculas" + cursos);
+//		}
+//		return cursos;
+//	}
 
 }

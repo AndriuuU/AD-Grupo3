@@ -34,6 +34,8 @@ public interface CursosService {
 
 	public abstract List<CursosModel> listCursosAlumno(int idAlumno);
 
+	public abstract List<CursosModel> listCursosDisponiblesAlumno(int idAlumno);
+
 	
 
 	
