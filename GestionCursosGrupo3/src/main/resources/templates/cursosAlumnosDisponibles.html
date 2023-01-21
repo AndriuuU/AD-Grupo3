@@ -39,7 +39,7 @@
 			<button type="button" class="btn btn-info"><span class="bi bi-arrow-down"></span> Filtrar Nivel Descendente </button>
 		</a>
 		<a th:href="@{/alumnos/listCursos/disponibles}">
-			<button type="button" class="btn btn-info"> Disponibles </button>
+			<button type="button" class="btn btn-info"> Matricularse </button>
 		</a>
 		<a th:href="@{/alumnos/listCursos/matriculados}">
 			<button type="button" class="btn btn-info"> Matriculados </button>
@@ -72,7 +72,8 @@
 					</a>
 				</th>
 				<th>
-					<a th:href="@{/alumnos/matricularse/}+${curso.idCurso}">
+					<a th:href="@{/alumnos/matricularse/}+${curso.idCurso}" th:data-confirm="|¿Matricularse en ${curso.nombre}?|"
+  						onclick="if (!confirm(this.getAttribute('data-confirm'))) return false">
 						<button type="button" class="btn btn-primary">Matricularse</button>
 					</a>
 				</th>

@@ -61,6 +61,7 @@ public class ComentariosController {
 	    System.out.println(comentarios);		
 	    mav.addObject("idAlumno", idAlumno);
 	    mav.addObject("idCurso", idCurso);
+	    mav.addObject("nombreCurso", cursosService.findCurso(idCurso).getNombre());
 //	    System.out.println(comentariosService.listAllComentarios().stream().filter(x->x.getIdCurso()==idCurso));
 		mav.addObject("comentarios", comentariosService.listAllComentarios());
 		return mav;	
@@ -71,7 +72,7 @@ public class ComentariosController {
 		System.out.println("AAAAAAAAAA" + comentarioModel);
 			comentariosService.addComentario(comentarioModel);
 //			flash.addFlashAttribute("success", "Comentario insertado con éxito");
-		return "redirect:/cursos/listCursosAlumno";
+		return "redirect:/alumnos/listCursos";
 	}
 
 	@GetMapping(value = { "/formComentario/{idCurso}/{idAlumno}", "/formComentario/{id}" })

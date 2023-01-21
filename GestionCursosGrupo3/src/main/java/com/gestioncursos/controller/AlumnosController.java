@@ -1,5 +1,6 @@
 package com.gestioncursos.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,15 +100,32 @@ public class AlumnosController {
 	}
 	
 	// Listar alumnos
-	@GetMapping(value={"/listAlumnos","/listAlumnos/{id}"})
-	public ModelAndView listAlumnos(@PathVariable(name="id", required = false) Integer id) {
+	@GetMapping("/listAlumnos/{idCurso}")
+	public ModelAndView listAlumnos(@PathVariable(name="idCurso", required = false) int idCurso) {
 		ModelAndView mav = new ModelAndView(ALUMNOS_VIEW);
-		if(id==null)
-			mav.addObject("alumnos", alumnosService.listAllAlumnos());
-		else
-			mav.addObject("alumnos", alumnosService.listAllAlumnos()
-					.stream()
-					.filter(x->x.getIdAlumno() == matriculaRepository.findByCurso(id).getAlumno().getIdAlumno()));
+		
+		CursosModel cursos = cursosService.findCurso(idCurso);
+		List<AlumnosModel> listAlumnos = alumnosService.listAllAlumnos();
+		List<MatriculaModel> matriculas = matriculaService.listMatriculasCurso(idCurso);
+		List<AlumnosModel> alumnos = new ArrayList<>();
+		
+		long millis = System.currentTimeMillis();
+		Date today = new java.sql.Date(millis);
+		
+		boolean finalizado = cursos.getFechaFin().before(today);
+		
+		for(AlumnosModel a : listAlumnos) {
+			for(MatriculaModel m : matriculas) {
+				if(a.getIdAlumno() == m.getIdAlumno()) {
+					alumnos.add(a);
+				}
+			}
+		}
+		mav.addObject("cursos", cursos);
+		mav.addObject("matriculas", matriculas);
+		mav.addObject("alumnos", alumnos);
+		mav.addObject("finalizado", finalizado);
+		
 		return mav;
 	}
 	
