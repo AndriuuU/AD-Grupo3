@@ -14,25 +14,24 @@ public class ProfesoresModel {
 	private String apellidos;
 	
 	private String email;
+
+	private String password;
 	
 	private User usuario;
 	
-	@Column(name = "password", nullable = false)
-	@Size(max = 100)
-	private User password;
-
 	public ProfesoresModel() {
 		super();
 	}
 
-	public ProfesoresModel(int idProfesor, String nombre, String apellidos, String email, User usuario, User password) {
+	public ProfesoresModel(int idProfesor, String nombre, String apellidos, String email, String password,
+			User usuario) {
 		super();
 		this.idProfesor = idProfesor;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
-		this.usuario = usuario;
 		this.password = password;
+		this.usuario = usuario;
 	}
 
 	public int getIdProfesor() {
@@ -67,6 +66,14 @@ public class ProfesoresModel {
 		this.email = email;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public User getUsuario() {
 		return usuario;
 	}
@@ -75,20 +82,13 @@ public class ProfesoresModel {
 		this.usuario = usuario;
 	}
 
-	public User getPassword() {
-		return password;
-	}
-
-	public void setPassword(User password) {
-		this.password = password;
-	}
-
 	@Override
 	public String toString() {
 		return "ProfesoresModel [idProfesor=" + idProfesor + ", nombre=" + nombre + ", apellidos=" + apellidos
-				+ ", email=" + email + ", usuario=" + usuario + ", password=" + password + "]";
+				+ ", email=" + email + ", password=" + password + ", usuario=" + usuario + "]";
 	}
 
+	
 	
 	
 }

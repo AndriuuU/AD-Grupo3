@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Profesores {
@@ -25,6 +27,10 @@ public class Profesores {
 	
 	@OneToMany(cascade= CascadeType.ALL, mappedBy="profesor")
 	private List<Cursos> cursosList;
+	
+	@OneToOne
+	@JoinColumn(name="idUsuario", referencedColumnName="id")
+	private User usuario;
 	
 	public Profesores() {
 		super();

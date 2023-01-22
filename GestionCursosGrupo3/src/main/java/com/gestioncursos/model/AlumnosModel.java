@@ -17,11 +17,9 @@ public class AlumnosModel {
 	
 	private String email;
 	
-	private User usuario;
+	private String password;
 	
-	@Column(name = "password", nullable = false)
-	@Size(max = 100)
-	private User password;
+	private User usuario;
 	
 	private byte[] foto;
 
@@ -29,15 +27,15 @@ public class AlumnosModel {
 		super();
 	}
 
-	public AlumnosModel(int idAlumno, String nombre, String apellidos, String email, User usuario, User password,
+	public AlumnosModel(int idAlumno, String nombre, String apellidos, String email, String password, User usuario,
 			byte[] foto) {
 		super();
 		this.idAlumno = idAlumno;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
-		this.usuario = usuario;
 		this.password = password;
+		this.usuario = usuario;
 		this.foto = foto;
 	}
 
@@ -73,20 +71,20 @@ public class AlumnosModel {
 		this.email = email;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public User getUsuario() {
 		return usuario;
 	}
 
 	public void setUsuario(User usuario) {
 		this.usuario = usuario;
-	}
-
-	public User getPassword() {
-		return password;
-	}
-
-	public void setPassword(User password) {
-		this.password = password;
 	}
 
 	public byte[] getFoto() {
@@ -100,8 +98,12 @@ public class AlumnosModel {
 	@Override
 	public String toString() {
 		return "AlumnosModel [idAlumno=" + idAlumno + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email="
-				+ email + ", usuario=" + usuario + ", password=" + password + ", foto=" + Arrays.toString(foto) + "]";
+				+ email + ", password=" + password + ", usuario=" + usuario + ", foto=" + Arrays.toString(foto) + "]";
 	}
+
+	
+
+	
 
 	
 	

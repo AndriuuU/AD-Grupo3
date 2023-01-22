@@ -99,15 +99,19 @@ public class AlumnosController {
 	}
 	
 	// Listar alumnos
-	@GetMapping("/listAlumnos/{idCurso}")
-	public ModelAndView listAlumnos(@PathVariable(name="idCurso", required = false) int idCurso) {
+	@GetMapping(value = {"/listAlumnos/{idCurso}","/listAlumnos"})
+	public ModelAndView listAlumnos(@PathVariable(name="idCurso", required = false) Integer idCurso) {
 		ModelAndView mav = new ModelAndView(ALUMNOS_VIEW);
-		
-		CursosModel cursos = cursosService.findCurso(idCurso);
 		List<AlumnosModel> listAlumnos = alumnosService.listAllAlumnos();
-		List<MatriculaModel> matriculas = matriculaService.listMatriculasCurso(idCurso);
 		List<AlumnosModel> alumnos = new ArrayList<>();
 		
+		
+		if(idCurso == null) {
+			mav.addObject("alumnos", listAlumnos);
+		}else {
+		List<MatriculaModel> matriculas = matriculaService.listMatriculasCurso(idCurso);
+		CursosModel cursos = cursosService.findCurso(idCurso);
+
 		long millis = System.currentTimeMillis();
 		Date today = new java.sql.Date(millis);
 		
@@ -124,6 +128,7 @@ public class AlumnosController {
 		mav.addObject("matriculas", matriculas);
 		mav.addObject("alumnos", alumnos);
 		mav.addObject("finalizado", finalizado);
+		}
 		
 		return mav;
 	}

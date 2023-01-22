@@ -6,14 +6,11 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-
 import org.springframework.stereotype.Service;
 
 import com.gestioncursos.entity.Alumnos;
-
 import com.gestioncursos.model.AlumnosModel;
 import com.gestioncursos.repository.AlumnosRepository;
-
 import com.gestioncursos.service.AlumnosService;
 
 
@@ -23,6 +20,10 @@ public class AlumnosServiceImpl implements AlumnosService{
 	@Autowired
 	@Qualifier("alumnoRepository")
 	private AlumnosRepository alumnoRepository;
+	
+	@Autowired
+	@Qualifier("userService")
+	private UsersService userService;
 
 	@Override
 	public List<AlumnosModel> listAllAlumnos() {
@@ -32,6 +33,7 @@ public class AlumnosServiceImpl implements AlumnosService{
 
 	@Override
 	public Alumnos addAlumno(AlumnosModel alumnoModel) {
+		alumnoModel.setPassword(userService.passwordEncoder().encode(alumnoModel.getPassword()));
 		return alumnoRepository.save(transform(alumnoModel));
 	}
 

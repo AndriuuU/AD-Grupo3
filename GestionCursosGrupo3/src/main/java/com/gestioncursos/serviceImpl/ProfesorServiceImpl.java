@@ -24,6 +24,10 @@ public class ProfesorServiceImpl implements ProfesoresService{
 	@Qualifier("profesorRepository")
 	private ProfesoresRepository profesorRepository;
 	
+	@Autowired
+	@Qualifier("userService")
+	private UsersService userService;
+	
 	
 	@Autowired
 	@Qualifier("matriculaService")
@@ -37,6 +41,7 @@ public class ProfesorServiceImpl implements ProfesoresService{
 
 	@Override
 	public Profesores addProfesor(ProfesoresModel profesorModel) {
+		profesorModel.setPassword(userService.passwordEncoder().encode(profesorModel.getPassword()));
 		return profesorRepository.save(transform(profesorModel));
 	}
 
