@@ -182,11 +182,59 @@ public class AlumnosController {
 		return mav;
 	}
 	
+	@GetMapping("/listCursos/nivel/{nivel}")
+	public ModelAndView listCursosPorNivel(@PathVariable(name = "nivel") String nivel, Model model) {
+		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
+		List<CursosModel> listCursos = cursosService.listAllCursos();
+		List<CursosModel> cursos = new ArrayList<>();
+		
+		for(CursosModel c : listCursos) {
+			if(nivel.equals("basico")) {
+				if(c.getNivel()<=4) {
+					cursos.add(c);
+				}
+			}
+			else if(nivel.equals("medio")) {
+				if(c.getNivel()>4 && c.getNivel()<=8) {
+					cursos.add(c);
+				}
+			}
+			else if(nivel.equals("avanzado")) {
+				if(c.getNivel()>8) {
+					cursos.add(c);
+				}
+			}
+		}
+		
+		mav.addObject("cursos", cursos);
+		
+		return mav;
+	}
+	
 	@GetMapping("/listCursos/disponibles")
-	public ModelAndView listCursosAlumnoDisponible(Authentication auth) {
+	public ModelAndView listCursosAlumnoDisponible(Authentication auth, Model model) {
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_DISPONIBLES_VIEW);
 		AlumnosModel alumno = alumnosService.findAlumno(auth.getName());
-		mav.addObject("cursos", cursosService.listCursosDisponiblesAlumno(alumno.getIdAlumno()));
+		
+		int idAlumno = alumnosService.findAlumno(auth.getName()).getIdAlumno();
+		List<CursosModel> listCursos = cursosService.listAllCursos();
+		List<MatriculaModel> matriculas = matriculaService.listMatriculasAlumno(idAlumno);
+		List<CursosModel> cursos = new ArrayList<>();
+		boolean matriculado;
+		
+		for(CursosModel c : listCursos) {
+			matriculado = false;
+			for(MatriculaModel m : matriculas) {
+				if((m.getIdCurso() == c.getIdCurso()) && (m.getIdAlumno() == idAlumno)) {
+					matriculado = true;
+				}
+			}
+			if(matriculado == false) {
+				cursos.add(c);
+			}
+		}
+		mav.addObject("alumnos", alumno);
+		mav.addObject("cursos", cursos);
 		return mav;
 	}
 	

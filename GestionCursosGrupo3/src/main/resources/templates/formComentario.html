@@ -32,7 +32,7 @@
 		</div>
 		
 		<br><br>
-		<input type="submit" class="btn btn-primary">
+		<input type="submit" class="btn btn-primary"  th:onclick="return confirm('¿Confirmar comentario?');">
 		<a th:href="@{/comentarios/listComentarios/}+${idCurso}">
 		<button type="button" class="btn btn-primary">Regresar</button>
 		</a>

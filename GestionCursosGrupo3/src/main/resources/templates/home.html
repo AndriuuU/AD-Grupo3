@@ -22,14 +22,21 @@
         <h1>¡Bienvenido!</h1>
     </header>
     <section layout:fragment="custom-content">
-        <p>Contenido</p>
 	        <div class="topnav">
-			  <a  th:href="@{/home/}">Home</a>
-			  <a sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item" th:href="@{/profesores/listProfesores/}">Ver profesores</a>
-			  <a sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item" th:href="@{/alumnos/listAlumnos/}">Ver alumnos</a>
-			  <a sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item" th:href="@{/cursos/listCursos/}">Ver cursos</a>
-			  <a sec:authorize="hasAuthority('ROL_ALUMNO')" class="nav-item" th:href="@{/cursos/listCursosAlumno/}">Ver cursos</a>
-			  <a sec:authorize="isAuthenticated()" th:href="@{/edituser/}">Editar mis datos</a>
+	        
+			  <a sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item" th:href="@{/profesores/listProfesores/}">
+			  	<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Ver profesores</i></button>
+			  </a>
+			  <a sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item" th:href="@{/alumnos/listAlumnos/}">
+			  	<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Ver alumnos</i></button>
+			  </a>
+			  <a sec:authorize="hasAuthority('ROL_ADMIN')" class="nav-item" th:href="@{/cursos/listCursos/}">
+			  	<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Ver cursos</i></button>
+			  </a>
+			  <a sec:authorize="hasAuthority('ROL_ALUMNO')" class="nav-item" th:href="@{/alumnos/listCursos/}">
+			  	<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Ver cursos</i></button>
+			  </a>
+<!-- 			  <a sec:authorize="isAuthenticated()" th:href="@{/edituser/}">Editar mis datos</a> -->
 			</div>
 			
 			<tbody th:each="student: ${students}"> 
@@ -44,12 +51,12 @@
 			</tbody>
     </section>
     
-    <h2>Noticias</h2>
+<!--     <h2>Noticias</h2> -->
     
-    <footer>
-        <p>My custom footer</p>
-        <p layout:fragment="custom-footer">Footer</p>		
-    </footer>
+<!--     <footer> -->
+<!--         <p>My custom footer</p> -->
+<!--         <p layout:fragment="custom-footer">Footer</p>		 -->
+<!--     </footer> -->
     
    <div class="alert alert-success" th:if="${success != null}"
 						th:text="${success}"></div>

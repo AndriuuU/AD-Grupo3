@@ -96,12 +96,6 @@ public class CursosServiceImpl implements CursosService {
 	}
 
 	@Override
-	public List<CursosModel> ListAllCursosDisponibles(String username) {
-		return cursoRepository.findCursoDisponibleByQuery((int) (userRepository.findByUsername(username).getId() - 1))
-				.stream().map(c -> transform(c)).collect(Collectors.toList());
-	}
-
-	@Override
 	public List<CursosModel> ListAllCursosMatriculados(String username) {
 		return cursoRepository.findCursoMatriculadoByQuery((int) (userRepository.findByUsername(username).getId()))
 				.stream().map(c -> transform(c)).collect(Collectors.toList());
@@ -121,23 +115,6 @@ public class CursosServiceImpl implements CursosService {
 			}
 		}
 		return cursosAlumno;
-	}
-
-	@Override
-	public List<CursosModel> listCursosDisponiblesAlumno(int idAlumno) {
-		List<MatriculaModel> matriculasAlumno = matriculaService.listMatriculasAlumno(idAlumno);
-		List<CursosModel> cursos = listAllCursos();
-		List<CursosModel> cursosAlumno = new ArrayList<>();
-
-		for (CursosModel c : cursos) {
-			for (MatriculaModel m : matriculasAlumno) {
-				if (c.getIdCurso() == m.getIdCurso()) {
-					cursosAlumno.add(c);
-				}
-			}
-		}
-		cursos.removeAll(cursosAlumno);
-		return cursos;
 	}
 
 }
