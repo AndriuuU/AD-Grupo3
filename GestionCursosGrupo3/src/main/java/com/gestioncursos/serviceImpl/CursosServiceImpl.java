@@ -123,22 +123,21 @@ public class CursosServiceImpl implements CursosService {
 		return cursosAlumno;
 	}
 
-//	@Override
-//	public List<CursosModel> listCursosDisponiblesAlumno(int idAlumno) {
-//		List<MatriculaModel> matriculasAlumno = matriculaService.listMatriculasAlumno(idAlumno);
-//		List<CursosModel> cursos = listAllCursos();
-//		List<CursosModel> cursosAlumno = new ArrayList<>();
-//
-//		for (MatriculaModel m : matriculasAlumno) {
-//			for (CursosModel c : cursos) {
-//				if (c.getIdCurso() == m.getIdCurso()) {
-//					cursos.remove(c);
-//				}
-//				System.out.println("forcuersos" + cursos);
-//			}
-//			System.out.println("matriculas" + cursos);
-//		}
-//		return cursos;
-//	}
+	@Override
+	public List<CursosModel> listCursosDisponiblesAlumno(int idAlumno) {
+		List<MatriculaModel> matriculasAlumno = matriculaService.listMatriculasAlumno(idAlumno);
+		List<CursosModel> cursos = listAllCursos();
+		List<CursosModel> cursosAlumno = new ArrayList<>();
+
+		for (CursosModel c : cursos) {
+			for (MatriculaModel m : matriculasAlumno) {
+				if (c.getIdCurso() == m.getIdCurso()) {
+					cursosAlumno.add(c);
+				}
+			}
+		}
+		cursos.removeAll(cursosAlumno);
+		return cursos;
+	}
 
 }

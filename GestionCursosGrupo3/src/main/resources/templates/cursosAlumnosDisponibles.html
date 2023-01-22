@@ -72,8 +72,7 @@
 					</a>
 				</th>
 				<th>
-					<a th:href="@{/alumnos/matricularse/}+${curso.idCurso}" th:data-confirm="|¿Matricularse en ${curso.nombre}?|"
-  						onclick="if (!confirm(this.getAttribute('data-confirm'))) return false">
+					<a th:href="@{/alumnos/matricularse/}+${curso.idCurso}">
 						<button type="button" class="btn btn-primary">Matricularse</button>
 					</a>
 				</th>
