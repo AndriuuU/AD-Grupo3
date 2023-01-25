@@ -49,6 +49,9 @@
 		<a th:href="@{/profesores/listCursos/impartiran/}+${#authentication.name}">
 			<button type="button" class="btn btn-info"><span class="bi bi-calendar-event"></span> Se impartiran</button>
 		</a>
+		<a sec:authorize="hasAuthority('ROL_ADMIN')" th:href="@{/cursos/listAlumnosOrdenados}">
+			<button type="button" class="btn btn-info"><span class="bi bi-arrow-up"></span> Ordenar por Nota</button>
+			</a>
 	</div>
 	<br/>
 	<table class="table table-bordered" style="width:100%">

@@ -9,6 +9,7 @@ public class MatriculaModel {
 	private int idAlumno;
 	
 	private int idCurso;
+	
 
 	public MatriculaModel() {
 		super();
@@ -21,6 +22,7 @@ public class MatriculaModel {
 		this.idAlumno = idAlumno;
 		this.idCurso = idCurso;
 	}
+	
 
 	public int getIdMatricula() {
 		return idMatricula;
@@ -53,6 +55,8 @@ public class MatriculaModel {
 	public void setIdCurso(int idCurso) {
 		this.idCurso = idCurso;
 	}
+	
+
 
 	@Override
 	public String toString() {

@@ -157,17 +157,17 @@ public class AlumnosController {
 		return "redirect:/alumnos/listAlumnos";
 	}
 	
-	@GetMapping("/listCursos")
-	public ModelAndView listCursosAlumnos() {
-		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    String userEmail = authentication.getName();
-	    int idAlumno = alumnosService.findByEmail(userEmail).getIdAlumno();
-		mav.addObject("cursos", cursosService.listAllCursos());
-		mav.addObject("idAlumno", idAlumno);
-		return mav;
-	}
-	
+		@GetMapping("/listCursos")
+		public ModelAndView listCursosAlumnos() {
+			ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		    String userEmail = authentication.getName();
+		    int idAlumno = alumnosService.findByEmail(userEmail).getIdAlumno();
+			mav.addObject("cursos", cursosService.listAllCursos());
+			mav.addObject("idAlumno", idAlumno);
+			return mav;
+		}
+		
 	@GetMapping("/listCursos/nivelasc")
 	public ModelAndView listCursosFechaAsc() {
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_ALUMNOS_VIEW);

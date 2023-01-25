@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.gestioncursos.entity.Cursos;
 import com.gestioncursos.model.CursosModel;
+import com.gestioncursos.model.MatriculaModel;
 
 public interface CursosService {
 
@@ -31,6 +32,8 @@ public interface CursosService {
 	public abstract List<CursosModel> ListAllCursosMatriculados(String username);
 
 	public abstract List<CursosModel> listCursosAlumno(int idAlumno);
+
+	public abstract List<MatriculaModel> listMatriculasAcabadas();
 
 	
 

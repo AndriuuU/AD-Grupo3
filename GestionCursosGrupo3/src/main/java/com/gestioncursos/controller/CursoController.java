@@ -2,7 +2,9 @@ package com.gestioncursos.controller;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,13 +19,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.gestioncursos.constantes.Constantes;
+import com.gestioncursos.model.AccionesModels;
+import com.gestioncursos.model.AlumnosModel;
 import com.gestioncursos.model.CursosModel;
+import com.gestioncursos.model.MatriculaModel;
 import com.gestioncursos.repository.CursosRepository;
 import com.gestioncursos.service.AlumnosService;
 import com.gestioncursos.service.CursosService;
+import com.gestioncursos.service.MatriculaService;
 import com.gestioncursos.service.ProfesoresService;
 
 @Controller
@@ -41,6 +46,11 @@ public class CursoController {
 	@Autowired
 	@Qualifier("cursosRepository")
 	private CursosRepository cursosRepository;
+	
+	@Autowired
+	@Qualifier("matriculaService")
+	private MatriculaService matriculaService;
+
 
 	@Autowired
 	@Qualifier("profesoresService")
@@ -112,16 +122,35 @@ public class CursoController {
 	
 	
 	// Metodo de borrar
-	@GetMapping("/deleteCurso/{idcursos}")
-	public String deleteCurso(@PathVariable("idcursos") int id, RedirectAttributes flash) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    String userEmail = authentication.getName();
-		if (cursoService.removeCurso(id) == 0)
-			flash.addFlashAttribute("success", "Curso eliminado con éxito");
-		else
-			flash.addFlashAttribute("error", "No se pudo eliminar el curso");
-		return "redirect:/profesores/listCursosEmail/"+userEmail;
+	@GetMapping("/listAlumnosOrdenados")
+	public ModelAndView listAlumnosOrdenados() {
+		ModelAndView mav = new ModelAndView(Constantes.NOTAS_CURSOS);
+	    List<MatriculaModel> listMatriculas = cursoService.listMatriculasAcabadas();
+	    List<AlumnosModel> listAlumnos = alumnosService.listAllAlumnos();
+	    List<AccionesModels> mediasAlumno = new ArrayList<>();
+	    
+	    
+	    for(AlumnosModel a: listAlumnos) {
+	    	float nota = 0;
+	    	int nMatriculas = 0;
+	    	for(MatriculaModel m : listMatriculas){
+	    		if(m.getIdAlumno() == a.getIdAlumno()) {
+	    			nota+=m.getValoracion();
+	    			nMatriculas++;
+	    		}
+	    	}
+	    	if(nMatriculas!=0) {
+	    		mediasAlumno.add(new AccionesModels(a.getNombre().toString(),(nota/nMatriculas)));
+	    	}
+	    }
+	    
+	    List<AccionesModels> listMediasOrdenadas= mediasAlumno.stream().sorted(Comparator.comparing(AccionesModels::getValoracion).reversed()).collect(Collectors.toList());
+
+	    mav.addObject("alumnos", listMediasOrdenadas);
+		
+		return mav;
 	}
+	
 	
 
 }

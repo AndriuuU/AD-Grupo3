@@ -1,5 +1,6 @@
 package com.gestioncursos.serviceImpl;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -115,6 +116,27 @@ public class CursosServiceImpl implements CursosService {
 			}
 		}
 		return cursosAlumno;
+	}
+	
+	@Override
+	public List<MatriculaModel> listMatriculasAcabadas() {
+		List<MatriculaModel> matriculasAcabadas = new ArrayList<>();
+		List<CursosModel> listCursos = listAllCursos();
+		List<MatriculaModel> listMatriculas = matriculaService.listAllMatriculas();
+		long millis=System.currentTimeMillis();  
+		Date date = new Date(millis); 
+		
+		for(MatriculaModel m : listMatriculas) {
+			for(CursosModel c : listCursos) {
+				if(m.getIdCurso() == c.getIdCurso()) {
+					if(c.getFechaFin().before(date)) {
+						matriculasAcabadas.add(m);
+					}
+				}
+			}
+		}
+		
+		return matriculasAcabadas;
 	}
 
 }

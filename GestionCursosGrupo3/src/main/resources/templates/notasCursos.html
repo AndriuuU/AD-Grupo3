@@ -49,48 +49,21 @@
 		</a>
 		<a sec:authorize="hasAuthority('ROL_ADMIN')" th:href="@{/cursos/listAlumnosOrdenados}">
 			<button type="button" class="btn btn-info"><span class="bi bi-arrow-up"></span> Ordenar por Nota</button>
-			</a>
+		</a>
 		
 	</div>
 	<br/>
 	<table class="table table-bordered">
 		<thead class="thead-light">
 			<tr>
-				<th>ID</th>
 				<th>Nombre</th>
-				<th>Descripcion</th>
-				<th>Nivel</th>
-				<th sec:authorize="hasAuthority('ROL_PROFESOR')">Profesor</th>
-				<th>Fecha Inicio</th>
-				<th>Fecha Fin</th>
+				<th>Media</th>
 			</tr>
 		</thead>
-		<tbody th:each="curso: ${cursos}">
+		<tbody th:each="alumno: ${alumnos}">
 			<tr>
-				<th th:text=${curso.idCurso}></th>
-				<th th:text=${curso.nombre}></th>
-				<th th:text=${curso.descripcion}></th>
-				<th th:text=${curso.nivel}></th>
-				<th sec:authorize="hasAuthority('ROL_PROFESOR')" th:text=${curso.idProfesor}></th>
-				<th th:text=${curso.fechaInicio}></th>
-				<th th:text=${curso.fechaFin}></th>
-				<th>
-					<div style="text-align:center;margin: auto;">
-						<a sec:authorize="hasAuthority('ROL_PROFESOR')" th:href="@{/cursos/formCurso/} + ${curso.idCurso}">
-								<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Actualizar</i></button>
-						</a> 
-						<a th:href="@{/cursos/deleteCurso/} + ${curso.idCurso}" th:onclick="return confirm('¿Estas seguro que deseas eliminar el registro?');">
-								<button type="button" class="btn btn-danger"><i class="fa-solid fa-trash" aria-hidden="true">Delete</i></button>
-						</a>
-						<a sec:authorize="hasAuthority('ROL_PROFESOR')" th:href="@{/profesores/listCursos/califica/}+${curso.idCurso}">
-								<button type="button" class="btn btn-danger"><i class="fa-solid fa-trash" aria-hidden="true">Matriculados</i></button>
-						</a>
-						<a sec:authorize="hasAuthority('ROL_ADMIN')" th:href="@{/alumnos/listAlumnos/} + ${curso.idCurso}">
-								<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Ver alumnos</i></button>
-						</a> 
-					</div>
-				
-				</th>
+				<th th:text=${alumno.nombre}></th>
+				<th th:text=${alumno.valoracion}></th>
 			</tr>
 		</tbody>
 	</table>
@@ -98,9 +71,7 @@
 <br><br>
 	
 	<div style="text-align:center;width: 500px;margin: auto;">
-		<a th:href="@{/cursos/formCurso/}">
-			<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Crear curso</i></button>
-		</a> 
+
 		<a th:href="@{/home}">
 			<button type="button" class="btn btn-primary">Regresar</button>
 		</a>

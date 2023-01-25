@@ -1,7 +1,5 @@
 package com.gestioncursos.model;
 
-import javax.persistence.Column;
-import javax.validation.constraints.Size;
 
 import com.gestioncursos.entity.User;
 

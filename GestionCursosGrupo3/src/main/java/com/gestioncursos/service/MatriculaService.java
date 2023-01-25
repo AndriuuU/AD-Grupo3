@@ -10,6 +10,7 @@ public interface MatriculaService {
 	
 	public abstract List<MatriculaModel> listAllMatriculas();
 	
+	
 	public abstract Matricula addMatricula(MatriculaModel matriculaModel);
 
 	public abstract int removeMatricula(int id);
