@@ -151,6 +151,32 @@ public class CursoController {
 		return mav;
 	}
 	
+	@GetMapping("/listaMejoresNotas/{idCurso}")
+	public ModelAndView listMejoresNotas(@PathVariable(name = "idCurso") int idCurso) {
+		ModelAndView mav = new ModelAndView(Constantes.NOTAS_CURSOS);
+	    CursosModel curso = cursoService.findCurso(idCurso);
+	    List<MatriculaModel> matri= matriculaService.listMatriculasCurso(idCurso);
+	    List<AlumnosModel> listAlumnos = alumnosService.listAllAlumnos();
+	    List<AccionesModels> mediasAlumno = new ArrayList<>();
+	    
+	    
+	    for(AlumnosModel a: listAlumnos) {
+	    	for(MatriculaModel m: matri) {
+	    		if(m.getIdCurso() == curso.getIdCurso()) {
+	    			
+	    			mediasAlumno.add(new AccionesModels(a.getNombre().toString(),m.getValoracion()));
+	    		}
+	    	}
+	    	
+	    }
+	    
+	    List<AccionesModels> listMediasOrdenadas= (List<AccionesModels>) mediasAlumno.stream().sorted((a1,a2)
+	    		-> -Float.compare(a1.getValoracion(),a2.getValoracion())).limit(3);
+
+	    mav.addObject("alumnos", listMediasOrdenadas);
+		
+		return mav;
+	}
 	
 
 }
