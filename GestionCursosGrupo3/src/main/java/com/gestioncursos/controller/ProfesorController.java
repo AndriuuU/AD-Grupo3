@@ -312,7 +312,7 @@ public class ProfesorController {
 		for(CursosModel c : listCursos) {
 			if(c.getIdProfesor()==idProf) {
 				if((c.getFechaFin().toLocalDate()).isBefore(LocalDate.now())) {
-					cursos.add(c);
+					cursos.add(c); //lista de cursos que imparte el profesor loggeado y ya finalizados
 				} 
 			}
 		}
