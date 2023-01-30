@@ -88,6 +88,11 @@
 						<a sec:authorize="hasAuthority('ROL_ADMIN')" th:href="@{/alumnos/listAlumnos/} + ${curso.idCurso}">
 								<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Ver alumnos</i></button>
 						</a> 
+						</a>
+						<a sec:authorize="hasAuthority('ROL_PROFESOR')" th:href="@{/cursos/notasCursosFinalizados/} + ${curso.idCurso}">
+								<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Ver notas alumnos</i></button>
+						</a> 
+						
 					</div>
 				
 				</th>

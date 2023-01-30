@@ -37,5 +37,7 @@ public class Constantes {
 	public static final String NOTAS_CALIFICADOS = "notasCalificados";
 	
 	public static final String NOTAS_CURSOS = "notasCursos";
+	
+	public static final String NOTAS_CURSOS_FINALIZADOS = "notasCursosFinalizados";
 
 }

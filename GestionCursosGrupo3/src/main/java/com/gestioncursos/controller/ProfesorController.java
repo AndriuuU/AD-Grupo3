@@ -1,6 +1,7 @@
 package com.gestioncursos.controller;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -295,6 +297,36 @@ public class ProfesorController {
 		
 		return "redirect:/profesores/listCursos";
 	}
+	
+	@GetMapping("/listCursos/misAlumnos")
+	public ModelAndView notasCursosFinalizados(@PathVariable("idProfesor") Integer idProfesor, Authentication auth) {
+		ModelAndView mav = new ModelAndView(Constantes.NOTAS_CURSOS_FINALIZADOS);
+		//AlumnosModel alumno = alumnosService.findAlumno(auth.getName());
+		
+		int idProf = profesorService.findProfesor(auth.getName()).getIdProfesor();
+		//int idAlumno = alumnosService.findAlumno(auth.getName()).getIdAlumno();
+		List<CursosModel> listCursos = cursosService.listAllCursos();
+		//List<MatriculaModel> matriculasAlumno = matriculaService.listMatriculasAlumno(alumno.getIdAlumno());
+		List<CursosModel> cursos = new ArrayList<>();
+
+		for(CursosModel c : listCursos) {
+			if(c.getIdProfesor()==idProf) {
+				if((c.getFechaFin().toLocalDate()).isBefore(LocalDate.now())) {
+					cursos.add(c);
+				} 
+			}
+		}
+		
+		for(CursosModel cu : cursos) {
+			
+		}
+		
+		//mav.addObject("alumnos", alumno);
+		mav.addObject("cursos", cursos);
+		return mav;
+    }
+		
+	
 	
 	
 	
