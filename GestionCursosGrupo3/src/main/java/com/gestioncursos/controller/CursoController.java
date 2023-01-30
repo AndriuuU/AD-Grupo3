@@ -162,7 +162,7 @@ public class CursoController {
 	    
 	    for(AlumnosModel a: listAlumnos) {
 	    	for(MatriculaModel m: matri) {
-	    		if(m.getIdCurso() == curso.getIdCurso()) {
+	    		if(m.getIdCurso() == curso.getIdCurso() && m.getIdAlumno() == a.getIdAlumno()) {
 	    			
 	    			mediasAlumno.add(new AccionesModels(a.getNombre().toString(),m.getValoracion()));
 	    		}
@@ -170,8 +170,7 @@ public class CursoController {
 	    	
 	    }
 	    
-	    List<AccionesModels> listMediasOrdenadas= (List<AccionesModels>) mediasAlumno.stream().sorted((a1,a2)
-	    		-> -Float.compare(a1.getValoracion(),a2.getValoracion())).limit(3);
+	    List<AccionesModels> listMediasOrdenadas=mediasAlumno.stream().sorted(Comparator.comparing(AccionesModels::getValoracion).reversed()).limit(3).collect(Collectors.toList());
 
 	    mav.addObject("alumnos", listMediasOrdenadas);
 		
