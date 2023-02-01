@@ -9,11 +9,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gestioncursos</groupId>
-	<artifactId>GestionCursosGrupo3</artifactId>
+	<artifactId>gestioncursos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>GestionCursosGrupo3</name>
 	<description>AD - Grupo 3</description>
+	<packaging>war</packaging>
 	<properties>
+		<start-class>com.gestioncursos.GestionCursosGrupo3Application</start-class>
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
@@ -24,6 +26,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+		   <groupId>org.springframework.boot</groupId>
+		   <artifactId>spring-boot-starter-tomcat</artifactId>
+		   <scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -76,10 +83,27 @@
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+			      <groupId>org.apache.maven.plugins</groupId>
+			      <artifactId>maven-war-plugin</artifactId>
+			      <version>3.3.1</version>
+			      <configuration>
+			        <warName>gestioncursos</warName>
+			      </configuration>
+   			 </plugin>
+   			 <plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-compiler-plugin</artifactId>
+			    <version>3.8.0</version>
+			    <configuration>
+			        <release>11</release>  <!--or <release>10</release>-->
+			    </configuration>
 			</plugin>
 		</plugins>
 	</build>
