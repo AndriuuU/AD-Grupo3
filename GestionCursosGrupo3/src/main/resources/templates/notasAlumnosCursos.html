@@ -13,10 +13,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
 
-<title>Cursos</title>
+
+
+<title>Calificaciones</title>
 </head>
 <body>
-
 	<div th:replace="fragments :: header"></div>
 	<br>
 	<div class="alert alert-success" th:if="${success != null}"
@@ -29,39 +30,55 @@
 						th:text="${info}">
 	</div>
 	<br />
-	<h1 style="text-align: center;">Cursos</h1>
+	<h1 style="text-align: center;">Matriculados</h1>
 	
 	<div style="text-align:center;width: 1300px;margin: auto;">
 	
-		<a sec:authorize="hasAuthority('ROL_PROFESOR')" th:href="@{/profesores/listCursos/fechaasc/}+${#authentication.name}">
+		<a th:href="@{/profesores/listCursos/fechaasc/}+${#authentication.name}">
 			<button type="button" class="btn btn-info"><span class="bi bi-arrow-up"></span> Filtrar Fecha Ascendente</button>
 		</a>
-		<a sec:authorize="hasAuthority('ROL_PROFESOR')" th:href="@{/profesores/listCursos/fechadesc/}+${#authentication.name}">
+		<a th:href="@{/profesores/listCursos/fechadesc/}+${#authentication.name}">
 			<button type="button" class="btn btn-info"><span class="bi bi-arrow-down"></span> Filtrar Fecha Descendente</button>
 		</a>
-		<a sec:authorize="hasAuthority('ROL_PROFESOR')" th:href="@{/profesores/listCursos/impartido/}+${#authentication.name}">
+		<a th:href="@{/profesores/listCursos/impartido/}+${#authentication.name}">
 			<button type="button" class="btn btn-info"><span class="bi bi-calendar-check"></span> Impartido</button>
 		</a>
-		<a sec:authorize="hasAuthority('ROL_PROFESOR')" th:href="@{/profesores/listCursos/impar/}+${#authentication.name}">
+		<a th:href="@{/profesores/listCursos/impar/}+${#authentication.name}">
 			<button type="button" class="btn btn-info"><span class="bi bi-calendar-range"></span> Impartiendo</button>
 		</a>
-		<a sec:authorize="hasAuthority('ROL_PROFESOR')" th:href="@{/profesores/listCursos/impartiran/}+${#authentication.name}">
+		<a th:href="@{/profesores/listCursos/impartiran/}+${#authentication.name}">
 			<button type="button" class="btn btn-info"><span class="bi bi-calendar-event"></span> Se impartiran</button>
 		</a>
-		
+		<a sec:authorize="hasAuthority('ROL_ADMIN')" th:href="@{/cursos/listAlumnosOrdenados}">
+			<button type="button" class="btn btn-info"><span class="bi bi-arrow-up"></span> Ordenar por Nota</button>
+			</a>
 	</div>
 	<br/>
-	<table class="table table-bordered">
+	<table class="table table-bordered" style="width:100%">
 		<thead class="thead-light">
 			<tr>
+				<th>ID</th>
+				<th>Foto</th>
 				<th>Nombre</th>
-				<th>Media</th>
+				<th>Apellidos</th>
+				<th>Email</th>
+				<th style="width:20%">Nota</th>
 			</tr>
 		</thead>
 		<tbody th:each="alumno: ${alumnos}">
 			<tr>
+				<th th:text=${alumno.idAlumno}></th>
+				<th th:text=${alumno.foto}></th>
 				<th th:text=${alumno.nombre}></th>
-				<th th:text=${alumno.valoracion}></th>
+				<th th:text=${alumno.apellidos}></th>
+				<th th:text=${alumno.email}></th>
+				<th>
+					<div class="input-group">
+						<span th:each="matricula : ${matriculas}" th:if="${alumno.idAlumno == matricula.idAlumno}" >
+							<a style="width: 25%;font-size: 25px" th:text="${matricula.valoracion}"></a>
+						</span>
+					</div>
+				</th>
 			</tr>
 		</tbody>
 	</table>
@@ -69,10 +86,10 @@
 <br><br>
 	
 	<div style="text-align:center;width: 500px;margin: auto;">
-
-		<a th:href="@{/cursos/listCursos}">
-			<button type="button" class="btn btn-primary">Regresar</button>
+		
+		<a th:href="@{/profesores/listCursosEmail/}+${#authentication.name}">
+			<button type="button" class="btn btn-primary">Volver a CURSOS</button>
 		</a>
 	</div>
 </body>
-</html>
+</html></html>

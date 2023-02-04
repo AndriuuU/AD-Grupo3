@@ -3,8 +3,12 @@ package com.gestioncursos.controller;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -177,5 +181,30 @@ public class CursoController {
 		return mav;
 	}
 	
+	@GetMapping("/listTopCursos")
+	public ModelAndView listTopCursos() {
+		ModelAndView mav = new ModelAndView(Constantes.TOP_CURSOS);
+	    List<CursosModel> listCursos = cursoService.listAllCursos();
+	    Map<CursosModel, Integer> cursos = new HashMap<CursosModel, Integer>();
+	    int alumnos = 0;
+	    
+	    for(CursosModel c : listCursos) {
+	    	List<MatriculaModel> matriculas = matriculaService.listMatriculasCurso(c.getIdCurso());
+			for(MatriculaModel m : matriculas) {
+				alumnos ++;
+			}
+			cursos.put(c, alumnos);
+			alumnos = 0;
+		}
+		
+	    Map<CursosModel,Integer> top5Cursos = cursos.entrySet().stream()
+	    		.sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).limit(5)
+	    		.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+	    
+	    List<CursosModel> topCursos = new ArrayList<CursosModel>(top5Cursos.keySet());
+	    mav.addObject("cursos", topCursos);
+	    
+	    return mav;
+	}
 
 }

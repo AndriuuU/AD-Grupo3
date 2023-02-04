@@ -50,7 +50,10 @@
 		</a>
 		<a sec:authorize="hasAuthority('ROL_ADMIN')" th:href="@{/cursos/listAlumnosOrdenados}">
 			<button type="button" class="btn btn-info"><span class="bi bi-arrow-up"></span> Ordenar por Nota</button>
-			</a>
+		</a>
+		<a sec:authorize="hasAuthority('ROL_ADMIN')" th:href="@{/cursos/listTopCursos}">
+			<button type="button" class="btn btn-info">Top 5 cursos con más alumnos</button>
+		</a>
 		
 	</div>
 	<br/>
@@ -80,9 +83,6 @@
 						<a sec:authorize="hasAuthority('ROL_PROFESOR')" th:href="@{/cursos/formCurso/} + ${curso.idCurso}">
 								<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Actualizar</i></button>
 						</a> 
-						<a th:href="@{/cursos/deleteCurso/} + ${curso.idCurso}" th:onclick="return confirm('¿Estas seguro que deseas eliminar el registro?');">
-								<button type="button" class="btn btn-danger"><i class="fa-solid fa-trash" aria-hidden="true">Delete</i></button>
-						</a>
 						<a sec:authorize="hasAuthority('ROL_PROFESOR')" th:href="@{/profesores/listCursos/califica/}+${curso.idCurso}">
 								<button type="button" class="btn btn-danger"><i class="fa-solid fa-trash" aria-hidden="true">Matriculados</i></button>
 						</a>
@@ -91,14 +91,18 @@
 						</a>
 						<a sec:authorize="hasAuthority('ROL_ADMIN')" th:href="@{/cursos/listaMejoresNotas/}+ ${curso.idCurso}">
 								<button type="button" class="btn btn-primary"><i class="bi bi-award-fill"></i><i class="fa-solid fa-pen-to-square">Ver mejores notas</i></button>
-						</a> 
 						</a>
-						<a sec:authorize="hasAuthority('ROL_PROFESOR')" th:href="@{/cursos/notasCursosFinalizados/} + ${curso.idCurso}">
+						<a th:href="@{/cursos/deleteCurso/} + ${curso.idCurso}" th:onclick="return confirm('¿Estas seguro que deseas eliminar el registro?');">
+								<button type="button" class="btn btn-danger"><i class="fa-solid fa-trash" aria-hidden="true">Delete</i></button>
+						</a>
+					</div>
+				</th>
+				<th>
+					<div th:if="${curso.fechaFin.before(#dates.createNow()) }" style="text-align:center;margin: auto;">
+						<a sec:authorize="hasAuthority('ROL_PROFESOR')" th:href="@{/profesores/listCursos/notasCursosFinalizados/} + ${curso.idCurso}">
 								<button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square">Ver notas alumnos</i></button>
 						</a> 
-						
 					</div>
-				
 				</th>
 			</tr>
 		</tbody>

@@ -137,8 +137,12 @@ public class ProfesorController {
 		ModelAndView mav = new ModelAndView(Constantes.COURSES_VIEW);
 		Profesores p = profesorRepository.findByEmail(email);
 		long id = p.getIdProfesor();
-		System.out.println(id);
+		
+		long millis = System.currentTimeMillis();
+        Date today = new java.sql.Date(millis);
+        
 		mav.addObject("cursos", cursosService.listAllCursosProfesor(id));
+		mav.addObject(today);
 		return mav;
 	}
 	
@@ -298,31 +302,31 @@ public class ProfesorController {
 		return "redirect:/profesores/listCursos";
 	}
 	
-	@GetMapping("/listCursos/misAlumnos")
-	public ModelAndView notasCursosFinalizados(@PathVariable("idProfesor") Integer idProfesor, Authentication auth) {
-		ModelAndView mav = new ModelAndView(Constantes.NOTAS_CURSOS_FINALIZADOS);
-		//AlumnosModel alumno = alumnosService.findAlumno(auth.getName());
+	@GetMapping("/listCursos/notasCursosFinalizados/{idCurso}")
+	public ModelAndView notasCursosFinalizados(@PathVariable(name = "idCurso", required = false) int idCurso, Model model) {
+		ModelAndView mav = new ModelAndView(Constantes.NOTAS_ALUMNOS_CURSOS);
 		
-		int idProf = profesorService.findProfesor(auth.getName()).getIdProfesor();
-		//int idAlumno = alumnosService.findAlumno(auth.getName()).getIdAlumno();
-		List<CursosModel> listCursos = cursosService.listAllCursos();
-		//List<MatriculaModel> matriculasAlumno = matriculaService.listMatriculasAlumno(alumno.getIdAlumno());
-		List<CursosModel> cursos = new ArrayList<>();
-
-		for(CursosModel c : listCursos) {
-			if(c.getIdProfesor()==idProf) {
-				if((c.getFechaFin().toLocalDate()).isBefore(LocalDate.now())) {
-					cursos.add(c); //lista de cursos que imparte el profesor loggeado y ya finalizados
-				} 
+		CursosModel cursos = cursosService.findCurso(idCurso);
+		List<AlumnosModel> listAlumnos = alumnosService.listAllAlumnos();
+		List<MatriculaModel> matriculas = matriculaService.listMatriculasCurso(idCurso);	
+		List<AlumnosModel> alumnos = new ArrayList<>();
+		
+		long millis = System.currentTimeMillis();
+        Date today = new java.sql.Date(millis);
+		
+        boolean finalizado = cursos.getFechaFin().before(today);
+		
+		for(AlumnosModel a : listAlumnos) {
+			for(MatriculaModel m : matriculas)
+			if(a.getIdAlumno() == m.getIdAlumno()) {
+				alumnos.add(a);
 			}
 		}
-		
-		for(CursosModel cu : cursos) {
-			
-		}
-		
-		//mav.addObject("alumnos", alumno);
 		mav.addObject("cursos", cursos);
+		mav.addObject("matriculas", matriculas);
+		mav.addObject("alumnos", alumnos);
+		mav.addObject("finalizado",finalizado);
+				
 		return mav;
     }
 		
