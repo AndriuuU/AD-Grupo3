@@ -18,10 +18,10 @@ public class SecurityConfig {
 	  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	      http.authorizeRequests((requests)->requests
 	        .antMatchers("/", "/imgs/","/photos/","/auth/**","/webjars/**","/css/**","/noticias/**","/files/**").permitAll()
-	        .antMatchers("/cursos/**").hasAnyAuthority("ROL_ADMIN","ROL_ALUMNO","ROL_PROFESOR")
-	        .antMatchers("/profesores/**").hasAnyAuthority("ROL_ADMIN","ROL_PROFESOR")
-	        .antMatchers("/comentarios/**","/matricula/**").hasAnyAuthority("ROL_PROFESOR")
-	        .antMatchers("/comentarios/**").hasAnyAuthority("ROL_ALUMNO")
+	        .antMatchers("/cursos/listCursos/","/cursos/listCursosAlumno/","/cursos/addCurso/","/curso/formCurso/**").hasAnyAuthority("ROL_ADMIN","ROL_PROFESOR")
+	        .antMatchers("/comentarios/**","/matricula/**","/cursos/listCursos/notasCursosFinalizados/**","/profesores/listCursos/notasCursosFinalizados/**").hasAnyAuthority("ROL_PROFESOR")
+	        .antMatchers("/noticias/formNoticias/**","/noticias/deleteNoticia/**","/profesor/addProfesor","profesor/formProfesor/**","/profesor/deleteProfesor","/profesor/activarUsuario","/cursos/listAlumnosOrdenados","/cursos/listaMejoresNotas/**","/cursos/listTopCursos").hasAnyAuthority("ROL_ADMIN")
+	        .antMatchers("/comentarios/**","/alumnos/listCursos/nivelasc","/alumnos/listCursos/niveldesc","/alumnos/listCursos/disponibles","/alumnos/listCursos/matriculados","/alumnos/matricularse/**","/alumnos/listNotas","/cursos/listCursos","/cursos/listCursosAlumno").hasAnyAuthority("ROL_ALUMNO")
 	        .antMatchers("/alumnos/**").hasAnyAuthority("ROL_ALUMNO","ROL_PROFESOR","ROL_ADMIN")
 	        .anyRequest().authenticated())
 	        
