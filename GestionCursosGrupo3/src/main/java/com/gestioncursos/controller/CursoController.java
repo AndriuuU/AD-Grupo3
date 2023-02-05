@@ -144,7 +144,7 @@ public class CursoController {
 	    		}
 	    	}
 	    	if(nMatriculas!=0) {
-	    		mediasAlumno.add(new AccionesModels(a.getNombre().toString(),(nota/nMatriculas)));
+	    		mediasAlumno.add(new AccionesModels(a.getIdAlumno(),a.getNombre().toString(),a.getApellidos().toString(),(nota/nMatriculas)));
 	    	}
 	    }
 	    
@@ -168,7 +168,7 @@ public class CursoController {
 	    	for(MatriculaModel m: matri) {
 	    		if(m.getIdCurso() == curso.getIdCurso() && m.getIdAlumno() == a.getIdAlumno()) {
 	    			
-	    			mediasAlumno.add(new AccionesModels(a.getNombre().toString(),m.getValoracion()));
+		    		mediasAlumno.add(new AccionesModels(a.getIdAlumno(),a.getNombre().toString(),a.getApellidos().toString(),m.getValoracion()));
 	    		}
 	    	}
 	    	

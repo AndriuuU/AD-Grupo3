@@ -54,13 +54,17 @@
 	<table class="table table-bordered">
 		<thead class="thead-light">
 			<tr>
+				<th>ID</th>
 				<th>Nombre</th>
+				<th>Apellido</th>
 				<th>Media</th>
 			</tr>
 		</thead>
 		<tbody th:each="alumno: ${alumnos}">
 			<tr>
+				<th th:text=${alumno.idA}></th>
 				<th th:text=${alumno.nombre}></th>
+				<th th:text=${alumno.apellido}></th>
 				<th th:text=${alumno.valoracion}></th>
 			</tr>
 		</tbody>

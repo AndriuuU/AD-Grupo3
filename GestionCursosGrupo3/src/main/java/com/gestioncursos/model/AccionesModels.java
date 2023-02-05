@@ -2,7 +2,9 @@ package com.gestioncursos.model;
 
 public class AccionesModels {
 
+	private int idA;
 	private String nombre;
+	private String apellido;
 	
 	private float valoracion;
 	
@@ -14,9 +16,11 @@ public class AccionesModels {
 
 
 
-	public AccionesModels(String nombre, float valoracion) {
+	public AccionesModels(int idA,String nombre, String apellido,float valoracion) {
 		super();
+		this.idA=idA;
 		this.nombre = nombre;
+		this.apellido=apellido;
 		this.valoracion = valoracion;
 	}
 
@@ -42,6 +46,31 @@ public class AccionesModels {
 
 	public void setValoracion(float valoracion) {
 		this.valoracion = valoracion;
+	}
+
+	
+
+
+	public int getIdA() {
+		return idA;
+	}
+
+
+
+	public void setIdA(int idA) {
+		this.idA = idA;
+	}
+
+
+
+	public String getApellido() {
+		return apellido;
+	}
+
+
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 
